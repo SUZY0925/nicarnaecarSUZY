@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-    <style>
+<body>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script>
+	<style>
         .intro-2 {
             background: url("https://www.rhinocarhire.com/CorporateSite/media/Site-Images/new/background.jpg")no-repeat center center;
             background-size: cover;
@@ -13,11 +16,6 @@
             z-index: 1;
         }
     </style>
-</head>
-<body>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script>
     <!--Main Navigation-->
     <header>
 	<nav class="navbar navbar-expand-lg navbar-dark blue darken-1">
@@ -37,7 +35,7 @@
                             <a class="nav-link" href="#" style="font-family: '고딕'"><strong>차량 조회</strong></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/service/notice" style="font-family:'고딕'"><strong>고객센터</strong></a>
+                            <a class="nav-link" href="/notice" style="font-family:'고딕'"><strong>고객센터</strong></a>
                         </li>
                     </ul>
                     </div>
