@@ -10,7 +10,16 @@ public class ServiceController {
 	
 	@RequestMapping(value = "/notice")
 	public String notice() {
-		
 		return "service/notice";
+	}
+	
+	@RequestMapping(value = "/oneonone")
+	public String oneonone() {
+		return "service/oneonone";
+	}
+	
+	@RequestMapping(value = "/faq")
+	public String faq() {
+		return "service/FAQ";
 	}
 }
