@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
@@ -51,8 +51,6 @@ $(function(){
 </style>
 </head>
 	<div class="container" id="container">
-<%-- 	<form:form modelAttribute="memberVO" action="/member/memberJoinOK" method="post"> --%>
-	<form action="">
 	    <div class="card">
 	        <div class="header pt-3 grey lighten-2">
 	            <div class="row d-flex justify-content-start">
@@ -62,18 +60,16 @@ $(function(){
 	        </div>
 	        <div class="card-body mx-4 mt-4">
 	            <div class="md-form">
-	                <%-- <form:input path="id" id="Form-email4" class="form-control"/> --%>
 	                <input type="email" class="form-control">
 	                <label for="Form-email4">Your email</label>
-	                <%-- <form:errors path="id" cssClass="errmsg" /> --%>
+	                <form:errors path="id" cssClass="errmsg" />
 			
 	            </div>
 	
 	            <div class="md-form">
-		            <%-- <form:password path="passwd" id="Form-pass4"  class="form-control" /> --%>
 		            <input type="password" class="form-control">
 			        <label for="Form-pass4">Your password</label>
-					<%-- <form:errors path="passwd" cssClass="errmsg" /> --%>
+					<form:errors path="passwd" cssClass="errmsg" />
 	            </div>
 	            
 	            <div class="md-form">
@@ -83,24 +79,21 @@ $(function(){
 				</div>
 				
 				<div class="md-form">
-				<%-- <form:input path="name" class="form-control"/> --%>
 				<input type="text" class="form-control">
 				<label for="Form-text4">Your Name </label>
-				<%-- <form:errors path="name" cssClass="errmsg" />  --%>
+				<form:errors path="name" cssClass="errmsg" /> 
 				</div>
 				
 				<div class="md-form">
-				<%-- <form:input path="birth" class="form-control"/> --%>
 				<input type="text" class="form-control">
 				<label for="Form-text4">Your Birth </label>
-				<%-- <form:errors path="birth" cssClass="errmsg" />  --%>
+				<form:errors path="birth" cssClass="errmsg" /> 
 				</div>
 				
 				<div class="md-form">
-				<%-- <form:input path="phone" id="phone" class="form-control" /> --%>
 				<input type="text" class="form-control"> 
 				<label for="Form-text4">Your Phone</label>
-				<%-- <form:errors path="phone" type="text" /> --%>
+				<form:errors path="phone" type="text" />
 				</div>
 				
 				</div>
@@ -110,8 +103,110 @@ $(function(){
 					<div class="col"><input type="button" value="Back" id="joinCancelBtn" class="btn btn-primary btn-block z-depth-2"/></div>
 	            </div>
 	        </div>
-	        <%-- </form:form>  --%>
-	        </form>
 	    </div>
 
-<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>  
+ --%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>   
+
+
+<jsp:include page="/WEB-INF/views/header.jsp" flush="true"/> 
+<jsp:include page="/WEB-INF/views/nav.jsp" />
+<script>
+$(function(){
+	
+	$("input[name=password]").on("keyup",function(){
+ 		if($("input[name=password]").val() != $("input[name=passwd]").val()){
+ 			$(".passErr").text('비밀번호가 틀립니다.');
+			$(this).focus();
+		}else{
+			$(".passErr").text('');
+		}
+	});
+	
+ 	$("#joinBtn").on("click",function(e){
+		e.preventDefault();
+		$("form").submit();
+		
+	});
+}); 
+</script>
+
+	<div class="container">
+		<div class="row main">
+			<div class="main-login main-center blue darken-1">
+			<h5>Join in Our Site</h5>
+					<div class="form-group">
+						<label for="name" class="cols-sm-2 control-label">Name</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"></span>
+								<input type="text" class="form-control" id="name"  placeholder="Enter your Name"/>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="birth" class="cols-sm-2 control-label">Birth</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"></span>
+								<input type="text" class="form-control" id="birth"  placeholder="ex)19940307"/>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="phone" class="cols-sm-2 control-label">Phone</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"></span>
+								<input type="text" class="form-control" id="phone"  placeholder="Enter your phone number"/>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="id" class="cols-sm-2 control-label">ID</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"></span>
+								<input type="text" class="form-control" id="id"  placeholder="Enter your Email"/>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="passwd" class="cols-sm-2 control-label">Password</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"></span>
+								<input type="password" class="form-control" id="passwd"  placeholder="Enter your Password"/>
+								<div class="input-group">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+						<div class="cols-sm-10">
+							<div class="input-group">
+								<span class="input-group-addon"></span>
+								<input type="password" class="form-control" path="confirm"  placeholder="Confirm your Password"/>
+								<span class="passErr"></span>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group ">
+						<button type="button" id="joinBtn" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+					</div>
+			</div>
+		</div>
+	</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    
+<jsp:include page="/WEB-INF/views/footer.jsp" flush="true"/> 

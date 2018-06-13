@@ -3,16 +3,15 @@
     
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/nav.jsp"></jsp:include>
-<jsp:include page="/WEB-INF/views/service/sidebar.jsp"></jsp:include>
-
 <style>
 .accordion {
-    background-color: #eee;
+    background-color: #fff;
     color: #444;
     cursor: pointer;
     padding: 18px;
     width: 100%;
     border: none;
+    border-top: 1px solid #CFCFCF;
     text-align: left;
     outline: none;
     font-size: 15px;
@@ -20,7 +19,8 @@
 }
 
 .active, .accordion:hover {
-    background-color: #ccc; 
+    background: linear-gradient(to top right, #2196f3, #1565c0);
+    z-depth: 1;
 }
 
 .panel {
@@ -30,22 +30,21 @@
     overflow: hidden;
 }
 </style>
+<jsp:include page="/WEB-INF/views/service/sidebar.jsp"></jsp:include>
 
 <div class="col-md-9">
-
-<h2>Accordion</h2>
-
-<button class="accordion">Section 1</button>
+<h2 class="animated pulse">FAQ</h2>
+     <button class="accordion animated rotateIn">Section 1</button>
 <div class="panel">
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 </div>
 
-<button class="accordion">Section 2</button>
+<button class="accordion animated rollIn">Section 2</button>
 <div class="panel">
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 </div>
 
-<button class="accordion">Section 3</button>
+<button class="accordion animated rotateIn">Section 3</button>
 <div class="panel">
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 </div>
@@ -66,9 +65,6 @@ for (i = 0; i < acc.length; i++) {
     });
 }
 </script>
-
-
-
 </div>
 </div>
 </div>

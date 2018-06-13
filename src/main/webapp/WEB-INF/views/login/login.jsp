@@ -84,6 +84,7 @@
 }
 #container {
 	margin-top: 3%;
+	max-width:400px;
 }
                 
 </style>
@@ -97,9 +98,9 @@
 	
 	<section class="form-simple">
 	    <div class="card">
-	        <div class="header pt-3 grey lighten-2">
-	            <div class="row d-flex justify-content-start">
-	                <h3 class="deep-grey-text mt-3 mb-4 pb-1 mx-5">Log in</h3>
+	        <div class="header blue darken-1 pt-3" ">
+	            <div class="row d-flex justify-content-start" >
+	                <h3 class="deep-grey-text mt-3 mb-4 pb-1 mx-5" style="color:white;">Log in</h3>
 	            </div>
 	        </div>
 	        <div class="card-body mx-4 mt-4">
