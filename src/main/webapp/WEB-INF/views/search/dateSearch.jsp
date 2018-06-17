@@ -7,14 +7,22 @@
 
 <script src="//code.jquery.com/jquery.min.js"></script> 
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-
+<style>
+	#contain * {
+		font-style:"궁서";
+	}
+	
+	.ui-datepicker-div {
+		font-style:"궁서";
+	}
+</style>
  <script>
 	$(function() {
 	  var dates = $( "#from, #to " ).datepicker({
 
 	  dateFormat: 'yy-mm-dd',
 	  showMonthAfterYear: true,
-
+	  minDate:-0,
 	  maxDate:'+30d',
 	  onSelect: function( selectedDate ) {
 	    var option = this.id == "from" ? "minDate" : "maxDate",
@@ -29,18 +37,8 @@
 	});
 </script>
 
-<div class="container">
+<div class="container" id="contain">
 <p>조회기간: <input type="text" id="from"> ~ <input type="text" id="to"></p>
 </div>  
 
-<!-- 겁나 못생기고 잘됨 
-<link rel="stylesheet" href="//mugifly.github.io/jquery-simple-datetimepicker/jquery.simple-dtpicker.css">
-<script src="//mugifly.github.io/jquery-simple-datetimepicker/jquery.simple-dtpicker.js"></script>
-<script>
-$(function(){
-  $('.datetimepicker').appendDtpicker({'locale':'ko'});
-});
-</script>
-<input type="text" class='datetimepicker' value="">
- -->
 <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
