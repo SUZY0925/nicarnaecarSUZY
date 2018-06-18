@@ -4,18 +4,9 @@
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/nav.jsp"></jsp:include>
 
-
-<script src="//code.jquery.com/jquery.min.js"></script> 
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-<style>
-	#contain * {
-		font-style:"궁서";
-	}
-	
-	.ui-datepicker-div {
-		font-style:"궁서";
-	}
-</style>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
  <script>
 	$(function() {
 	  var dates = $( "#from, #to " ).datepicker({
@@ -37,8 +28,56 @@
 	});
 </script>
 
-<div class="container" id="contain">
-<p>조회기간: <input type="text" id="from"> ~ <input type="text" id="to"></p>
-</div>  
-
+<div class="container" style="margin-top:2%;">
+	<div class="row">
+			<!-- <div class="col">시작일</div>
+			<div class="col">종료일</div>
+			
+			<div class="w-100"></div> -->
+			<div class="col-10">
+				<div class="col" id="from"></div>
+				<div class="col" id="to"></div>
+			</div>
+			<!-- <div class="col">
+				<div class="form-group">
+				    <select multiple class="form-control" id="exampleFormControlSelect2">
+				      <option>1</option>
+				      <option>2</option>
+				      <option>3</option>
+				      <option>4</option>
+				      <option>5</option>
+				    </select>
+				</div>
+			</div>
+			<div class="w-100"></div>
+			
+			<select class="custom-select col" style="margin:2%;">
+			    <option value="" disabled selected>Choose your option</option>
+			    <option value="1">Option 1</option>
+			    <option value="2">Option 2</option>
+			    <option value="3">Option 3</option>
+			</select>
+			<select class="custom-select col" style="margin:2%;">
+			    <option value="" disabled selected>Choose your option</option>
+			    <option value="1">Option 1</option>
+			    <option value="2">Option 2</option>
+			    <option value="3">Option 3</option>
+			</select>
+			<div class="col"></div>
+			<div class="w-100"></div>
+			<div class="col"><button type="button" class="btn btn-primary">Primary</button></div> -->
+			
+			<div class="col-3">
+				<div class="form-group">
+				    <select multiple class="form-control" id="exampleFormControlSelect2">
+				      <option>1</option>
+				      <option>2</option>
+				      <option>3</option>
+				      <option>4</option>
+				      <option>5</option>
+				    </select>
+				</div>
+			</div>
+	</div>
+</div>
 <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
