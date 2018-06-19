@@ -46,7 +46,7 @@
 
 <div class="container" style="margin-top:2%;">
 <div class="row">
-	<div class="col-6">
+	<div class="col-6" style="border-right: 1px dotted gray;">
 	<table class="table text-center">
 	  <thead>
 	    <tr>
@@ -87,7 +87,7 @@
 	</table>
 	</div>
 	<div class="col-6">
-	<br /><br /><br />
+	<br /><br />
 		<select class="custom-select" size="20">
 		  <option value="0">차종 및 가격...</option>
 		  <option value="1">One</option>
