@@ -30,10 +30,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent"style="margin-right:50%;">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#" style="font-family: '고딕'"><strong>예약 조회</strong></a>
+                            <a class="nav-link" href="/mypage/reservationCheck" style="font-family: '고딕'"><strong>예약 조회</strong></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" style="font-family: '고딕'"><strong>차량 조회</strong></a>
+                            <a class="nav-link" href="/search/vehicleSearch" style="font-family: '고딕'"><strong>차량 조회</strong></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/service/notice" style="font-family:'고딕'"><strong>고객센터</strong></a>

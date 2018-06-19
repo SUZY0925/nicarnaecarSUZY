@@ -98,7 +98,7 @@
 	
 	<section class="form-simple">
 	    <div class="card">
-	        <div class="header blue darken-1 pt-3" ">
+	        <div class="header blue darken-1 pt-3" >
 	            <div class="row d-flex justify-content-start" >
 	                <h3 class="deep-grey-text mt-3 mb-4 pb-1 mx-5" style="color:white;">Log in</h3>
 	            </div>

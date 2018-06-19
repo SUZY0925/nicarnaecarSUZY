@@ -27,57 +27,74 @@
 	  });
 	});
 </script>
+	<style>
+		#from div, #to div{
+			background-color: white;
+		}
+		#from .ui-state-default, #to .ui-state-default{
+			border: none;
+		}
+		#from .ui-state-highlight, #to .ui-state-highlight {
+			background-color: #33b5e5;
+			border: none;
+		}
+		
+		#from span , #from a, #to span, #to a{
+			font-family: 고딕;
+		}
+	</style>
 
 <div class="container" style="margin-top:2%;">
-	<div class="row">
-			<!-- <div class="col">시작일</div>
-			<div class="col">종료일</div>
-			
-			<div class="w-100"></div> -->
-			<div class="col-10">
-				<div class="col" id="from"></div>
-				<div class="col" id="to"></div>
-			</div>
-			<!-- <div class="col">
-				<div class="form-group">
-				    <select multiple class="form-control" id="exampleFormControlSelect2">
-				      <option>1</option>
-				      <option>2</option>
-				      <option>3</option>
-				      <option>4</option>
-				      <option>5</option>
-				    </select>
-				</div>
-			</div>
-			<div class="w-100"></div>
-			
-			<select class="custom-select col" style="margin:2%;">
-			    <option value="" disabled selected>Choose your option</option>
-			    <option value="1">Option 1</option>
-			    <option value="2">Option 2</option>
-			    <option value="3">Option 3</option>
-			</select>
-			<select class="custom-select col" style="margin:2%;">
-			    <option value="" disabled selected>Choose your option</option>
-			    <option value="1">Option 1</option>
-			    <option value="2">Option 2</option>
-			    <option value="3">Option 3</option>
-			</select>
-			<div class="col"></div>
-			<div class="w-100"></div>
-			<div class="col"><button type="button" class="btn btn-primary">Primary</button></div> -->
-			
-			<div class="col-3">
-				<div class="form-group">
-				    <select multiple class="form-control" id="exampleFormControlSelect2">
-				      <option>1</option>
-				      <option>2</option>
-				      <option>3</option>
-				      <option>4</option>
-				      <option>5</option>
-				    </select>
-				</div>
-			</div>
+<div class="row">
+	<div class="col-6">
+	<table class="table text-center">
+	  <thead>
+	    <tr>
+	      <th scope="col">시작일</th>
+	      <th scope="col">종료일</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr>
+	      <td><div id="from"></div></td>
+		  <td><div id="to"></div></td>
+	    </tr>
+	    <tr>
+	      	<td>
+	      		<select class="custom-select">
+				    <option value="" disabled selected>Choose your option</option>
+				    <option value="1">Option 1</option>
+				    <option value="2">Option 2</option>
+				    <option value="3">Option 3</option>
+				</select>
+	      	</td>
+	      	<td >
+	      		<select class="custom-select">
+				    <option value="" disabled selected>Choose your option</option>
+				    <option value="1">Option 1</option>
+				    <option value="2">Option 2</option>
+				    <option value="3">Option 3</option>
+				</select>
+	      	</td>
+	    </tr>
+	    <tr>
+	    	<td colspan="2">
+	      		<button type="button" class="btn btn-primary">Primary</button>
+	      	</td>
+	      	<td></td>
+	    </tr>
+	  </tbody>
+	</table>
 	</div>
+	<div class="col-6">
+	<br /><br /><br />
+		<select class="custom-select" size="20">
+		  <option value="0">차종 및 가격...</option>
+		  <option value="1">One</option>
+		  <option value="2">Two</option>
+		  <option value="3">Three</option>
+		</select>
+	</div>
+</div>
 </div>
 <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
