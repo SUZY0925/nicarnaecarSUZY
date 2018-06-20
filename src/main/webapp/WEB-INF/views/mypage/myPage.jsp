@@ -16,7 +16,7 @@
 </style>
 
 <div class="container" style="margin-top:2%;max-width:500px;">
-	<form action="" method="post">
+	<form:form modelAttribute="memberVO" action="/mypage/modifyOK" method="post">
 	    <div class="card">
 	        <div class="header pt-3 blue darken-1">
 	            <div class="row d-flex justify-content-start">
@@ -26,39 +26,39 @@
 	        </div>
 	        <div class="card-body mx-4 mt-4">
 	            <div class="md-form">
-	                <input type="email" name="id" id="Form-email4" class="form-control"/>
+	                <form:input path="cemail" id="Form-email4" class="form-control" readOnly="readOnly"/>
 	                <label for="Form-email4">Your email</label>
 			
 	            </div>
 	
 	            <div class="md-form">
-		            <input type="password" name="passwd" id="Form-pass4"  class="form-control" />
+		            <input type="password" name="cpasswd" id="Form-pass4"  class="form-control" />
 			        <label for="Form-pass4">Your password</label>
 	            </div>
 	            
 	            <div class="md-form">
-	            <input type="password" name="password" class="form-control" />
+	            <input type="password" name="password" id="Form-pass4" class="form-control" />
 	            <label for="Form-pass4">Confirm password</label>
 				<i class="passErr"></i>
 				</div>
 				
 				<div class="md-form">
-				<input type="text" name="name" class="form-control"/>
+				<form:input path="cname" id="Form-text4" class="form-control"/>
 				<label for="Form-text4">Your Name </label>
 				</div>
 				
 				<div class="md-form">
-				<input type="text" name="phone" id="phone" class="form-control" /> 
+				<form:input path="cphone" id="Form-text4" class="form-control" /> 
 				<label for="Form-text4">Your Phone</label>
 				</div>
 				
 				</div>
 	            <div class="row" id="BtnDiv">
-	                <div class="col"><button type="button" class="btn btn-primary btn-block z-depth-2" id="modifyBtn">MODIFY</button></div>
+	                <div class="col"><button type="submit" class="btn btn-primary btn-block z-depth-2" id="modifyBtn">MODIFY</button></div>
 					<div class="col"><input type="button" value="Back" id="modifyCancelBtn" class="btn btn-primary btn-block z-depth-2"/></div>
 	            </div>
 	        </div>
-	        </form> 
+	        </form:form> 
 	    </div>
 
 <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>

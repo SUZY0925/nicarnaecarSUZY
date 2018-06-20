@@ -18,8 +18,8 @@ public class MemberDAOImplXML implements MemberDAO{
 	}
 
 	@Override
-	public MemberVO getMember(String id) {
-		return sqlSession.selectOne("getMember",id);
+	public MemberVO getMember(String cemail) {
+		return sqlSession.selectOne("getMember",cemail);
 	}
 
 	@Override
@@ -28,8 +28,8 @@ public class MemberDAOImplXML implements MemberDAO{
 	}
 
 	@Override
-	public void memberDelete(String id) {
-		sqlSession.delete("memberDelete",id);
+	public void memberDelete(String cemail) {
+		sqlSession.delete("memberDelete",cemail);
 	}
 
 	@Override

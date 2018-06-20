@@ -20,8 +20,8 @@ public class MemberServiceImplXML implements MemberService {
 	}
 
 	@Override
-	public MemberVO getMember(String id) {
-		return memberdao.getMember(id);
+	public MemberVO getMember(String cemail) {
+		return memberdao.getMember(cemail);
 	}
 
 	@Override
@@ -30,8 +30,8 @@ public class MemberServiceImplXML implements MemberService {
 	}
 
 	@Override
-	public void memberDelete(String id) {
-		memberdao.memberDelete(id);
+	public void memberDelete(String cemail) {
+		memberdao.memberDelete(cemail);
 	}
 
 	@Override

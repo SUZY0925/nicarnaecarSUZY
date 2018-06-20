@@ -6,13 +6,13 @@ public interface MemberDAO {
 	public void memberInsert(MemberVO memberVO);
 	
 	// 회원정보 가져오기
-	public MemberVO getMember(String id);
+	public MemberVO getMember(String cemail);
 	
 	// 회원정보 수정
 	public void memberUpdate(MemberVO memberVO);
 	
 	// 회원정보 삭제
-	public void memberDelete(String id);
+	public void memberDelete(String cemail);
 	
 	public MemberVO findID(MemberVO memberVO);
 	public MemberVO findPW(MemberVO memberVO);
