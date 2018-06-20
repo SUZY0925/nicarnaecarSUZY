@@ -9,6 +9,8 @@
 	
 	<typeAliases>
 		<typeAlias type="com.prj.nicarnaecar.vo.MemberVO" alias="MemberVO" />
+		<typeAlias type="com.prj.nicarnaecar.vo.LoginVO" alias="LoginVO" />
+		<typeAlias type="com.prj.nicarnaecar.vo.VehicleVO" alias="VehicleVO" />
 	</typeAliases>
 	
 </configuration>

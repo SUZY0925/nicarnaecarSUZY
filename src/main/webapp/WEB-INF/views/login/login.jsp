@@ -11,7 +11,7 @@
 		$("#afterPW").hide(); 
 		
 		 $("#joinBtn").on("click", function(e) {
-			location.href = "/member/memberJoin"
+			location.href = "/join"
 		});
 
 		$("#loginBtn").on("click", function(e) {
@@ -20,15 +20,15 @@
 		});
 		
 		   $("#findid").on("click",function(e) {
-		 	var name = $("input[name=name]").val();
-			var phone = $("input[name=phone]").val();
+		 	var cname = $("input[name=cname]").val();
+			var cphone = $("input[name=cphone]").val();
 			 $.ajax({
 				type : "GET",
 				url : "/findID",
 				dataType : "text",
 				data : {
-					'name'  : name,
-					'phone' : phone
+					'cname'  : cname,
+					'cphone' : cphone
 				},
 				success : function(data) {
 					$("#beforeID").hide();
@@ -42,15 +42,15 @@
 		});
 		
 		$("#findpw").on("click",function() {
-			var id = $("input[name=ids]").val();
-			var birth = $("input[name=birth]").val();
+			var cemail = $("input[name=ids]").val();
+			var cbirth = $("input[name=cbirth]").val();
 			 $.ajax({
 				type : "GET",
 				url : "/findPW",
 				dataType : "text",
 				data : {
-					'id' : id,
-					'birth' :birth
+					'cemail' : cemail,
+					'cbirth' : cbirth
 				},
 				success : function(data) {
 					$("#beforePW").hide();
@@ -93,8 +93,7 @@
 
 
 	<div class="container" id="container" >
-	<%-- <form:form modelAttribute="login" action="/" method="post" id="loginform"> --%>
-	<form action="">
+	<form:form modelAttribute="login" action="/memLoginOK" method="post" id="loginform"> 
 	
 	<section class="form-simple">
 	    <div class="card">
@@ -105,16 +104,16 @@
 	        </div>
 	        <div class="card-body mx-4 mt-4">
 	            <div class="md-form">
-	                <%-- <form:input path="id" class="form-control" /> --%>
-	                <input type="email" id="id" name="name" class="form-control" />
+	               <form:input path="cemail" class="form-control" /> 
+	                <!-- <input type="email" id="id" name="name" class="form-control" /> -->
 	                <label for="Form-email4">Your email</label>
-	                <%-- <form:errors path="id" cssClass="errmsg" /> --%>
+	                <form:errors path="cemail" cssClass="errmsg" /> 
 	            </div>
 	            <div class="md-form pb-3">
-		            <%-- <form:password path="passwd"  class="form-control" /> --%>
-		            <input type="password" id="passwd" name="passwd"  class="form-control" />
+		            <form:password path="cpasswd"  class="form-control" />
+		            <!-- <input type="password" id="passwd" name="passwd"  class="form-control" /> -->
 			        <label for="Form-pass4">Your password</label>
-					<%-- <form:errors path="passwd" cssClass="errmsg" /> --%>
+					<form:errors path="cpasswd" cssClass="errmsg" />
 				</div>
 					<p class="font-small grey-text d-flex justify-content-end">Forgot <a href="#" data-toggle="modal" data-target="#exampleModalId" class="dark-grey-text font-weight-bold ml-1"> E-mail?</a></p>
 	                <p class="font-small grey-text d-flex justify-content-end">Forgot <a href="#" data-toggle="modal" data-target="#exampleModalPw" class="dark-grey-text font-weight-bold ml-1"> Password?</a></p>
@@ -125,15 +124,14 @@
 	        </div>
 	    </div>
 	</section>
-<%-- </form:form>    --%>
-</form>
+</form:form>   
      
 </div>
 
-<%-- <form:form modelAttribute="find" method="post" id="findform"> --%>
+<form:form modelAttribute="find" method="post" id="findform">
 <jsp:include page="/WEB-INF/views/login/modalID.jsp" flush="true"/>
 <jsp:include page="/WEB-INF/views/login/modalPW.jsp" flush="true"/>
-<%-- </form:form> --%>
+</form:form>
 
 
 

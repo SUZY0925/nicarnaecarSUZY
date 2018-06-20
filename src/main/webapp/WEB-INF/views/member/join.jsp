@@ -107,7 +107,6 @@ $(function(){
 
 <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>  
  --%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>   
@@ -117,96 +116,99 @@ $(function(){
 <jsp:include page="/WEB-INF/views/nav.jsp" />
 <script>
 $(function(){
-	
-	$("input[name=password]").on("keyup",function(){
- 		if($("input[name=password]").val() != $("input[name=passwd]").val()){
- 			$(".passErr").text('비밀번호가 틀립니다.');
-			$(this).focus();
-		}else{
-			$(".passErr").text('');
-		}
-	});
-	
- 	$("#joinBtn").on("click",function(e){
-		e.preventDefault();
-		$("form").submit();
-		
-	});
+   
+   $("input[name=confirm]").on("keyup",function(){
+       if($("input[name=cpasswd]").val() != $("input[name=confirm]").val()){
+          $(".passErr").text('비밀번호가 틀립니다.');
+         $(this).focus();
+      }else{
+         $(".passErr").text('');
+      }
+   });
+   
+    $("#joinBtn").on("click",function(e){
+      e.preventDefault();
+      $("form").submit();
+      
+   });
 }); 
 </script>
 
-	<div class="container">
-		<div class="row main">
-			<div class="main-login main-center blue darken-1">
-			<h5>Join in Our Site</h5>
-					<div class="form-group">
-						<label for="name" class="cols-sm-2 control-label">Name</label>
-						<div class="cols-sm-10">
-							<div class="input-group">
-								<span class="input-group-addon"></span>
-								<input type="text" class="form-control" id="name"  placeholder="Enter your Name"/>
-							</div>
-						</div>
-					</div>
+   <div class="container">
+      <div class="row main">
+         <div class="main-login main-center blue darken-1">
+         <h5>Join in Our Site</h5>
+         <form:form modelAttribute="memberVO" action="/memberJoinOK" method="post">
+               <div class="form-group">
+                  <label for="cname" class="cols-sm-2 control-label">Name</label>
+                  <div class="cols-sm-10">
+                     <div class="input-group">
+                        <span class="input-group-addon"></span>
+                        <form:input class="form-control" path="cname"  placeholder="Enter your Name"/>
+                     </div>
+                  </div>
+               </div>
 
-					<div class="form-group">
-						<label for="birth" class="cols-sm-2 control-label">Birth</label>
-						<div class="cols-sm-10">
-							<div class="input-group">
-								<span class="input-group-addon"></span>
-								<input type="text" class="form-control" id="birth"  placeholder="ex)19940307"/>
-							</div>
-						</div>
-					</div>
-					
-					<div class="form-group">
-						<label for="phone" class="cols-sm-2 control-label">Phone</label>
-						<div class="cols-sm-10">
-							<div class="input-group">
-								<span class="input-group-addon"></span>
-								<input type="text" class="form-control" id="phone"  placeholder="Enter your phone number"/>
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="id" class="cols-sm-2 control-label">ID</label>
-						<div class="cols-sm-10">
-							<div class="input-group">
-								<span class="input-group-addon"></span>
-								<input type="text" class="form-control" id="id"  placeholder="Enter your Email"/>
-							</div>
-						</div>
-					</div>
+               <div class="form-group">
+                  <label for="cbirth" class="cols-sm-2 control-label">Birth</label>
+                  <div class="cols-sm-10">
+                     <div class="input-group">
+                        <span class="input-group-addon"></span>
+                        <form:input class="form-control" path="cbirth"  placeholder="ex)19940307"/>
+                     </div>
+                  </div>
+               </div>
+               
+               <div class="form-group">
+                  <label for="cphone" class="cols-sm-2 control-label">Phone</label>
+                  <div class="cols-sm-10">
+                     <div class="input-group">
+                        <span class="input-group-addon"></span>
+                        <form:input class="form-control" path="cphone"  placeholder="Enter your phone number"/>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label for="cemail" class="cols-sm-2 control-label">ID</label>
+                  <div class="cols-sm-10">
+                     <div class="input-group">
+                        <span class="input-group-addon"></span>
+                        <form:input class="form-control" path="cemail"  placeholder="Enter your Email"/>
+                     </div>
+                  </div>
+               </div>
 
-					<div class="form-group">
-						<label for="passwd" class="cols-sm-2 control-label">Password</label>
-						<div class="cols-sm-10">
-							<div class="input-group">
-								<span class="input-group-addon"></span>
-								<input type="password" class="form-control" id="passwd"  placeholder="Enter your Password"/>
-								<div class="input-group">
-								</div>
-							</div>
-						</div>
-					</div>
+               <div class="form-group">
+                  <label for="cpasswd" class="cols-sm-2 control-label">Password</label>
+                  <div class="cols-sm-10">
+                     <div class="input-group">
+                        <span class="input-group-addon"></span>
+                        <form:password class="form-control" path="cpasswd"  placeholder="Enter your Password"/>
+                        <div class="input-group">
+                        </div>
+                     </div>
+                  </div>
+               </div>
 
-					<div class="form-group">
-						<label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
-						<div class="cols-sm-10">
-							<div class="input-group">
-								<span class="input-group-addon"></span>
-								<input type="password" class="form-control" path="confirm"  placeholder="Confirm your Password"/>
-								<span class="passErr"></span>
-							</div>
-						</div>
-					</div>
-					
-					<div class="form-group ">
-						<button type="button" id="joinBtn" class="btn btn-primary btn-lg btn-block login-button">Register</button>
-					</div>
-			</div>
-		</div>
-	</div>
+               <div class="form-group">
+                  <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+                  <div class="cols-sm-10">
+                     <div class="input-group">
+                        <span class="input-group-addon"></span>
+                        <input type="password" class="form-control" name="confirm"  placeholder="Confirm your Password"/>
+                     </div>
+                     <span class="passErr"></span>
+                  </div>
+               </div>
+               
+               <div class="form-group ">
+                  <button type="button" id="joinBtn" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+               </div>
+               </form:form>
+         </div>
+         
+      </div>
+   </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     
 <jsp:include page="/WEB-INF/views/footer.jsp" flush="true"/> 

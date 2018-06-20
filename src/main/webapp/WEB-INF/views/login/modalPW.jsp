@@ -21,7 +21,7 @@
 	                <label for="Form-email4">Id</label>
 	            </div>
 	    	<div class="md-form">
-		            <input type="text" name="birth"  class="form-control" />
+		            <input type="text" name="cbirth"  class="form-control" />
 			        <label for="Form-pass4">Birth</label>
 				</div>
     	  </div>

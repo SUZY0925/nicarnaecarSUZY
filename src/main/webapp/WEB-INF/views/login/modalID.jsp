@@ -15,13 +15,13 @@
       </div>
       <div class="modal-body">
         <div class="md-form">
-	                <%-- <form:input path="name"  class="form-control" /> --%>
-	                <input type="text" class="form-control" />
+	                <form:input path="cname"  class="form-control" />
+	                <!-- <input type="text" class="form-control" /> -->
 	                <label for="Form-email4">Name</label>
 	            </div>
 	    <div class="md-form">
-		            <%-- <form:input path="phone"    class="form-control" /> --%>
-		            <input type="text"    class="form-control" />
+		            <form:input path="cphone"    class="form-control" />
+		            <!-- <input type="text"    class="form-control" /> -->
 			        <label for="Form-pass4">PhoneNumber</label>
 				</div>
       </div>

@@ -1,46 +1,47 @@
 package com.prj.nicarnaecar.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.prj.nicarnaecar.dao.MemberDAO;
 import com.prj.nicarnaecar.vo.MemberVO;
 
 @Repository
 public class MemberServiceImplXML implements MemberService {
 
+	@Autowired
+	@Qualifier("memberDAOImplXML")
+	MemberDAO memberdao;
+	
 	@Override
 	public void memberInsert(MemberVO memberVO) {
-		// TODO Auto-generated method stub
-
+		memberdao.memberInsert(memberVO);
 	}
 
 	@Override
 	public MemberVO getMember(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return memberdao.getMember(id);
 	}
 
 	@Override
 	public void memberUpdate(MemberVO memberVO) {
-		// TODO Auto-generated method stub
-
+		memberdao.memberUpdate(memberVO);
 	}
 
 	@Override
 	public void memberDelete(String id) {
-		// TODO Auto-generated method stub
-
+		memberdao.memberDelete(id);
 	}
 
 	@Override
 	public MemberVO findID(MemberVO memberVO) {
-		// TODO Auto-generated method stub
-		return null;
+		return memberdao.findID(memberVO);
 	}
 
 	@Override
 	public MemberVO findPW(MemberVO memberVO) {
-		// TODO Auto-generated method stub
-		return null;
+		return memberdao.findPW(memberVO);
 	}
 
 }
