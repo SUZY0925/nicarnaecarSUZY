@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <title>Vehicle Search</title>
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 
@@ -66,62 +67,25 @@ for (i = 0; i < acc.length; i++) {
 
     <!--Table body-->
     <tbody>
+    	<c:forEach items="${list }" var="list" varStatus="index">
         <tr>
             <th scope="row">
 				<div class="custom-control custom-radio">
-				  <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
-				  <label class="custom-control-label" for="customRadio1"></label>
+				  <input type="radio" id="customRadio${index.count }" name="customRadio" class="custom-control-input">
+				  <label class="custom-control-label" for="customRadio${index.count }"></label>
 				</div>
             </th>
-            <td>차종</td>
-            <td>차이름</td>
-            <td>몇인승</td>
-            <td>기름종류</td>
-            <td>색상</td>
-            <td>요금</td>
+            
+            <td><img src="/resources/IMG/car/${list.vmodel}.png" alt="" style="height:50px;"/></td>
+            <td>${list.vtype} </td> <!-- 차종  -->
+            <td>${list.vmodel} ${list.vyear } </td> <!-- 차이름 -->
+            <td>${list.vmaker} </td> <!-- 메이커 -->
+            <td>${list.voil} </td> <!-- 기름종류 -->
+            <td>${list.vcolor} </td> <!-- 색상 -->
+            <td>${list.vprice}원</td> <!-- 요금 -->
         </tr>
-        <tr>
-            <th scope="row">
-            	<div class="custom-control custom-radio">
-				  <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
-				  <label class="custom-control-label" for="customRadio2"></label>
-				</div>
-            </th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@TwBootstrap</td>
-            <td>@TwBootstrap</td>
-            <td>@TwBootstrap</td>
-            <td>@TwBootstrap</td>
-        </tr>
-        <tr>
-            <th scope="row">
-            	<div class="custom-control custom-radio">
-				  <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
-				  <label class="custom-control-label" for="customRadio3"></label>
-				</div>
-            </th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>@fat</td>
-            <td>@fat</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">
-            	<div class="custom-control custom-radio">
-				  <input type="radio" id="customRadio4" name="customRadio" class="custom-control-input">
-				  <label class="custom-control-label" for="customRadio4"></label>
-				</div>
-            </th>
-            <td>@twitter</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-        </tr>
+        </c:forEach>
+       
     </tbody>
     <!--Table body-->
 

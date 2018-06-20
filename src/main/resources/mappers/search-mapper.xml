@@ -4,6 +4,6 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.prj.nicarnaecar.dao.SearchDAO">	
 	<select id="VehicleList" resultType="VehicleVO">
-		select * from vehicle where vstate = '대기'
+		select distinct vmodel, vtype, vmaker, voil, vcolor, vprice, vyear from vehicle
 	</select>
 </mapper>
