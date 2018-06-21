@@ -23,8 +23,15 @@
 	        $.datepicker._defaults.dateFormat,
 	        selectedDate, instance.settings );
 	    dates.not( this ).datepicker( "option", option, date );
+	    
+	    var fromDate = $("#from").datepicker('getDate');
+	    $("#fromInput").val(fromDate.toLocaleDateString());
+	    var toDate = $("#to").datepicker('getDate');
+	    $("#toInput").val(toDate.toLocaleDateString());
 	  }
+	  
 	  });
+	  
 	});
 </script>
 	<style>
@@ -56,8 +63,8 @@
 	  </thead>
 	  <tbody>
 	    <tr>
-	      <td><div id="from"></div></td>
-		  <td><div id="to"></div></td>
+	      <td><div id="from"></div><input type="text" id="fromInput" class="form-control"/></td>
+		  <td><div id="to"></div><input type="text" id="toInput" class="form-control"/></td>
 	    </tr>
 	    <tr>
 	      	<td>
@@ -81,7 +88,8 @@
 	    	<td colspan="2">
 	      		<button type="button" class="btn btn-primary">Primary</button>
 	      	</td>
-	      	<td></td>
+	      	<td>
+	      	</td>
 	    </tr>
 	  </tbody>
 	</table>

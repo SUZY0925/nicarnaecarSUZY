@@ -42,24 +42,8 @@ public class MemberController {
 		}
 	}
 	
-	// 내 정보 페이지 접근
-	@RequestMapping(value = "/mypage/myPage/{cemail:.+}")
-	public String modify(@PathVariable String cemail, Model model) {
-		model.addAttribute("memberVO",memberService.getMember(cemail));
-		return "/mypage/myPage";
-	}
-	
 		
-		//회원정보수정OK
-		@RequestMapping(value="/mypage/modifyOK", method = RequestMethod.POST)
-		public String memberModifyOK(@Valid MemberVO memberVO, BindingResult result) {
-			if(result.hasErrors()) {
-				return "/mypage/myPage";
-			}else {
-				memberService.memberUpdate(memberVO);
-				return "redirect:/mypage/myPage";
-			}
-		}
+		
 		/*
 		// 회원탈퇴
 		@RequestMapping(value="/memberDelete/{id:.+}")

@@ -6,4 +6,8 @@
 	<select id="VehicleList" resultType="VehicleVO">
 		select distinct vmodel, vtype, vmaker, voil, vcolor, vprice, vyear from vehicle
 	</select>
+	
+	<select id="dateSearch">
+		select * from vehicle where 
+	</select>
 </mapper>

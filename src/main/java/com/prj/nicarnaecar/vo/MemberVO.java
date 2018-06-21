@@ -9,7 +9,7 @@ public class MemberVO {
 	String cemail;		// 고객이메일
 	String cpasswd;	// 고객비밀번호
 	String cname;		// 고객이름
-	String cbirth;		// 고객생일
+	String cbirth;
 	String cphone;		// 고객전화번호
 	Date cdate;			// 가입일
 	Date cmdate;		// 최근방문일
