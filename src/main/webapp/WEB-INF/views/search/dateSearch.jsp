@@ -26,6 +26,12 @@
 	    
 	    var fromDate = $("#from").datepicker('getDate');
 	    $("#fromInput").val(fromDate.toLocaleDateString());
+	    
+	    
+	    var ret = fromDate.toLocaleDateString().replace(/. /g,'');
+	    var ret2 = ret.replace('.','');
+	    console.log(ret2); 
+	    
 	    var toDate = $("#to").datepicker('getDate');
 	    $("#toInput").val(toDate.toLocaleDateString());
 	  }
