@@ -30,7 +30,7 @@
 	    
 	    var ret = fromDate.toLocaleDateString().replace(/. /g,'');
 	    var ret2 = ret.replace('.','');
-	    console.log(ret2); 
+	    console.log(fromDate.datepicker('getFullYear()')); 
 	    
 	    var toDate = $("#to").datepicker('getDate');
 	    $("#toInput").val(toDate.toLocaleDateString());
