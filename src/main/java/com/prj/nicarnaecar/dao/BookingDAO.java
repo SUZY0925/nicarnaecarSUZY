@@ -4,6 +4,8 @@ import com.prj.nicarnaecar.vo.BookingVO;
 
 public interface BookingDAO {
 	
+	// 차량 선택 후 날짜로 검색....
+	
 	// 예약하기
 	void bookingInsert(BookingVO bookingVO);
 	

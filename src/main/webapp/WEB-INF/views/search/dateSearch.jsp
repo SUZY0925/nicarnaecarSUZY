@@ -30,15 +30,32 @@
 	    
 	    var ret = fromDate.toLocaleDateString().replace(/. /g,'');
 	    var ret2 = ret.replace('.','');
-	    console.log(fromDate.datepicker('getFullYear()')); 
 	    
 	    var toDate = $("#to").datepicker('getDate');
 	    $("#toInput").val(toDate.toLocaleDateString());
 	  }
-	  
 	  });
 	  
+	  $("#select1").change(function() {
+		  $("#select2").val($("#select1 option:selected").val()).attr("selected","selected");
+		  $("#select2").attr("disabled","true");
+		});
+	  
+	  $("#dateSearchBtn").on("click", function() {
+		  $.ajax({
+				type : "POST",
+				url : "/search/dateSearchBtn",
+				dataType : "text",
+				data : {
+				},
+				success : function(data) {
+				},
+				error : function(e) {
+				}
+			});  
+	  });
 	});
+	
 </script>
 	<style>
 		#from div, #to div{
@@ -74,25 +91,29 @@
 	    </tr>
 	    <tr>
 	      	<td>
-	      		<select class="custom-select">
+	      		<select class="custom-select" id="select1">
 				    <option value="" disabled selected>Choose your option</option>
-				    <option value="1">Option 1</option>
-				    <option value="2">Option 2</option>
-				    <option value="3">Option 3</option>
+				    <option value="1">서울</option>
+				    <option value="2">대전</option>
+				    <option value="3">대구</option>
+				    <option value="4">부산</option>
+				    <option value="5">울산</option>
 				</select>
 	      	</td>
 	      	<td >
-	      		<select class="custom-select">
+	      		<select class="custom-select" id="select2">
 				    <option value="" disabled selected>Choose your option</option>
-				    <option value="1">Option 1</option>
-				    <option value="2">Option 2</option>
-				    <option value="3">Option 3</option>
+				    <option value="1">서울</option>
+				    <option value="2">대전</option>
+				    <option value="3">대구</option>
+				    <option value="4">부산</option>
+				    <option value="5">울산</option>
 				</select>
 	      	</td>
 	    </tr>
 	    <tr>
 	    	<td colspan="2">
-	      		<button type="button" class="btn btn-primary">Primary</button>
+	      		<button type="button" class="btn btn-primary" id="dateSearchBtn">Primary</button>
 	      	</td>
 	      	<td>
 	      	</td>
