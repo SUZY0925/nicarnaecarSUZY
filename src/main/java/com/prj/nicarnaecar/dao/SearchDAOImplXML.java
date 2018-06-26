@@ -1,6 +1,8 @@
 package com.prj.nicarnaecar.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +17,27 @@ public class SearchDAOImplXML implements SearchDAO {
 	SqlSession sqlSession;
 	
 	@Override
-	public List<VehicleVO> VehicleList() {
-		return sqlSession.selectList("VehicleList");
+	public List<VehicleVO> AllVehicleList() {
+		return sqlSession.selectList("AllVehicleList");
+	}
+
+	@Override
+	public List<VehicleVO> dateVehicleList(String bin, String bout, String eoffice) {
+		Map<String,Object> map = new HashMap<>();
+		map.put("bin", bin);
+		map.put("bout", bout);
+		map.put("eoffice", eoffice);
+		return sqlSession.selectList("dateVehicleList", map);
+	}
+
+	@Override
+	public List<VehicleVO> vehicleList() {
+		return null;
+	}
+
+	@Override
+	public VehicleVO reservationView(String vnumber) {
+		return sqlSession.selectOne("reservationView", vnumber);
 	}
 
 }

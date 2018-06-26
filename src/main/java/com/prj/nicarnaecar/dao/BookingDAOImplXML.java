@@ -2,9 +2,12 @@ package com.prj.nicarnaecar.dao;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.prj.nicarnaecar.vo.BookingVO;
+import com.prj.nicarnaecar.vo.VehicleVO;
 
+@Repository
 public class BookingDAOImplXML implements BookingDAO {
 
 	@Autowired
@@ -24,4 +27,5 @@ public class BookingDAOImplXML implements BookingDAO {
 	public void bookingModify(BookingVO bookingVO) {
 		sqlSession.update("bookingModify",bookingVO);
 	}
+
 }

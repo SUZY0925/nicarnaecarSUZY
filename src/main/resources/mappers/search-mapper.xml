@@ -3,11 +3,17 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.prj.nicarnaecar.dao.SearchDAO">	
-	<select id="VehicleList" resultType="VehicleVO">
+	<select id="AllVehicleList" resultType="VehicleVO">
 		select distinct vmodel, vtype, vmaker, voil, vcolor, vprice, vyear from vehicle
 	</select>
 	
-	<select id="dateSearch">
-		select * from vehicle where 
+	<select id="dateVehicleList" resultType="VehicleVO">
+		select * from vehicle where vehicle.vnumber not in (select booking.vnumber from booking
+		<![CDATA[where bin <= TO_DATE(#{bin},'YYYY-MM-DD')
+   		OR  bout >  TO_DATE(#{bout},'YYYY-MM-DD')]]> ) and eoffice=#{eoffice}
+	</select>
+	
+	<select id="reservationView" resultType="VehicleVO">
+		select * from vehicle where vnumber= #{vnumber}
 	</select>
 </mapper>

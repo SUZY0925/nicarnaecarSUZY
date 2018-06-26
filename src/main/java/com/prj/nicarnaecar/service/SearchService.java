@@ -7,5 +7,14 @@ import com.prj.nicarnaecar.vo.VehicleVO;
 public interface SearchService {
 
 	// 차량 전체 목록
-		public List<VehicleVO> VehicleList();
+		public List<VehicleVO> AllVehicleList();
+		
+	// 날짜로 검색한 목록
+		public List<VehicleVO> dateVehicleList(String bin, String bout, String eoffice);
+		
+	// 차량으로 검색한 목록
+		public List<VehicleVO> vehicleList();
+	
+	// 예약 보기 (전)
+		VehicleVO reservationView(String vnumber);
 }

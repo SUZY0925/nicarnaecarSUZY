@@ -1,6 +1,7 @@
 package com.prj.nicarnaecar.dao;
 
 import com.prj.nicarnaecar.vo.BookingVO;
+import com.prj.nicarnaecar.vo.VehicleVO;
 
 public interface BookingDAO {
 	
@@ -14,4 +15,5 @@ public interface BookingDAO {
 	
 	// 예약수정
 	void bookingModify(BookingVO bookingVO);
+	
 }

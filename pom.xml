@@ -218,7 +218,20 @@
 		    <version>6.0.10.Final</version>
 		</dependency>
 		<!-- JPA(Java Persitence API) Validation @-->			
+		<!-- json포맷 https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>	<!-- 조직 이름, 단체 이름, 도메인으로 표현 -->
+		    <artifactId>jackson-databind</artifactId><!-- 프로젝트 이름, 라이브러리 이름 -->
+		    <version>2.9.5</version>
+		</dependency>
 		
+		
+		<!-- xml포맷..이 기본이 됨? 사용가능? https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.dataformat</groupId>
+		    <artifactId>jackson-dataformat-xml</artifactId>
+		    <version>2.9.5</version>
+		</dependency>
 		      
 	</dependencies>
 		

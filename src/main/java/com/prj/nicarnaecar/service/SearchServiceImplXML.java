@@ -17,8 +17,23 @@ public class SearchServiceImplXML implements SearchService {
 	SearchDAO searchdao;
 	
 	@Override
-	public List<VehicleVO> VehicleList() {
-		return searchdao.VehicleList();
+	public List<VehicleVO> AllVehicleList() {
+		return searchdao.AllVehicleList();
+	}
+
+	@Override
+	public List<VehicleVO> dateVehicleList(String bin, String bout, String eoffice) {
+		return searchdao.dateVehicleList(bin, bout, eoffice);
+	}
+
+	@Override
+	public List<VehicleVO> vehicleList() {
+		return null;
+	}
+
+	@Override
+	public VehicleVO reservationView(String vnumber) {
+		return searchdao.reservationView(vnumber);
 	}
 
 }

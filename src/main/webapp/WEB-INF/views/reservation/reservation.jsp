@@ -23,34 +23,30 @@
 <div class="row">
    <div class="col-6" style="border-right: 1px dotted gray;">
          <div class="md-form">
-             <input type="text" id="form1" class="form-control">
+             <input type="text" id="form1" readOnly class="form-control">
              <label for="form1" >예약자 명</label>
          </div>
          <div class="md-form">
-             <input type="text" id="form2" class="form-control">
+             <input type="text" id="form2" readOnly class="form-control">
              <label for="form2" >연락처</label>
          </div>
          <div class="md-form">
-             <input type="text" id="form3" class="form-control">
+             <input type="text" id="form3" class="form-control" readOnly value="${bookingVO.bin }">
              <label for="form3" >대여 일시</label>
          </div>
          <div class="md-form">
-             <input type="text" id="form4" class="form-control">
+             <input type="text" id="form4" class="form-control" readOnly value="${bookingVO.bout }">
              <label for="form4" >반납 일시</label>
          </div>
          <div class="md-form">
-             <input type="text" id="form5" class="form-control">
+             <input type="text" id="form5" class="form-control" readOnly value="${vehicleVO.eoffice }">
              <label for="form5" >배차/반납지</label>
-         </div>
-         <div class="md-form">
-             <input type="text" id="form6" class="form-control">
-             <label for="form6" >선택 차종</label>
          </div>
    </div>
    <div class="col-6">
          <div class="row-6">
          <div class="md-form">
-             <input type="text" id="form7" class="form-control" readOnly>
+             <input type="text" id="form7" class="form-control" readOnly value="${vehicleVO.vmodel }">
              <label for="form7" >차종</label>
          </div>
          <div class="md-form">

@@ -28,9 +28,11 @@ public class SearchController {
 	@RequestMapping(value = "/vehicleSearch")
 	public String vehicleSearch(HttpServletRequest request) {
 		List<VehicleVO> list = null;
-		list = searchService.VehicleList();
+		list = searchService.AllVehicleList();
 		
 		request.setAttribute("list", list);
 		return "search/vehicleSearch";
 	}
+	
+	
 }

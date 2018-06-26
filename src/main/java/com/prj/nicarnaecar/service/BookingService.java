@@ -1,6 +1,7 @@
 package com.prj.nicarnaecar.service;
 
 import com.prj.nicarnaecar.vo.BookingVO;
+import com.prj.nicarnaecar.vo.VehicleVO;
 
 public interface BookingService {
 	// 예약하기
@@ -11,4 +12,5 @@ public interface BookingService {
 	
 	// 예약수정
 	void bookingModify(BookingVO bookingVO);
+	
 }

@@ -9,6 +9,10 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
  <script>
 	$(function() {
+		var bin = "";
+		var bout = "";
+		var eoffice ="";
+		$("#reservationBtn").hide();
 	  var dates = $( "#from, #to " ).datepicker({
 
 	  dateFormat: 'yy-mm-dd',
@@ -27,10 +31,6 @@
 	    var fromDate = $("#from").datepicker('getDate');
 	    $("#fromInput").val(fromDate.toLocaleDateString());
 	    
-	    
-	    var ret = fromDate.toLocaleDateString().replace(/. /g,'');
-	    var ret2 = ret.replace('.','');
-	    
 	    var toDate = $("#to").datepicker('getDate');
 	    $("#toInput").val(toDate.toLocaleDateString());
 	  }
@@ -39,23 +39,55 @@
 	  $("#select1").change(function() {
 		  $("#select2").val($("#select1 option:selected").val()).attr("selected","selected");
 		  $("#select2").attr("disabled","true");
+		  eoffice = $("#select1 option:selected").val();
 		});
 	  
 	  $("#dateSearchBtn").on("click", function() {
+		  var bin2 = $("#fromInput").val().replace(/. /g,'-');
+		  bin = bin2.replace('.','');
+		  var bout2 = $("#toInput").val().replace(/. /g,'-');
+		  bout = bout2.replace('.','');
+		  
+		  var eoffice = $("#select1 option:selected").val();
+		  var str = "";
 		  $.ajax({
-				type : "POST",
-				url : "/search/dateSearchBtn",
-				dataType : "text",
-				data : {
-				},
+				type : "GET",
+				url : "/search/dateSearchBtn/"+bin+"/"+bout+"/"+eoffice,
+				dataType : "JSON",
 				success : function(data) {
+					var a = 1;
+					$.each(data, function() {
+						str += "<tr>";
+						
+						str += "<th scope='row'>";
+						str += '<div class="custom-control custom-radio">';
+						str += '<input type="radio" id="customRadio' + a + '" name="customRadio" class="custom-control-input" value="' + this.vnumber +'">';
+						str +=  '<label class="custom-control-label" for="customRadio' + a + '"></label>';
+						str += "</div>";
+						
+						str += '<td style="width:5%;"><img src="/resources/IMG/car/' + this.vmodel + '.png" alt="" style="height:30px;"/></td>';
+						str += "<td>" +  this.vtype + "</td>";
+						str += "<td>" + this.vmodel+ "</td>";
+						str += "<td>" + this.vmaker+ "</td>";
+						str += "<td>" + this.voil+ "</td>";
+						str += "<td>" + this.vcolor+ "</td>";
+						str += "<td>" + this.vprice+ "</td>";
+						str += "</tr>";
+						a = a+1;
+					});
+					$("#carList").html(str);
 				},
 				error : function(e) {
 				}
-			});  
+			});
+		  $("#reservationBtn").show();
 	  });
+	  
+	  $("#reservationBtn").on("click",function() {
+		  location.href = "/reservation/reservation/"+$("input:radio[name=customRadio]:checked").val()+"/"+bin+"/"+bout;
+	  });
+	  
 	});
-	
 </script>
 	<style>
 		#from div, #to div{
@@ -74,10 +106,10 @@
 		}
 	</style>
 
-<div class="container" style="margin-top:2%;">
+<div class="container-fulid" style="margin:auto; max-width:80%;">
 <div class="row">
 	<div class="col-6" style="border-right: 1px dotted gray;">
-	<table class="table text-center">
+	<table class="table text-center" style="width:100px; margin:auto;">
 	  <thead>
 	    <tr>
 	      <th scope="col">시작일</th>
@@ -93,27 +125,27 @@
 	      	<td>
 	      		<select class="custom-select" id="select1">
 				    <option value="" disabled selected>Choose your option</option>
-				    <option value="1">서울</option>
-				    <option value="2">대전</option>
-				    <option value="3">대구</option>
-				    <option value="4">부산</option>
-				    <option value="5">울산</option>
+				    <option value="서울">서울</option>
+				    <option value="대전">대전</option>
+				    <option value="대구">대구</option>
+				    <option value="부산">부산</option>
+				    <option value="울산">울산</option>
 				</select>
 	      	</td>
 	      	<td >
 	      		<select class="custom-select" id="select2">
 				    <option value="" disabled selected>Choose your option</option>
-				    <option value="1">서울</option>
-				    <option value="2">대전</option>
-				    <option value="3">대구</option>
-				    <option value="4">부산</option>
-				    <option value="5">울산</option>
+				    <option value="서울">서울</option>
+				    <option value="대전">대전</option>
+				    <option value="대구">대구</option>
+				    <option value="부산">부산</option>
+				    <option value="울산">울산</option>
 				</select>
 	      	</td>
 	    </tr>
 	    <tr>
 	    	<td colspan="2">
-	      		<button type="button" class="btn btn-primary" id="dateSearchBtn">Primary</button>
+	      		<button type="button" class="btn btn-primary" id="dateSearchBtn">조회하기</button>
 	      	</td>
 	      	<td>
 	      	</td>
@@ -123,12 +155,10 @@
 	</div>
 	<div class="col-6">
 	<br /><br />
-		<select class="custom-select" size="20">
-		  <option value="0">차종 및 가격...</option>
-		  <option value="1">One</option>
-		  <option value="2">Two</option>
-		  <option value="3">Three</option>
-		</select>
+	
+	<table id="carList" class="table table-bordered" style="width:100%;">
+	</table>
+		<button type="submit" class="btn btn-primary" id="reservationBtn">예약하기</button>
 	</div>
 </div>
 </div>

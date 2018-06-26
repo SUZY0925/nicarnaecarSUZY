@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.prj.nicarnaecar.dao.BookinDAO">	
+<mapper namespace="com.prj.nicarnaecar.dao.BookingDAO">	
 	<insert id="bookingInsert">
 		insert into booking(bnumber, vnumber, cemail, boption, bin, bout, bprice) values
 		(booking_seq.nextval, #{vnumber}, #{cemail}, #{boption}, #{bin}, #{bout}, #{bprice})
@@ -21,4 +21,5 @@
 	<delete id="bookingDelete">
 		delete from booking where bnumber = #{bnumber}
 	</delete>
+	
 </mapper>

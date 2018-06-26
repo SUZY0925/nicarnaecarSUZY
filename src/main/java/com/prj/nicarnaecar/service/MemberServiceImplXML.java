@@ -3,11 +3,12 @@ package com.prj.nicarnaecar.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import com.prj.nicarnaecar.dao.MemberDAO;
 import com.prj.nicarnaecar.vo.MemberVO;
 
-@Repository
+@Service
 public class MemberServiceImplXML implements MemberService {
 
 	@Autowired
