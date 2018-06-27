@@ -2,6 +2,7 @@
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 </head>
@@ -15,55 +16,82 @@
       max-width:90%;
    }
 </style>
+<script>
+   $(function() {
+   		var bin2 = "${bookingVO.bin }";
+     	var bout2 = "${bookingVO.bout}";
+     	var bin = bin2.split('-');
+     	var bout = bout2.split('-');
+        var dat1 = new Date(bin[0], bin[1], bin[2]);
+        var dat2 = new Date(bout[0], bout[1], bout[2]);
+
+		var diff = dat2 - dat1;
+		var currDay = 24 * 60 * 60 * 1000;
+
+		$("#totalPrice").html("총 결제 금액은 <b>"+parseInt(diff/currDay) * ${vehicleVO.vprice}+"원</b> 입니다.");
+		
+		$("#priceInput").val(parseInt(diff/currDay) * ${vehicleVO.vprice});
+		
+		$("#cancel").on("click", function() {
+			location.href="/";
+		});
+		
+   });
+</script>
 <jsp:include page="/WEB-INF/views/nav.jsp"></jsp:include>
 <title>Reservation Check</title>
 
+<form action="/reservation/reservationOK" method="post">
+<sec:csrfInput/>
 <div class="card">
 <div class="card-body">
 <div class="row">
    <div class="col-6" style="border-right: 1px dotted gray;">
+   
          <div class="md-form">
-             <input type="text" id="form1" readOnly class="form-control">
+             <input type="text" id="form1" readOnly class="form-control" readOnly value="${user.name }">
              <label for="form1" >예약자 명</label>
          </div>
          <div class="md-form">
-             <input type="text" id="form2" readOnly class="form-control">
+             <input type="text" id="form2" readOnly class="form-control" readOnly value="${user.phone }">
              <label for="form2" >연락처</label>
          </div>
          <div class="md-form">
-             <input type="text" id="form3" class="form-control" readOnly value="${bookingVO.bin }">
+             <input type="text" id="form3" class="form-control" readOnly value="${bookingVO.bin }" name="bin">
              <label for="form3" >대여 일시</label>
          </div>
          <div class="md-form">
-             <input type="text" id="form4" class="form-control" readOnly value="${bookingVO.bout }">
+             <input type="text" id="form4" class="form-control" readOnly value="${bookingVO.bout }" name="bout">
              <label for="form4" >반납 일시</label>
          </div>
          <div class="md-form">
              <input type="text" id="form5" class="form-control" readOnly value="${vehicleVO.eoffice }">
              <label for="form5" >배차/반납지</label>
          </div>
-   </div>
-   <div class="col-6">
-         <div class="row-6">
          <div class="md-form">
              <input type="text" id="form7" class="form-control" readOnly value="${vehicleVO.vmodel }">
              <label for="form7" >차종</label>
          </div>
-         <div class="md-form">
-             <input type="text" id="form8" class="form-control" readOnly>
-             <label for="form8" >옵션</label>
-         </div>
-         <div class="md-form">
-             <input type="text" id="form9" class="form-control" readOnly>
-             <label for="form9" >기타 추가 비용</label>
-         </div>
-         </div>
+         <input type="hidden" value="${vehicleVO.vnumber }" name="vnumber">
+         <input type="hidden" value="${user.username }" name="cemail">
+         <input type="hidden" id="priceInput" name="bprice">
+   </div>
+   
+   <div class="col-6">
+         <div class="row-6" >
+         <h2 id="totalPrice">
+         
+         </h2>
+	         
          <div class="row-6" style="position:relative; float:right; top:140px;">
-            <button type="button" class="btn btn-pink"><i class="fa fa-plane pr-2" aria-hidden="true"></i>예약하기</button>
-              <button type="button" class="btn btn-purple"><i class="fa fa-times pr-2" aria-hidden="true"></i>예약취소</button>
+            <button type="submit" class="btn btn-pink" id="reservationOK"><i class="fa fa-plane pr-2" aria-hidden="true"></i>예약하기</button>
+              <button type="button" class="btn btn-purple" id="cancel"><i class="fa fa-times pr-2" aria-hidden="true"></i>예약취소</button>
+         
          </div>
    </div>
    </div>
 </div>
 </div>
+</div>
+</form>
 <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>

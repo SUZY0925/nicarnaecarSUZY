@@ -61,8 +61,19 @@
 			<version>${org.slf4j-version}</version>
 			<scope>runtime</scope>
 		</dependency>
+		
+				
+		<!-- log4j 보다 나중에 나온 logback -->
+		<!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
 		<dependency>
-			<groupId>org.slf4j</groupId>
+		    <groupId>ch.qos.logback</groupId>
+		    <artifactId>logback-classic</artifactId>
+		    <version>1.2.3</version>
+		    <scope>runtime</scope>
+		</dependency>
+		
+		<!-- <dependency>
+			<groupId>org.slf4j</groupId>log남기는 프레임이 몇개있는데 slf4j가 제일 앞단인 프레임? 이라고 보면됨 이거랑 log4j를 같이 사용하는거
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${org.slf4j-version}</version>
 			<scope>runtime</scope>
@@ -90,7 +101,8 @@
 				</exclusion>
 			</exclusions>
 			<scope>runtime</scope>
-		</dependency>
+		</dependency> -->
+
 
 		<!-- @Inject -->
 		<dependency>
@@ -117,27 +129,14 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>bootstrap</artifactId>
-			<version>4.1.0</version>
-		</dependency>   
-
-		<dependency>
-			<groupId>org.webjars.bower</groupId>
-			<artifactId>jquery</artifactId>
-			<version>3.3.1</version>
-		</dependency>
-		
-		<!-- Test -->
+	
+		<!-- Start Test -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.7</version>
+			<version>4.12</version>
 			<scope>test</scope>
-		</dependency>  
+		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
 		<dependency>
@@ -148,12 +147,17 @@
 		</dependency>
 		<!-- End Test -->		 
 		
-		<!-- lombok -->
+		<!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
 		<dependency>
-		    <groupId>org.projectlombok</groupId>
-		    <artifactId>lombok</artifactId>
-		    <version>1.18.0</version>
-		    <scope>provided</scope>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>4.1.0</version>
+		</dependency>   
+		<!-- https://mvnrepository.com/artifact/org.webjars.bower/jquery -->
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>jquery</artifactId>
+			<version>3.3.1</version>
 		</dependency>
 		
 		<!-- mybatis 연동을 위한 설정 -->
@@ -173,7 +177,8 @@
 			<version>1.3.2</version>
 		</dependency>
 		
-		<!-- spring jdbc 5.0.6 : 스프링프레임워크 버전이 5.0.6이라서 같은걸로.. spring에서 jdbc 데이터소스 가져오는 부분, 인터페이스~ -->
+		<!-- spring jdbc 5.0.6 : 스프링프레임워크 버전이 5.0.6이라서 같은걸로.. spring에서 jdbc 데이터소스 가져오는 부분, 인터페이스~ 
+		이건 jdbcTemplate사용하려고-->
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
 		<dependency>
 		    <groupId>org.springframework</groupId>
@@ -217,7 +222,17 @@
 		    <artifactId>hibernate-validator</artifactId>
 		    <version>6.0.10.Final</version>
 		</dependency>
-		<!-- JPA(Java Persitence API) Validation @-->			
+		<!-- JPA(Java Persitence API) Validation @-->		
+		
+		
+		<!--아이콘 https://mvnrepository.com/artifact/org.webjars/font-awesome -->
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>font-awesome</artifactId>
+		    <version>5.0.13</version>
+		</dependency>
+				
+		
 		<!-- json포맷 https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 		<dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>	<!-- 조직 이름, 단체 이름, 도메인으로 표현 -->
@@ -232,11 +247,39 @@
 		    <artifactId>jackson-dataformat-xml</artifactId>
 		    <version>2.9.5</version>
 		</dependency>
-		      
+		
+		<!-- 반복작업을 줄여줌, get set 을 어노테이션 하나로 만들어줌 https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		    <version>1.18.0</version>
+		    <scope>provided</scope>
+		</dependency>
+				
+		<!-- 스프링 시큐리티 -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>5.0.5.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>5.0.5.RELEASE</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-core</artifactId>
+		    <version>5.0.5.RELEASE</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-taglibs</artifactId>
+		    <version>5.0.5.RELEASE</version>
+		</dependency>
+		<!-- 스프링 시큐리티 끝 -->
+		
 	</dependencies>
-		
-		
-	
     <build>
         <plugins>
             <plugin>
@@ -273,6 +316,29 @@
                     <mainClass>org.test.int1.Main</mainClass>
                 </configuration>
             </plugin>
+            
+            <!-- 메이븐을 통한 통캠서버 배포 시작 -->
+            <plugin>
+            	<groupId>org.apache.maven.plugins</groupId>
+            	<artifactId>maven-war-plugin</artifactId>
+            	<version>2.4</version>
+            	<configuration>
+            		<warSourceDirectory>src/main/webapp</warSourceDirectory>
+            		<webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+            	</configuration>
+            </plugin>
+            <plugin>
+            	<groupId>org.codehaus.mojo</groupId>
+            	<artifactId>tomcat-maven-plugin</artifactId>
+            	<version>1.1</version>
+            	<configuration>
+					<url>http://127.0.0.1:9080/manager/text</url>
+					<path>/</path>
+            		<username>admin</username>
+            		<password>admin</password>
+            	</configuration>
+            </plugin>
+            <!-- 메이븐을 통한 통캠서버 배포 종료 -->
         </plugins>
     </build>
 </project>

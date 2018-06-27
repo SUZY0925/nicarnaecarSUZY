@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     
     <style>
         .intro-2 {
@@ -13,6 +15,16 @@
             z-index: 1;
         }
     </style>
+<sec:authentication property="principal" var="user" scope="session"/>
+<script>
+$(function() {
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	$(document).ajaxSend(function(e, xhr, options) {
+		xhr.setRequestHeader(header, token);
+	});
+});
+</script>
 </head>
 <body>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -30,7 +42,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent"style="margin-right:50%;">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/mypage/reservationCheck" style="font-family: '고딕'"><strong>예약 조회</strong></a>
+                            <a class="nav-link" href="/reservation/reservationCheck" style="font-family: '고딕'"><strong>예약 조회</strong></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/search/vehicleSearch" style="font-family: '고딕'"><strong>차량 조회</strong></a>
@@ -42,12 +54,26 @@
                     </div>
                 <div class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
+                
+                	<sec:authorize access="isAnonymous()">
                         <li class="nav-item">
-                            <a class="nav-link" href="/login">로그인</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/login/login">로그인</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/mypage/join">회원가입</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/mypage/join">회원가입</a>
                         </li>
+                    </sec:authorize>
+				
+					<sec:authorize access="isAuthenticated()">
+							<li class="nav-item">
+                            	<a class="nav-link" href="${pageContext.request.contextPath}/reservation/${user.username}">내 정보 확인</a>
+                        	</li>
+                        	<li class="nav-item">
+                            	<a class="nav-link" href="${pageContext.request.contextPath}/login/logout">로그아웃</a>
+                        	</li>
+					</sec:authorize>
+                        
+                        
                     </ul>
                 </div>
             </div>

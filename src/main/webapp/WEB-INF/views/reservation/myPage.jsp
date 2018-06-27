@@ -23,7 +23,7 @@
 </script>
 
 <div class="container" style="margin-top:2%;max-width:500px;">
-	<form:form modelAttribute="memberVO" action="/mypage/modifyOK" method="post" id="modifyForm">
+	<form:form modelAttribute="memberVO" action="/reservation/modifyOK" method="post" id="modifyForm">
 	    <div class="card">
 	        <div class="header pt-3 blue darken-1">
 	            <div class="row d-flex justify-content-start">

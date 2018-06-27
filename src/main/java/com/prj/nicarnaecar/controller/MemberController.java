@@ -43,22 +43,7 @@ public class MemberController {
 		}
 	}
 	
-	// 내 정보 페이지 접근
-	@RequestMapping(value = "/{cemail:.+}")
-	public String modify(@PathVariable String cemail, Model model) {
-		model.addAttribute("memberVO",memberService.getMember(cemail));
-		return "/member/myPage";
-	}
 	
-	@RequestMapping(value="/modifyOK", method = RequestMethod.POST)
-	public String memberModifyOK(@Valid MemberVO memberVO, BindingResult result) {
-		if(result.hasErrors()) {
-			return "/";
-		}else {
-			memberService.memberUpdate(memberVO);
-			return "redirect:/";
-		}
-	}
 	
 		
 		

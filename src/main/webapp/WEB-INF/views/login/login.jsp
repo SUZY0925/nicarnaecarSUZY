@@ -90,10 +90,12 @@
 </style>
 </head>
 <jsp:include page="/WEB-INF/views/nav.jsp"></jsp:include>
-
-
+	<c:if test="${param.fail != null}">
+		로그인실패
+	</c:if>
+	<%-- <c:url value="j_spring_security_check" var="loginUrl" /> --%>
 	<div class="container" id="container" >
-	<form:form modelAttribute="login" action="/memLoginOK" method="post" id="loginform"> 
+	<form:form action="${pageContext.request.contextPath}/login" method="post" id="loginform"> 
 	
 	<section class="form-simple">
 	    <div class="card">
@@ -104,16 +106,16 @@
 	        </div>
 	        <div class="card-body mx-4 mt-4">
 	            <div class="md-form">
-	               <form:input path="cemail" class="form-control" /> 
-	                <!-- <input type="email" id="id" name="name" class="form-control" /> -->
+	               <%-- <form:input path="cemail" class="form-control" />  --%>
+	                <input type="email" id="id" name="username" class="form-control" />
 	                <label for="Form-email4">Your email</label>
-	                <form:errors path="cemail" cssClass="errmsg" /> 
+	                <form:errors path="username" cssClass="errmsg" /> 
 	            </div>
 	            <div class="md-form pb-3">
-		            <form:password path="cpasswd"  class="form-control" />
-		            <!-- <input type="password" id="passwd" name="passwd"  class="form-control" /> -->
+		            <%-- <form:password path="cpasswd"  class="form-control" /> --%>
+		            <input type="password" id="passwd" name="password"  class="form-control" />
 			        <label for="Form-pass4">Your password</label>
-					<form:errors path="cpasswd" cssClass="errmsg" />
+					<form:errors path="password" cssClass="errmsg" />
 				</div>
 					<p class="font-small grey-text d-flex justify-content-end">Forgot <a href="#" data-toggle="modal" data-target="#exampleModalId" class="dark-grey-text font-weight-bold ml-1"> E-mail?</a></p>
 	                <p class="font-small grey-text d-flex justify-content-end">Forgot <a href="#" data-toggle="modal" data-target="#exampleModalPw" class="dark-grey-text font-weight-bold ml-1"> Password?</a></p>
