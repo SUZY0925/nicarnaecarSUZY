@@ -44,13 +44,6 @@ $(document).ready(function() {
 	    <tbody>
 		    <c:forEach items="${list }" var="list" varStatus="index">
 		        <tr>
-		            <th scope="row">
-						<div class="custom-control custom-radio">
-						  <input type="radio" id="customRadio${index.count }" name="customRadio" class="custom-control-input">
-						  <label class="custom-control-label" for="customRadio${index.count }"></label>
-						</div>
-		            </th>
-		            
 		            <td style="width:5%;"><img class="zoom" src="/resources/IMG/car/${list.vmodel}.png" alt="" style="height:50px;"/></td>
 		            <td>${list.vtype} </td> <!-- 차종  -->
 		            <td>${list.vmodel} ${list.vyear } </td> <!-- 차이름 -->

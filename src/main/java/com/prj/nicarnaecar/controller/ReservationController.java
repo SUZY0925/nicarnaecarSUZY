@@ -62,10 +62,8 @@ public class ReservationController {
 	@RequestMapping(value="/reservationOK", method=POST)
 	public String reservationOK(BookingVO bookingVO) {
 		bookingService.bookingInsert(bookingVO);
-		return "/reservation/myPage";
+		return "/reservation/reservationCheck";
 	}
-	
-	
 	
 	
 	@Autowired

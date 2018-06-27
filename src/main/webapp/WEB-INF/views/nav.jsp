@@ -60,7 +60,7 @@ $(function() {
                             <a class="nav-link" href="${pageContext.request.contextPath}/login/login">로그인</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="${pageContext.request.contextPath}/mypage/join">회원가입</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/member/join">회원가입</a>
                         </li>
                     </sec:authorize>
 				
