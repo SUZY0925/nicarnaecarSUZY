@@ -1,5 +1,7 @@
 package com.prj.nicarnaecar.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -26,6 +28,11 @@ public class BookingDAOImplXML implements BookingDAO {
 	@Override
 	public void bookingModify(BookingVO bookingVO) {
 		sqlSession.update("bookingModify",bookingVO);
+	}
+
+	@Override
+	public List<BookingVO> bookingView(String cemail) {
+		return sqlSession.selectList("bookingView",cemail);
 	}
 
 }

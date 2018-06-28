@@ -21,4 +21,8 @@
 		delete from booking where bnumber = #{bnumber}
 	</delete>
 	
+	<select id="bookingView" resultType="BookingVO">
+		select * from booking where cemail = #{cemail}
+	</select>
+	
 </mapper>

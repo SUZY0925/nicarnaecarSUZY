@@ -22,7 +22,7 @@ public class SearchController {
 	
 	@RequestMapping(value = "/dateSearch")
 	public String dateSearch() {
-		return "search/dateSearch";
+		return "/search/dateSearch";
 	}
 	
 	@RequestMapping(value = "/vehicleSearch")
@@ -31,7 +31,7 @@ public class SearchController {
 		list = searchService.AllVehicleList();
 		
 		request.setAttribute("list", list);
-		return "search/vehicleSearch";
+		return "/search/vehicleSearch";
 	}
 	
 	

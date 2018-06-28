@@ -1,5 +1,7 @@
 package com.prj.nicarnaecar.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -28,6 +30,11 @@ public class BookingServiceImplXML implements BookingService {
 	@Override
 	public void bookingModify(BookingVO bookingVO) {
 		bookingdao.bookingModify(bookingVO);
+	}
+
+	@Override
+	public List<BookingVO> bookingView(String cemail) {
+		return bookingdao.bookingView(cemail);
 	}
 
 

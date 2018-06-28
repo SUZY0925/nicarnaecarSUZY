@@ -2,6 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate value="${now}" pattern="yyyyMMdd" var="nowDate" />  
 
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 </head>
@@ -15,12 +19,13 @@
 
         <!--Table-->
         <table class="table table-hover table-responsive-md table-fixed">
-
             <!--Table head-->
             <thead>
                 <tr>
                     <th>예약번호</th>
-                    <th colspan="5">예약내역</th>
+                    <th colspan="3">예약내역</th>
+                    <th>대여시작일</th>
+                    <th>대여종료일</th>
                     <th>상태</th>
                     <th></th>
                 </tr>
@@ -29,42 +34,33 @@
 
             <!--Table body-->
             <tbody>
+            
+            <c:forEach items="${booking }" var="book" >
                 <tr>
-                    <th scope="row">4</th>
-                    <td colspan="5">Jerry</td>
-                    <td>대기</td>
+                    <th scope="row">${book.bnumber }</th>
+                    <td colspan="3">${book.vnumber }</td>
+                    <td>${book.bin }</td>
+                    <td>${book.bout }</td>
                     <td>
-                    	<button type="button" class="btn btn-blue-grey btn-sm">수정</button>
-                    	<button type="button" class="btn btn-mdb-color btn-sm">취소</button>
+                    	<fmt:formatDate value="${book.bin}" pattern="yyyyMMdd" var="inDate" />  
+                    	<fmt:formatDate value="${book.bout}" pattern="yyyyMMdd" var="outDate" />  
+		                   	<c:if test="${nowDate > outDate}">
+		                   		사용완료
+		                    </c:if>
+		                    <c:if test="${nowDate <= outDate && nowDate >= inDate}">
+		                   		사용중
+		                    </c:if>
+		                    <c:if test="${nowDate <= outDate && nowDate < inDate}">
+		                   		예약완료
+		                    </c:if>
+                    </td>
+                    <td>
+                    	<c:if test="${nowDate <= outDate && nowDate < inDate }">
+		                 	<a href="#" class="btn btn-mdb-color btn-sm">취소</a>
+		            	</c:if>
                     </td>
                 </tr>
-                <tr>
-                    <th scope="row">4</th>
-                    <td colspan="5">Jerry</td>
-                    <td>취소완료</td>
-                    <td>
-                    	<button type="button" class="btn btn-blue-grey btn-sm">수정</button>
-                    	<button type="button" class="btn btn-mdb-color btn-sm">취소</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">4</th>
-                    <td colspan="5">Jerry</td>
-                    <td>사용중</td>
-                    <td>
-                    	<button type="button" class="btn btn-blue-grey btn-sm">수정</button>
-                    	<button type="button" class="btn btn-mdb-color btn-sm">취소</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">4</th>
-                    <td colspan="5">Jerry</td>
-                    <td>사용완료</td>
-                    <td>
-                    	<button type="button" class="btn btn-blue-grey btn-sm">수정</button>
-                    	<button type="button" class="btn btn-mdb-color btn-sm">취소</button>
-                    </td>
-                </tr>
+            </c:forEach>
             </tbody>
             <!--Table body-->
 

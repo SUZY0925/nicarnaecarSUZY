@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    
+<sec:authentication property="principal" var="user" scope="session"/>
+   
     <style>
         .intro-2 {
             background: url("https://www.rhinocarhire.com/CorporateSite/media/Site-Images/new/background.jpg")no-repeat center center;
@@ -42,7 +43,7 @@ $(function() {
                 <div class="collapse navbar-collapse" id="navbarSupportedContent"style="margin-right:50%;">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/reservation/reservationCheck" style="font-family: '고딕'"><strong>예약 조회</strong></a>
+                            <a class="nav-link" href="/reservation/reservationCheck/${user.username }" style="font-family: '고딕'"><strong>예약 조회</strong></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/search/vehicleSearch" style="font-family: '고딕'"><strong>차량 조회</strong></a>
@@ -66,7 +67,7 @@ $(function() {
 				
 					<sec:authorize access="isAuthenticated()">
 							<li class="nav-item">
-                            	<a class="nav-link" href="${pageContext.request.contextPath}/reservation/${user.username}">내 정보 확인</a>
+                            	<a class="nav-link" href="${pageContext.request.contextPath}/reservation/myPage/${user.username}">내 정보 확인</a>
                         	</li>
                         	<li class="nav-item">
                             	<a class="nav-link" href="${pageContext.request.contextPath}/login/logout">로그아웃</a>

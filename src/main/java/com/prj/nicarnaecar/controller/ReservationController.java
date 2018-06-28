@@ -36,13 +36,6 @@ public class ReservationController {
 	@Qualifier("searchServiceImplXML")
 	SearchService searchService;
 	
-	
-	@RequestMapping(value="/reservationCheck",method=GET)
-	public String reservationCheck() {
-		return "/reservation/reservationCheck";
-	}
-	
-	
 	@RequestMapping(value="/reservation/{vnumber}/{bin}/{bout}",method=GET)
 	public String reservation(@PathVariable String vnumber, @PathVariable Date bin, @PathVariable Date bout, Model model) {
 		VehicleVO vehicleVO  = searchService.reservationView(vnumber);
@@ -59,6 +52,13 @@ public class ReservationController {
 	@Qualifier("bookingServiceImplXML")
 	BookingService bookingService;
 	
+	
+	@RequestMapping(value="/reservationCheck/{cemail:.+}",method=GET)
+	public String reservationCheck(@PathVariable String cemail, Model model) {
+		model.addAttribute("booking",bookingService.bookingView(cemail));
+		return "/reservation/reservationCheck";
+	}
+	
 	@RequestMapping(value="/reservationOK", method=POST)
 	public String reservationOK(BookingVO bookingVO) {
 		bookingService.bookingInsert(bookingVO);
@@ -71,7 +71,7 @@ public class ReservationController {
 	MemberService memberService;
 	
 // 내 정보 페이지 접근
-	@RequestMapping(value = "/{cemail:.+}")
+	@RequestMapping(value = "/myPage/{cemail:.+}")
 	public String modify(@PathVariable String cemail, Model model) {
 		model.addAttribute("memberVO",memberService.getMember(cemail));
 		return "/reservation/myPage";
@@ -83,7 +83,7 @@ public class ReservationController {
 			return "/";
 		}else {
 			memberService.memberUpdate(memberVO);
-			return "redirect:/";
+			return "redirect:/reservation/myPage/"+memberVO.getCemail();
 		}
 	}
 }

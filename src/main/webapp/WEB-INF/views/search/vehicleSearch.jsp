@@ -4,6 +4,10 @@
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 
 <script>
+function addComma(num) {
+	var regexp = /\B(?=(\d{3})+(?!\d))/g;
+    return num.toString().replace(regexp, ',');
+}
 $(document).ready(function() {
 	$('#myInput').on('keyup focus', function() {
 			  var input, filter, table, tr, td, i;
@@ -42,17 +46,21 @@ $(document).ready(function() {
 	<table id="myTable" class="table table-bordered" style="width:100%;">
 	    <!--Table body-->
 	    <tbody>
-		    <c:forEach items="${list }" var="list" varStatus="index">
-		        <tr>
-		            <td style="width:5%;"><img class="zoom" src="/resources/IMG/car/${list.vmodel}.png" alt="" style="height:50px;"/></td>
-		            <td>${list.vtype} </td> <!-- 차종  -->
-		            <td>${list.vmodel} ${list.vyear } </td> <!-- 차이름 -->
-		            <td>${list.vmaker} </td> <!-- 메이커 -->
-		            <td>${list.voil} </td> <!-- 기름종류 -->
-		            <td>${list.vcolor} </td> <!-- 색상 -->
-		            <td>${list.vprice}원</td> <!-- 요금 -->
-		        </tr>
-	        </c:forEach>
+	    <script>
+	    var str = "";
+		    <c:forEach items="${list }" var="list">
+		        str += "<tr>";
+		        str += "<td style='width:5%;'><img class='zoom' src='/resources/IMG/car/${list.vmodel}.png' alt='' style='height:50px;'/></td>";
+		        str += "<td>${list.vtype} </td>";
+		        str += "<td>${list.vmodel} ${list.vyear } </td>"; 
+		        str += "<td>${list.vmaker} </td>";
+		        str += "<td>${list.voil} </td>"; 
+		        str += "<td>${list.vcolor} </td>"; 
+		        str += "<td>"+addComma("${list.vprice}")+"원</td>"; 
+		        str += "</tr>";
+		     </c:forEach>
+		     $("#myTable").html(str);
+		   </script>
 	    </tbody>
 	    <!--Table body-->
 	</table>

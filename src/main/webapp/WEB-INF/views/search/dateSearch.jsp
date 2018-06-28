@@ -8,6 +8,10 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
  <script>
+ function addComma(num) {
+		var regexp = /\B(?=(\d{3})+(?!\d))/g;
+	    return num.toString().replace(regexp, ',');
+	}
 	$(function() {
 		var bin = "";
 		var bout = "";
@@ -71,7 +75,8 @@
 						str += "<td>" + this.vmaker+ "</td>";
 						str += "<td>" + this.voil+ "</td>";
 						str += "<td>" + this.vcolor+ "</td>";
-						str += "<td>" + this.vprice+ "</td>";
+						
+						str += "<td>" + addComma(this.vprice)+ "원</td>";
 						str += "</tr>";
 						a = a+1;
 					});

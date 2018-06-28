@@ -1,11 +1,11 @@
 package com.prj.nicarnaecar.dao;
 
+import java.util.List;
+
 import com.prj.nicarnaecar.vo.BookingVO;
 import com.prj.nicarnaecar.vo.VehicleVO;
 
 public interface BookingDAO {
-	
-	// 차량 선택 후 날짜로 검색....
 	
 	// 예약하기
 	void bookingInsert(BookingVO bookingVO);
@@ -15,5 +15,8 @@ public interface BookingDAO {
 	
 	// 예약수정
 	void bookingModify(BookingVO bookingVO);
+	
+	// 예약조회
+	List<BookingVO> bookingView(String cemail);
 	
 }
