@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/nav.jsp"></jsp:include>
@@ -23,44 +25,21 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th colspan="5">Title</th>
-                    <th>Date</th>
+                    <th colspan="4">제목</th>
+                    <th>작성일</th>
                 </tr>
             </thead>
             <!--Table head-->
 
             <!--Table body-->
             <tbody>
+            <c:forEach items="${notice }" var="notice">
                 <tr>
-                    <th scope="row">4</th>
-                    <td colspan="5">Jerry</td>
-                    <td>41</td>
+                    <th scope="row">${notice.nnumber }</th>
+                    <td colspan="4"><a class="text-dark" href="/service/noticeView?nnumber=${notice.nnumber }">${notice.ntitle }</a></td>
+                    <td>${notice.ncdate }</td>
                 </tr>
-                <tr>
-                    <th scope="row">5</th>
-                    <td colspan="5">Janis</td>
-                    <td>39</td>
-                </tr>
-                <tr>
-                    <th scope="row">6</th>
-                    <td colspan="5">Gary</td>
-                    <td>37</td>
-                </tr>
-                <tr>
-                    <th scope="row">7</th>
-                    <td colspan="5">Angie</td>
-                    <td>52</td>
-                </tr>
-                <tr>
-                    <th scope="row">8</th>
-                    <td colspan="5">John</td>
-                    <td>28</td>
-                </tr>
-                <tr>
-                    <th scope="row">9</th>
-                    <td colspan="5">Otto</td>
-                    <td>35</td>
-                </tr>
+                </c:forEach>
             </tbody>
             <!--Table body-->
 

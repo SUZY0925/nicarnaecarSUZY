@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+   
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/nav.jsp"></jsp:include>
 <style>
@@ -34,20 +36,13 @@
 
 <div class="col-md-9">
 <h2 class="animated pulse">FAQ</h2>
-     <button class="accordion animated rotateIn">Section 1</button>
-<div class="panel">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-</div>
 
-<button class="accordion animated rollIn">Section 2</button>
+<c:forEach items="${faq }" var="faq">
+<button class="accordion animated rotateIn">${faq.ftitle }</button>
 <div class="panel">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  <p>${faq.fcontent }</p>
 </div>
-
-<button class="accordion animated rotateIn">Section 3</button>
-<div class="panel">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-</div>
+</c:forEach>
 
 <script>
 var acc = document.getElementsByClassName("accordion");

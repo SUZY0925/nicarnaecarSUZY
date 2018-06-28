@@ -3,6 +3,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 </head>
@@ -17,6 +19,11 @@
    }
 </style>
 <script>
+	function addComma(num) {
+		var regexp = /\B(?=(\d{3})+(?!\d))/g;
+	    return num.toString().replace(regexp, ',');
+	}
+
    $(function() {
    		var bin2 = "${bookingVO.bin }";
      	var bout2 = "${bookingVO.bout}";
@@ -28,14 +35,12 @@
 		var diff = dat2 - dat1;
 		var currDay = 24 * 60 * 60 * 1000;
 
-		$("#totalPrice").html("총 결제 금액은 <b>"+parseInt(diff/currDay) * ${vehicleVO.vprice}+"원</b> 입니다.");
+		var num = addComma((parseInt(diff/currDay)+1) * ${vehicleVO.vprice});
 		
-		$("#priceInput").val(parseInt(diff/currDay) * ${vehicleVO.vprice});
-		
+		$("#total").html("총 결제 금액은 <b>"+num+"원</b> 입니다.");
 		$("#cancel").on("click", function() {
 			location.href="/";
 		});
-		
    });
 </script>
 <jsp:include page="/WEB-INF/views/nav.jsp"></jsp:include>
@@ -79,10 +84,11 @@
    
    <div class="col-6">
          <div class="row-6" >
-         <h2 id="totalPrice">
          
+         <h2>
+         	<span id="total"></span>
          </h2>
-	         
+         
          <div class="row-6" style="position:relative; float:right; top:140px;">
             <button type="submit" class="btn btn-pink" id="reservationOK"><i class="fa fa-plane pr-2" aria-hidden="true"></i>예약하기</button>
               <button type="button" class="btn btn-purple" id="cancel"><i class="fa fa-times pr-2" aria-hidden="true"></i>예약취소</button>
