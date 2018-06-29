@@ -32,4 +32,39 @@ public class ServiceServiceImplXML implements ServiceService {
 		return serviceDAO.noticeView(nnumber);
 	}
 
+	@Override
+	public void noticeModify(NoticeVO noticeVO) {
+		serviceDAO.noticeModify(noticeVO);
+	}
+
+	@Override
+	public void noticeDelete(int nnumber) {
+		serviceDAO.noticeDelete(nnumber);
+	}
+
+	@Override
+	public void faqModify(FaqVO faqVO) {
+		serviceDAO.faqModify(faqVO);
+	}
+
+	@Override
+	public void faqDelete(int fnumber) {
+		serviceDAO.faqDelete(fnumber);
+	}
+
+	@Override
+	public void noticeInsert(NoticeVO noticeVO) {
+		serviceDAO.noticeInsert(noticeVO);
+	}
+
+	@Override
+	public void faqInsert(FaqVO faqVO) {
+		serviceDAO.faqInsert(faqVO);
+	}
+
+	@Override
+	public FaqVO faqView(int fnumber) {
+		return serviceDAO.faqView(fnumber);
+	}
+
 }

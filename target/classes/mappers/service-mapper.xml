@@ -12,4 +12,40 @@
 	<select id="noticeView" parameterType="int" resultType="NoticeVO">
 		select * from notice where nnumber = #{nnumber}
 	</select>
+	<select id="faqView" parameterType="int" resultType="FaqVO">
+		select * from faq where fnumber = #{fnumber}
+	</select>
+	
+	
+	<update id="noticeModify" parameterType="NoticeVO">
+		update notice set
+			ntitle = #{ntitle},
+			ncontent = #{ncontent},
+			ncdate = sysdate
+		where nnumber 	= #{nnumber}	
+	</update>
+	
+	<update id="faqModify" parameterType="FaqVO">
+		update faq set
+			ftitle = #{ftitle},
+			fcontent = #{fcontent},
+			fcdate = sysdate
+		where nnumber 	= #{nnumber}	
+	</update>
+	
+	<delete id="noticeDelete">
+		delete from notice where nnumber = #{nnumber}
+	</delete>
+	
+	<delete id="faqDelete">
+		delete from faq where fnumber = #{fnumber}
+	</delete>
+	
+	<insert id="noticeInsert" parameterType="NoticeVO">
+		insert into notice(nnumber, eemail, ntitle, ncontent) values(notice_seq.nextval, #{eemail}, #{ntitle}, #{ncontent})
+	</insert>
+		
+	<insert id="faqInsert" parameterType="FaqVO">
+		insert into faq(fnumber, eemail, ftitle, fcontent) values(faq_seq.nextval, #{eemail}, #{ftitle}, #{fcontent})
+	</insert>
 </mapper>

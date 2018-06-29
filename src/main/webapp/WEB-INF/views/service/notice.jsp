@@ -20,7 +20,7 @@
 
         <!--Table-->
         <table class="table table-hover table-responsive-md table-fixed">
-
+			<span style="float:right;"><a href="/service/noticeWrite">글쓰기</a></span>
             <!--Table head-->
             <thead>
                 <tr>
@@ -42,10 +42,8 @@
                 </c:forEach>
             </tbody>
             <!--Table body-->
-
         </table>
         <!--Table-->
-
     </div>
 </div>
 

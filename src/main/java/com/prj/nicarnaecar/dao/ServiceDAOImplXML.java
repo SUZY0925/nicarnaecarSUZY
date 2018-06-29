@@ -30,4 +30,39 @@ public class ServiceDAOImplXML implements ServiceDAO {
 		return sqlSession.selectOne("noticeView",nnumber);
 	}
 
+	@Override
+	public void noticeModify(NoticeVO noticeVO) {
+		sqlSession.update("noticeModify", noticeVO);
+	}
+
+	@Override
+	public void noticeDelete(int nnumber) {
+		sqlSession.delete("noticeDelete", nnumber);
+	}
+
+	@Override
+	public void faqModify(FaqVO faqVO) {
+		sqlSession.update("faqModify", faqVO);
+	}
+
+	@Override
+	public void faqDelete(int fnumber) {
+		sqlSession.delete("faqDelete", fnumber);
+	}
+
+	@Override
+	public void noticeInsert(NoticeVO noticeVO) {
+		sqlSession.insert("noticeInsert",noticeVO);
+	}
+
+	@Override
+	public void faqInsert(FaqVO faqVO) {
+		sqlSession.insert("faqInsert", faqVO);
+	}
+
+	@Override
+	public FaqVO faqView(int fnumber) {
+		return sqlSession.selectOne("faqView", fnumber);
+	}
+
 }

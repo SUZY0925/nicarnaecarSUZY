@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-   
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/nav.jsp"></jsp:include>
 <style>
@@ -42,6 +43,12 @@
 <div class="panel">
   <p>${faq.fcontent }</p>
   <br />
+  <br />
+  <sec:authorize access="isAuthenticated()">
+     <c:if test="${faq.eemail eq user.username }">
+  		<a href="/service/faqModify/${faq.fnumber }">수정하기</a>
+ 	 </c:if>
+  </sec:authorize>
   <br />
 </div>
 </c:forEach>
