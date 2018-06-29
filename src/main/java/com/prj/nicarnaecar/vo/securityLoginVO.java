@@ -13,6 +13,8 @@ import lombok.Data;
 @Data
 public class securityLoginVO extends User{
 	
+	private String username;
+	private String password;
 	private String name;
 	private String birth;
 	private String phone;
@@ -21,6 +23,8 @@ public class securityLoginVO extends User{
 
 	public securityLoginVO(String username, String password, Collection<? extends GrantedAuthority> authorities) {
 		super(username, password, authorities);
+		this.username = username;
+		this.password = password;
 	}
 	
 }

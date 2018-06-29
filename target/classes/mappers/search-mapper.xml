@@ -9,8 +9,8 @@
 	
 	<select id="dateVehicleList" resultType="VehicleVO">
 		select * from vehicle where vehicle.vnumber not in (select booking.vnumber from booking
-		<![CDATA[where bin <= TO_DATE(#{bin},'YYYY-MM-DD')
-   		OR  bout >  TO_DATE(#{bout},'YYYY-MM-DD')]]> ) and eoffice=#{eoffice}
+		<![CDATA[where (bin <= TO_DATE(#{bin},'YYYY-MM-DD')
+   		OR  bout >  TO_DATE(#{bout},'YYYY-MM-DD')]]>) and bstatus='예약') and eoffice=#{eoffice}
 	</select>
 	
 	<select id="reservationView" resultType="VehicleVO">

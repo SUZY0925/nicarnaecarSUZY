@@ -138,7 +138,7 @@ $(function(){
       <div class="row main">
          <div class="main-login main-center blue darken-1">
          <h5>Join in Our Site</h5>
-         <form:form modelAttribute="memberVO" action="/memberJoinOK" method="post">
+         <form:form modelAttribute="memberVO" action="/member/memberJoinOK" method="post">
                <div class="form-group">
                   <label for="cname" class="cols-sm-2 control-label">Name</label>
                   <div class="cols-sm-10">

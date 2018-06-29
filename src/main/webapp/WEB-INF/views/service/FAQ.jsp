@@ -41,6 +41,8 @@
 <button class="accordion animated rotateIn">${faq.ftitle }</button>
 <div class="panel">
   <p>${faq.fcontent }</p>
+  <br />
+  <br />
 </div>
 </c:forEach>
 

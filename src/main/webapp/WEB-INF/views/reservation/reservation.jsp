@@ -37,6 +37,8 @@
 
 		var num = addComma((parseInt(diff/currDay)+1) * ${vehicleVO.vprice});
 		
+		var priceInput = (parseInt(diff/currDay)+1) * ${vehicleVO.vprice};
+		$("#priceInput").val(priceInput);
 		$("#total").html("총 결제 금액은 <b>"+num+"원</b> 입니다.");
 		$("#cancel").on("click", function() {
 			location.href="/";
@@ -78,8 +80,8 @@
              <label for="form7" >차종</label>
          </div>
          <input type="hidden" value="${vehicleVO.vnumber }" name="vnumber">
-         <input type="hidden" value="${user.username }" name="cemail">
          <input type="hidden" id="priceInput" name="bprice">
+         <input type="text" name="vgage" value=${vehicleVO.vgage } />
    </div>
    
    <div class="col-6">

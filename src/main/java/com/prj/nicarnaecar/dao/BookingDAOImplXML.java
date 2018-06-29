@@ -22,7 +22,7 @@ public class BookingDAOImplXML implements BookingDAO {
 
 	@Override
 	public void bookingCancel(int bnumber) {
-		sqlSession.delete("bookingDelete",bnumber);
+		sqlSession.update("bookingDelete",bnumber);
 	}
 
 	@Override

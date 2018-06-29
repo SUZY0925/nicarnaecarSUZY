@@ -3,6 +3,7 @@ package com.prj.nicarnaecar.controller;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
+import java.security.Principal;
 import java.sql.Date;
 
 import javax.validation.Valid;
@@ -36,6 +37,7 @@ public class ReservationController {
 	@Qualifier("searchServiceImplXML")
 	SearchService searchService;
 	
+	// 예약 전 총 정리?
 	@RequestMapping(value="/reservation/{vnumber}/{bin}/{bout}",method=GET)
 	public String reservation(@PathVariable String vnumber, @PathVariable Date bin, @PathVariable Date bout, Model model) {
 		VehicleVO vehicleVO  = searchService.reservationView(vnumber);
@@ -53,16 +55,25 @@ public class ReservationController {
 	BookingService bookingService;
 	
 	
-	@RequestMapping(value="/reservationCheck/{cemail:.+}",method=GET)
-	public String reservationCheck(@PathVariable String cemail, Model model) {
+	@RequestMapping(value="/reservationCheck",method=GET)
+	public String reservationCheck(Principal principal, Model model) {
+		String cemail = principal.getName();
 		model.addAttribute("booking",bookingService.bookingView(cemail));
 		return "/reservation/reservationCheck";
 	}
 	
 	@RequestMapping(value="/reservationOK", method=POST)
-	public String reservationOK(BookingVO bookingVO) {
+	public String reservationOK(Principal principal, BookingVO bookingVO) {
+		String cemail = principal.getName();
+		bookingVO.setCemail(cemail);
 		bookingService.bookingInsert(bookingVO);
-		return "/reservation/reservationCheck";
+		return "redirect:/reservation/reservationCheck";
+	}
+	
+	@RequestMapping(value="/cancel/{bnumber}")
+	public String reservationCancel(@PathVariable int bnumber) {
+		bookingService.bookingCancel(bnumber);
+		return "redirect:/reservation/reservationCheck";
 	}
 	
 	
@@ -71,8 +82,9 @@ public class ReservationController {
 	MemberService memberService;
 	
 // 내 정보 페이지 접근
-	@RequestMapping(value = "/myPage/{cemail:.+}")
-	public String modify(@PathVariable String cemail, Model model) {
+	@RequestMapping(value = "/myPage")
+	public String modify(Principal principal, Model model) {
+		String cemail = principal.getName();
 		model.addAttribute("memberVO",memberService.getMember(cemail));
 		return "/reservation/myPage";
 	}

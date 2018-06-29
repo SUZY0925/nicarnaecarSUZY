@@ -16,7 +16,6 @@
             z-index: 1;
         }
     </style>
-<sec:authentication property="principal" var="user" scope="session"/>
 <script>
 $(function() {
 	var token = $("meta[name='_csrf']").attr("content");
@@ -43,7 +42,7 @@ $(function() {
                 <div class="collapse navbar-collapse" id="navbarSupportedContent"style="margin-right:50%;">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/reservation/reservationCheck/${user.username }" style="font-family: '고딕'"><strong>예약 조회</strong></a>
+                           <a class="nav-link" href="/reservation/reservationCheck" style="font-family: '고딕'"><strong>예약 조회</strong></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/search/vehicleSearch" style="font-family: '고딕'"><strong>차량 조회</strong></a>
@@ -67,7 +66,7 @@ $(function() {
 				
 					<sec:authorize access="isAuthenticated()">
 							<li class="nav-item">
-                            	<a class="nav-link" href="${pageContext.request.contextPath}/reservation/myPage/${user.username}">내 정보 확인</a>
+                            	<a class="nav-link" href="${pageContext.request.contextPath}/reservation/myPage">내 정보 확인</a>
                         	</li>
                         	<li class="nav-item">
                             	<a class="nav-link" href="${pageContext.request.contextPath}/login/logout">로그아웃</a>

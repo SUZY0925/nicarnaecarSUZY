@@ -8,6 +8,14 @@
 <fmt:formatDate value="${now}" pattern="yyyyMMdd" var="nowDate" />  
 
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
+
+<script>
+	$(function () {
+		$("#cancelBtn").on("click",function() {
+			alert("예약이 취소되었습니다.");
+		});
+	})
+</script>
 </head>
 <jsp:include page="/WEB-INF/views/nav.jsp"></jsp:include>
 <title>Reservation Check</title>
@@ -44,20 +52,29 @@
                     <td>
                     	<fmt:formatDate value="${book.bin}" pattern="yyyyMMdd" var="inDate" />  
                     	<fmt:formatDate value="${book.bout}" pattern="yyyyMMdd" var="outDate" />  
-		                   	<c:if test="${nowDate > outDate}">
-		                   		사용완료
-		                    </c:if>
-		                    <c:if test="${nowDate <= outDate && nowDate >= inDate}">
-		                   		사용중
-		                    </c:if>
-		                    <c:if test="${nowDate <= outDate && nowDate < inDate}">
-		                   		예약완료
-		                    </c:if>
+		                   	<c:choose>
+			                   	<c:when test='${book.bstatus eq "취소"}'>
+			                   		취소
+			                   	</c:when>
+			                   	<c:when test="${nowDate > outDate}">
+			                   		사용완료
+			                    </c:when>
+			                    <c:when test="${nowDate <= outDate && nowDate >= inDate}">
+			                   		사용중
+			                    </c:when>
+			                    <c:when test="${nowDate <= outDate && nowDate < inDate}">
+			                   		예약완료
+			                    </c:when>
+		                    </c:choose>
                     </td>
                     <td>
-                    	<c:if test="${nowDate <= outDate && nowDate < inDate }">
-		                 	<a href="#" class="btn btn-mdb-color btn-sm">취소</a>
-		            	</c:if>
+                    	<c:choose>
+                    		<c:when test='${book.bstatus eq "취소"}'>
+			                </c:when>
+	                    	<c:when test="${nowDate <= outDate && nowDate < inDate }">
+			                 	<a id="cancelBtn" href="/reservation/cancel/${book.bnumber }" class="btn btn-mdb-color btn-sm">취소</a>
+			            	</c:when>
+		            	</c:choose>
                     </td>
                 </tr>
             </c:forEach>
