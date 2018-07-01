@@ -28,7 +28,7 @@ $(function() {
                 </tr>
                 <tr>
                     <td>글 내용</td>
-                    <td colspan="4"><textarea rows="5" id="ncontent" name="ncontent" class="form-control">${view.ncontent }</textarea></td>
+                    <td colspan="4"><textarea rows="5" name="ncontent" class="form-control">${view.ncontent }</textarea></td>
                 </tr>
                 <tr>
                     <td>작성자 이메일</td>

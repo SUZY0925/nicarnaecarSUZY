@@ -278,6 +278,12 @@
 		    <version>5.0.5.RELEASE</version>
 		</dependency>
 		<!-- 스프링 시큐리티 끝 -->
+		<!-- 자바메일 -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
 		
 	</dependencies>
     <build>

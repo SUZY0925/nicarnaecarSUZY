@@ -4,10 +4,10 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.prj.nicarnaecar.dao.ServiceDAO">	
 	<select id="noticeList" resultType="NoticeVO">
-		select * from notice
+		select * from notice order by nnumber desc
 	</select>
 	<select id="faqList" resultType="FaqVO">
-		select * from faq
+		select * from faq order by fnumber desc
 	</select>
 	<select id="noticeView" parameterType="int" resultType="NoticeVO">
 		select * from notice where nnumber = #{nnumber}
@@ -30,7 +30,7 @@
 			ftitle = #{ftitle},
 			fcontent = #{fcontent},
 			fcdate = sysdate
-		where nnumber 	= #{nnumber}	
+		where fnumber 	= #{fnumber}	
 	</update>
 	
 	<delete id="noticeDelete">

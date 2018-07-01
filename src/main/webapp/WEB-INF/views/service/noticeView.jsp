@@ -21,6 +21,9 @@ $(function() {
 	$("#modifyOK").on("click", function() {
 		$("#noticeForm").attr("action","/service/noticeModifyOK").submit();
 	})
+	$("#deleteBtn").on("click", function() {
+		$("#noticeForm").attr("action","/service/noticeDelete").submit();
+	})
 })
 </script>
 <div class="col-md-9">
@@ -58,7 +61,9 @@ $(function() {
                 			<td colspan="1"><a id="modifyBtn" href="#" class="btn btn-primary">수정하기</a></td>
                 		</c:if>
                 	</sec:authorize>
-                	<td align="left"><button id="modifyOK" class="btn btn-primary">수정완료</button></td>
+                	<td id="modifyOK" colspan="1"><button class="btn btn-primary">수정완료</button></td>
+                	<td id="deleteBtn" colspan="1"><button class="btn btn-primary">삭제하기</button></td>
+                	
                 	
                 	<td colspan="2" align="right"><a href="/service/notice" class="btn btn-primary">목록으로</a></td>
                 </tr>

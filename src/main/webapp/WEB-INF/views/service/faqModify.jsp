@@ -9,35 +9,40 @@
 <jsp:include page="/WEB-INF/views/service/sidebar.jsp"></jsp:include>
 <script>
 $(function() {
-	$("#writeOK").on("click", function() {
-		$("#faqForm").attr("action","/service/faqWrite").submit();
+	$("#modifyOK").on("click", function() {
+		$("#faqForm").attr("action","/service/faqModifyOK").submit();
+	})
+	$("#deleteBtn").on("click", function() {
+		$("#faqForm").attr("action","/service/faqDelete").submit();
 	})
 })
 </script>
 <div class="col-md-9">
-<h2>FAQ Write</h2>
+<h2>FAQ Modify</h2>
    <div class="card">
     <div class="card-body">
         <!--Table-->
         <form:form id="faqForm" method="post">
         <table class="table table-responsive-md table-fixed">
             <tbody>
+            <input type="hidden" name=fnumber value="${faq.fnumber }"/>
                 <tr>
                     <td>글 제목</td>
-                    <td colspan="4"><input type="text" name="ftitle" class="form-control"/></td>
+                    <td colspan="4"><input type="text" name="ftitle" class="form-control" value="${faq.ftitle }"/></td>
                 </tr>
                 <tr>
                     <td>글 내용</td>
-                    <td colspan="4"><textarea rows="5" name="fcontent" class="form-control"></textarea></td>
+                    <td colspan="4"><textarea rows="5" name="fcontent" class="form-control">${faq.fcontent }</textarea></td>
                 </tr>
                 <tr>
                     <td>작성자 이메일</td>
                     <td colspan="4"><input type="text" name="eemail" value="${user.username }" readOnly class="form-control"/></td>
                 </tr>
                 <tr>
-                	<td><button id="writeOK" class="btn btn-primary">작성하기</button></td>
+                	<td><button id="modifyOK" class="btn btn-primary">수정완료</button></td>
+                	<td><button id="deleteBtn" class="btn btn-primary">삭제하기</button></td>
                 	
-                	<td colspan="4" align="right"><a href="/service/notice" class="btn btn-primary">목록으로</a></td>
+                	<td colspan="4" align="right"><a href="/service/faq" class="btn btn-primary">목록으로</a></td>
                 </tr>
             </tbody>
         </table>

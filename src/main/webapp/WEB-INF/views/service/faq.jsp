@@ -52,7 +52,9 @@
   <br />
 </div>
 </c:forEach>
-
+<div align='right'>
+	<a href="/service/faqWrite">글쓰기</a>
+</div>
 <script>
 var acc = document.getElementsByClassName("accordion");
 var i;
