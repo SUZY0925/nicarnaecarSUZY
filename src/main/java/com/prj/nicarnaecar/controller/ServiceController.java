@@ -128,9 +128,8 @@ public class ServiceController {
 	
 	
 	@RequestMapping(value = "/faq")
-	public String faq(Model model) {
+	public void faq(Model model) {
 		model.addAttribute("faq", serviceService.faqList());
-		return "service/faq";
 	}
 	
 	@RequestMapping(value = "/faqWrite")

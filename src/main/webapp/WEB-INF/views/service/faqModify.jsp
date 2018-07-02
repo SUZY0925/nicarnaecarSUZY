@@ -39,10 +39,14 @@ $(function() {
                     <td colspan="4"><input type="text" name="eemail" value="${user.username }" readOnly class="form-control"/></td>
                 </tr>
                 <tr>
-                	<td><button id="modifyOK" class="btn btn-primary">수정완료</button></td>
-                	<td><button id="deleteBtn" class="btn btn-primary">삭제하기</button></td>
-                	
-                	<td colspan="4" align="right"><a href="/service/faq" class="btn btn-primary">목록으로</a></td>
+                	<td>
+                	<a href="#" id="modifyOK" class="btn btn-primary">수정완료</a>
+                	</td>
+                	<td></td>
+                	<td align="right">
+                	<a href="#" id="deleteBtn" class="btn btn-primary">삭제하기</a>
+                	<a href="/service/faq" class="btn btn-primary">목록으로</a>
+                	</td>
                 </tr>
             </tbody>
         </table>

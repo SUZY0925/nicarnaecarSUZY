@@ -58,14 +58,16 @@ $(function() {
                 <tr>
                 	<sec:authorize access="isAuthenticated()">
                 		<c:if test="${view.eemail eq user.username }">
-                			<td colspan="1"><a id="modifyBtn" href="#" class="btn btn-primary">수정하기</a></td>
+                			<td colspan="1">
+                			<a id="modifyBtn" href="#" class="btn btn-primary">수정하기</a>
+                			<a href="#" id="modifyOK" class="btn btn-primary">수정완료</a>
+                			</td>
                 		</c:if>
                 	</sec:authorize>
-                	<td id="modifyOK" colspan="1"><button class="btn btn-primary">수정완료</button></td>
-                	<td id="deleteBtn" colspan="1"><button class="btn btn-primary">삭제하기</button></td>
-                	
-                	
-                	<td colspan="2" align="right"><a href="/service/notice" class="btn btn-primary">목록으로</a></td>
+                	<td colspan="2" align="right">
+                	<a href="#" id="deleteBtn" class="btn btn-primary">삭제하기</a>
+                	<a href="/service/notice" class="btn btn-primary">목록으로</a>
+                	</td>
                 </tr>
             </tbody>
         </table>
