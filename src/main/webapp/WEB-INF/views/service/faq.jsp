@@ -38,8 +38,13 @@
 <div class="col-md-9">
 <h2 class="animated pulse">FAQ</h2>
 
-<c:forEach items="${list }" var="faq">
-<button class="accordion animated rotateIn">${faq.ftitle }</button>
+<c:forEach items="${list }" var="faq" varStatus="status">
+<c:if test="${(status.count%2) eq 0 }">
+<button class="accordion animated rotateInUpLeft">${faq.ftitle }</button>
+</c:if>
+<c:if test="${(status.count%2) eq 1 }">
+<button class="accordion animated rotateInUpRight">${faq.ftitle }</button>
+</c:if>
 <div class="panel">
   <p>${faq.fcontent }</p>
   <br />
@@ -89,9 +94,11 @@
 				</td>
 			 </tr>
 		</table> 
+<sec:authorize access="isAuthenticated()">
 <div align='right'>
 	<a href="/service/faqWrite">글쓰기</a>
 </div>
+</sec:authorize>
 <script>
 var acc = document.getElementsByClassName("accordion");
 var i;

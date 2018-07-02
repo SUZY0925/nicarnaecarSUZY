@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
     
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/nav.jsp"></jsp:include>
@@ -20,7 +21,9 @@
 
         <!--Table-->
         <table class="table table-hover table-responsive-md table-fixed">
+        <sec:authorize access="isAuthenticated()">
 			<span style="float:right;"><a href="/service/noticeWrite">글쓰기</a></span>
+		</sec:authorize>
             <!--Table head-->
             <thead>
                 <tr>
