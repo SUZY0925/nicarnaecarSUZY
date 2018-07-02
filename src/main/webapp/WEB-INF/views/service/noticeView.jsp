@@ -65,7 +65,11 @@ $(function() {
                 		</c:if>
                 	</sec:authorize>
                 	<td colspan="2" align="right">
-                	<a href="#" id="deleteBtn" class="btn btn-primary">삭제하기</a>
+                	<sec:authorize access="isAuthenticated()">
+                	<c:if test="${view.eemail eq user.username }">
+                		<a href="#" id="deleteBtn" class="btn btn-primary">삭제하기</a>
+                		</c:if>
+                	</sec:authorize>
                 	<a href="/service/notice" class="btn btn-primary">목록으로</a>
                 	</td>
                 </tr>

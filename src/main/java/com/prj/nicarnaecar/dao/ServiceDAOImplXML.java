@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.prj.nicarnaecar.util.RecordCriteria;
 import com.prj.nicarnaecar.vo.FaqVO;
 import com.prj.nicarnaecar.vo.NoticeVO;
 
@@ -63,6 +64,26 @@ public class ServiceDAOImplXML implements ServiceDAO {
 	@Override
 	public FaqVO faqView(int fnumber) {
 		return sqlSession.selectOne("faqView", fnumber);
+	}
+
+	@Override
+	public List<NoticeVO> noticeList(RecordCriteria recordCriteria) {
+		return sqlSession.selectList("noticeRecordList",recordCriteria);
+	}
+
+	@Override
+	public int noticeCount() {
+		return sqlSession.selectOne("noticeCount");
+	}
+
+	@Override
+	public List<FaqVO> faqList(RecordCriteria recordCriteria) {
+		return sqlSession.selectList("faqRecordList", recordCriteria);
+	}
+
+	@Override
+	public int faqCount() {
+		return sqlSession.selectOne("faqCount");
 	}
 
 }

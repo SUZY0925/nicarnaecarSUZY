@@ -37,8 +37,8 @@ public class ServiceController {
 	ServiceService serviceService;
 	
 	@RequestMapping(value = "/notice")
-	public String notice(Model model) {
-		model.addAttribute("notice", serviceService.noticeList());
+	public String notice(HttpServletRequest request) {
+		serviceService.noticeList(request);
 		return "/service/notice";
 	}
 	
@@ -128,8 +128,8 @@ public class ServiceController {
 	
 	
 	@RequestMapping(value = "/faq")
-	public void faq(Model model) {
-		model.addAttribute("faq", serviceService.faqList());
+	public void faq(HttpServletRequest request) {
+		serviceService.faqList(request);
 	}
 	
 	@RequestMapping(value = "/faqWrite")

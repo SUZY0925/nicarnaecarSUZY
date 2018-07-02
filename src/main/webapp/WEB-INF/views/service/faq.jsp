@@ -38,7 +38,7 @@
 <div class="col-md-9">
 <h2 class="animated pulse">FAQ</h2>
 
-<c:forEach items="${faq }" var="faq">
+<c:forEach items="${list }" var="faq">
 <button class="accordion animated rotateIn">${faq.ftitle }</button>
 <div class="panel">
   <p>${faq.fcontent }</p>
@@ -52,6 +52,43 @@
   <br />
 </div>
 </c:forEach>
+<table style="width:70%; margin:auto;">
+			<tr>
+				<td>
+					<ul id="pageing"
+						class="pagination pagination-sm justify-content-center">
+						<c:if test="${page.prev }">
+							<li class="page-item"><a class="page-link"
+								href="faq?page.finalEndPage">◀</a></li>
+							<li class="page-item"><a class="page-link"
+								href="faq?${page.getmakeURL(page.startPage-1) }" aria-label="Previous">
+									<span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span>
+							</a></li>
+						</c:if>
+
+						<c:forEach begin="${page.startPage }" end="${page.endPage }"
+							var="PAGE">
+							<c:if test="${page.recordCriteria.reqPage == PAGE }">
+								<li class="page-item active"><a class="page-link" href="javascript:void(0)">${PAGE }</a></li>
+							</c:if>
+							<c:if test="${page.recordCriteria.reqPage != PAGE }">
+								<li class="page-item"><a class="page-link"
+									href="faq?${page.getmakeURL(PAGE) }">${PAGE }</a></li>
+							</c:if>
+						</c:forEach>
+
+						<c:if test="${page.next }">
+							<li class="page-item"><a class="page-link"
+								href="faq?${page.getmakeURL(page.endPage+1) }" aria-label="Next">
+									<span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>
+							</a></li>
+							<li class="page-item"><a class="page-link"
+								href="faq?${page.getmakeURL(page.finalEndPage) }">▶</a></li>
+						</c:if>
+					</ul>
+				</td>
+			 </tr>
+		</table> 
 <div align='right'>
 	<a href="/service/faqWrite">글쓰기</a>
 </div>
@@ -72,6 +109,9 @@ for (i = 0; i < acc.length; i++) {
 }
 </script>
 </div>
+		 
+
+
 </div>
 </div>
 

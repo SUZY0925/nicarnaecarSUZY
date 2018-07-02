@@ -48,7 +48,7 @@ public class LoginDAOImplSecurity implements UserDetailsService{
 		// 권한정보 가져오기
 		List<String> auth = new ArrayList<>();
 		StringBuffer str2 = new StringBuffer();
-		str2.append("select role from user_role where cemail = ?");
+		str2.append("select role from user_role where email = ?");
 		auth = this.jdbcTemplate.queryForList(str2.toString(), new Object[] {username},String.class);
 		
 		Set<GrantedAuthority> authorities = new HashSet<>();
