@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <!--   eemail,ename,ebirth;
+	  ephone;
+	  eaddress;
+	 edate;
+	  eoffice;
+	  eposition;
+	  estate; -->
+<mapper namespace="com.prj.nicarnaecar.dao.ELoginDAO">
+	<insert id="memberInsert" parameterType="EmployeeVO">
+		insert into employee(eemail,epassword,ename,ebirth,ephone,eaddress,eoffice,eposition)
+		values(#{eemail},#{ename},#{epassword},#{ebirth},#{ephone},#{eaddress},#{eoffice},#{eposition})
+	</insert>
+	
+	<select id="getMember" resultType="EmployeeVO">
+		select * from employee where eemail=#{eemail}	
+	</select>
+	
+	<update id="memberUpdate">
+		update employee set
+			epassword 	= #{epassword},
+			eaddress 	= #{eaddress},
+			ephone 		= #{ephone}
+		where eemail 	= #{eemail}
+	</update>
+	
+	<update id="membermanage">
+		update employee set
+			epassword 	= #{epassword},
+			ephone 		= #{ephone},
+			eaddress 	= #{eaddress},
+			eoffice 	= #{eoffice},
+			eposition 	= #{eposition}
+		where eemail 	= #{eemail}
+	</update>
+	
+	<select id="findid">
+		select eemail from employee where ename = #{ename} and ephone = #{ephone}
+	</select>
+	
+	<select id="findpw">
+		select epassword from employee where eemail = #{eemail} and ebirth = #{ebirth}
+	</select>
+	
+</mapper>

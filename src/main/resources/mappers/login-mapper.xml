@@ -6,4 +6,8 @@
 	<select id="getMemberLogin" resultType="MemberVO" parameterType="LoginVO">
 		select * from customers where cemail = #{cemail} and cpasswd = #{cpasswd}
 	</select>
+	
+	<select id="getEmpLogin">
+		select * from employee where eemail = #{eemail} and epassword=#{epassword}
+	</select>
 </mapper>

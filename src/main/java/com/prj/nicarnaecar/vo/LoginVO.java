@@ -16,4 +16,10 @@ public class LoginVO {
 	
 	@Size(min=4,max=30,message="비밀번호는 4-30byte로 입력해주세요.")
 	private String cpasswd;
+	
+	@Pattern(regexp="^[\\w=\\.]+@([\\w-]+\\.)+[\\w-]{2,4}",message="이메일 형식이 아닙니다.")
+	private String eemail;
+	
+	@Size(min=4,max=30,message="비밀번호는 4-30byte로 입력해주세요.")
+	private String epasswd;
 }

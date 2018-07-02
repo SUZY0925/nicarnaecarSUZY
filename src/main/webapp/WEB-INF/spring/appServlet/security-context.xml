@@ -44,7 +44,7 @@
 
 	<beans:bean id="encoder" class="org.springframework.security.crypto.password.NoOpPasswordEncoder" />
 	<beans:bean id="userService" class="com.prj.nicarnaecar.dao.LoginDAOImplSecurity"></beans:bean>
-
+	<beans:bean id="EmployeeService" class="com.prj.nicarnaecar.dao.ELoginDAOImplSecurity"></beans:bean>
 	<authentication-manager>
 	<!-- <authentication-provider> -->
 			<!-- InMemoryDaoImpl방식
@@ -61,6 +61,11 @@
 	
 		<!-- UserDetailsService 직접 커스터마이징한 구현 클래스 사용 -->
 		<authentication-provider user-service-ref="userService">
+			<password-encoder ref="encoder"></password-encoder>
+		</authentication-provider>
+	</authentication-manager>
+	<authentication-manager>
+		<authentication-provider user-service-ref="EmployeeService">
 			<password-encoder ref="encoder"></password-encoder>
 		</authentication-provider>
 	</authentication-manager>
