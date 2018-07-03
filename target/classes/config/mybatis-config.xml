@@ -14,6 +14,7 @@
 		<typeAlias type="com.prj.nicarnaecar.vo.BookingVO" alias="BookingVO" />
 		<typeAlias type="com.prj.nicarnaecar.vo.FaqVO" alias="FaqVO" />
 		<typeAlias type="com.prj.nicarnaecar.vo.NoticeVO" alias="NoticeVO" />
+		<typeAlias type="com.prj.nicarnaecar.vo.EmployeeVO" alias="EmployeeVO" />
 	</typeAliases>
 	
 </configuration>
