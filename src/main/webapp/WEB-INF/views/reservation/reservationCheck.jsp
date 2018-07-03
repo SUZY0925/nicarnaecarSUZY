@@ -2,10 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%-- <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <jsp:useBean id="now" class="java.util.Date" />
-<fmt:formatDate value="${now}" pattern="yyyyMMdd" var="nowDate" />  
+<fmt:formatDate value="${now}" pattern="yyyyMMdd" var="nowDate" />   --%>
 
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 
@@ -35,7 +35,7 @@
                     <th>대여시작일</th>
                     <th>대여종료일</th>
                     <th>상태</th>
-                    <th></th>
+                    <th>button</th>
                 </tr>
             </thead>
             <!--Table head-->
@@ -49,8 +49,7 @@
                     <td colspan="3">${book.vnumber }</td>
                     <td>${book.bin }</td>
                     <td>${book.bout }</td>
-                    <td>
-                    	<fmt:formatDate value="${book.bin}" pattern="yyyyMMdd" var="inDate" />  
+                    	<%-- <fmt:formatDate value="${book.bin}" pattern="yyyyMMdd" var="inDate" />  
                     	<fmt:formatDate value="${book.bout}" pattern="yyyyMMdd" var="outDate" />  
 		                   	<c:choose>
 			                   	<c:when test='${book.bstatus eq "취소"}'>
@@ -65,8 +64,8 @@
 			                    <c:when test="${nowDate <= outDate && nowDate < inDate}">
 			                   		예약완료
 			                    </c:when>
-		                    </c:choose>
-                    </td>
+		                    </c:choose> --%>
+		                    <td>${book.bstatus }</td>
                     <td>
                     	<c:choose>
                     		<c:when test='${book.bstatus eq "취소"}'>

@@ -81,7 +81,6 @@
          </div>
          <input type="hidden" value="${vehicleVO.vnumber }" name="vnumber">
          <input type="hidden" id="priceInput" name="bprice">
-         <input type="text" name="vgage" value=${vehicleVO.vgage } />
    </div>
    
    <div class="col-6">
