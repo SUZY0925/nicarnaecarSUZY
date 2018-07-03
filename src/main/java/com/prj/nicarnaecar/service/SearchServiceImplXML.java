@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.prj.nicarnaecar.dao.SearchDAO;
+import com.prj.nicarnaecar.vo.BookingVO;
 import com.prj.nicarnaecar.vo.VehicleVO;
 
 @Service
@@ -34,6 +35,16 @@ public class SearchServiceImplXML implements SearchService {
 	@Override
 	public VehicleVO reservationView(String vnumber) {
 		return searchdao.reservationView(vnumber);
+	}
+	
+	@Override
+	public List<BookingVO> deliverySearch() {
+		return searchdao.deliverySearch();
+	}
+
+	@Override
+	public List<BookingVO> returnSearch() {
+		return searchdao.returnSearch();
 	}
 
 }

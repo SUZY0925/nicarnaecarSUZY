@@ -6,6 +6,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import java.security.Principal;
 import java.sql.Date;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -16,7 +17,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -75,6 +75,15 @@ public class ReservationController {
 		bookingService.bookingCancel(bnumber);
 		return "redirect:/reservation/reservationCheck";
 	}
+	@RequestMapping(value="/extend/{vnumber}/{bout}")
+	public String reservationExtend(@PathVariable String vnumber,@PathVariable Date bout, Model model) {
+		BookingVO bookingVO = new BookingVO();
+		System.out.println("날짜1 : " + bookingVO.toString());
+		bookingVO = bookingService.bookingExtend(vnumber, bout);
+		System.out.println("날짜2 : " + bookingVO.toString());
+		return "redirect:/reservation/extend";
+	}
+	
 	
 	
 	@Autowired

@@ -1,5 +1,6 @@
 package com.prj.nicarnaecar.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,11 @@ public class BookingServiceImplXML implements BookingService {
 	@Override
 	public List<BookingVO> bookingView(String cemail) {
 		return bookingdao.bookingView(cemail);
+	}
+
+	@Override
+	public BookingVO bookingExtend(String vnumber, Date bout) {
+		return bookingdao.bookingExtend(vnumber, bout);
 	}
 
 

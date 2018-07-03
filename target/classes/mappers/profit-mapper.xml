@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.prj.nicarnaecar.dao.ProfitDAO">	
+	
+	<insert id="profitInsert" parameterType="ProfitVO">
+		insert into PROFIT(pnumber,ptarget,pinout,pamount,bnumber,pmemo)
+		values(profit_seq.nextval,#{ptarget},#{pinout},#{pamount},
+		<choose>
+			<when test='bnumber == null'>0</when>
+			<when test='bnumber != null'>#{bnumber}</when>
+		</choose>
+		,#{pmemo})
+	</insert>
+	
+	<delete id="profitDelete">
+		delete from profit where pnumber=#{pnumber}
+	</delete>
+	
+	<select id="profitList"  resultType="ProfitVO">
+		select * from profit
+	</select>
+	
+</mapper>

@@ -24,7 +24,12 @@
 	</delete>
 	
 	<select id="bookingView" resultType="BookingVO">
-		select * from booking where cemail = #{cemail}
+		select * from booking where cemail = #{cemail} order by bnumber desc
+	</select>
+	
+	<select id="bookingExtendView" resultType="BookingVO">
+		select to_date(bin-1,'yyyy-mm-dd') from booking 
+		where vnumber = #{vnumber} and bin > to_date(#{bout},'yyyy-mm-dd') and bstatus ='예약'
 	</select>
 	
 </mapper>

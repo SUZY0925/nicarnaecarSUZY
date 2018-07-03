@@ -2,6 +2,7 @@ package com.prj.nicarnaecar.service;
 
 import java.util.List;
 
+import com.prj.nicarnaecar.vo.BookingVO;
 import com.prj.nicarnaecar.vo.VehicleVO;
 
 public interface SearchService {
@@ -17,4 +18,10 @@ public interface SearchService {
 	
 	// 예약 보기 (전)
 		VehicleVO reservationView(String vnumber);
+	
+	// 인도 할 차량 보기
+		public List<BookingVO> deliverySearch();
+			
+	// 반납 할 차량 보기
+		public List<BookingVO> returnSearch();
 }

@@ -10,16 +10,16 @@
      eposition;
      estate; -->
 <mapper namespace="com.prj.nicarnaecar.dao.ELoginDAO">
-   <insert id="memberInsert" parameterType="EmployeeVO">
+   <insert id="EmemberInsert" parameterType="EmployeeVO">
       insert into employee(eemail,epassword,ename,ebirth,ephone,eaddress,eoffice,eposition)
       values(#{eemail},#{ename},#{epassword},#{ebirth},#{ephone},#{eaddress},#{eoffice},#{eposition})
    </insert>
    
-   <select id="getMember" resultType="EmployeeVO">
+   <select id="EgetMember" resultType="EmployeeVO">
       select * from employee where eemail=#{eemail}   
    </select>
    
-   <update id="memberUpdate">
+   <update id="EmemberUpdate">
       update employee set
          epassword    = #{epassword},
          eaddress    = #{eaddress},
@@ -27,7 +27,7 @@
       where eemail    = #{eemail}
    </update>
    
-   <update id="membermanage">
+   <update id="Emembermanage">
       update employee set
          epassword    = #{epassword},
          ephone       = #{ephone},
@@ -37,11 +37,11 @@
       where eemail    = #{eemail}
    </update>
    
-   <select id="findid">
+   <select id="Efindid">
       select eemail from employee where ename = #{ename} and ephone = #{ephone}
    </select>
    
-   <select id="findpw">
+   <select id="Efindpw">
       select epassword from employee where eemail = #{eemail} and ebirth = #{ebirth}
    </select>
    

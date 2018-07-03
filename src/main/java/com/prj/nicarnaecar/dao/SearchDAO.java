@@ -2,10 +2,11 @@ package com.prj.nicarnaecar.dao;
 
 import java.util.List;
 
+import com.prj.nicarnaecar.vo.BookingVO;
 import com.prj.nicarnaecar.vo.VehicleVO;
 
 public interface SearchDAO {
-	
+
 	// 차량 전체 목록
 		public List<VehicleVO> AllVehicleList();
 		
@@ -17,4 +18,10 @@ public interface SearchDAO {
 		
 	// 예약 보기 (전)
 		VehicleVO reservationView(String vnumber);
+		
+	// 인도 할 차량 보기
+		public List<BookingVO> deliverySearch();
+					
+	// 반납 할 차량 보기
+		public List<BookingVO> returnSearch();
 }

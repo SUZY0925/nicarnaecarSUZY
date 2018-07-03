@@ -1,5 +1,6 @@
 package com.prj.nicarnaecar.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.prj.nicarnaecar.vo.BookingVO;
@@ -17,5 +18,8 @@ public interface BookingService {
 	
 	// 예약조회
 	List<BookingVO> bookingView(String cemail);
+	
+	// 예약연장조회
+	BookingVO bookingExtend(String vnumber, Date bout);
 	
 }

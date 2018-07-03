@@ -39,7 +39,7 @@ $(function() {
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent"style="margin-right:50%;">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent"style="margin-right:40%;">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
                            <a class="nav-link" href="/reservation/reservationCheck" style="font-family: '고딕'"><strong>예약 조회</strong></a>
@@ -49,6 +49,9 @@ $(function() {
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/service/notice" style="font-family:'고딕'"><strong>고객센터</strong></a>
+                        </li>
+                        <li >
+                        	<a class="nav-link" href="/admin/admin" style="font-family:'고딕'"><strong>관리자 페이지</strong></a>
                         </li>
                     </ul>
                     </div>

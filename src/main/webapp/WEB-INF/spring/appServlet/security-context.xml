@@ -19,6 +19,7 @@
 		<!-- login-processing-url="/j_spring_security_check"/> -->
 	
 		<!-- access="isAuthenticated()" : 인증된 사용자만 접근 -->
+		<intercept-url pattern="/admin/**" access="hasAuthority('ROLE_ADMIN')"/>
 		<intercept-url pattern="/reservation/**" access="isAuthenticated()"/>
 		<intercept-url pattern="/search/**" access="isAuthenticated()"/>
 		
