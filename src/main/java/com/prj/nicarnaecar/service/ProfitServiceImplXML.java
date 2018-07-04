@@ -22,7 +22,7 @@ public class ProfitServiceImplXML implements ProfitService {
 	}
 
 	@Override
-	public void profitDelete(Integer pnumber) {
+	public void profitDelete(int pnumber) {
 		profitDAO.deleteProfit(pnumber);
 	}
 

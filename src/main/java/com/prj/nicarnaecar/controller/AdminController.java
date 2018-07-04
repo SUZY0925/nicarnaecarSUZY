@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -32,12 +33,14 @@ public class AdminController {
 		
 	}
 	
-	@RequestMapping("/car")
-	public void car(HttpServletRequest request) {
+	@RequestMapping("/delivery")
+	public void deliveryCar(HttpServletRequest request) {
 		List<BookingVO> list1 = searchService.deliverySearch();
-		List<BookingVO> list2 = searchService.returnSearch();
-		
 		request.setAttribute("list1", list1);
+	}
+	@RequestMapping("/return")
+	public void returnCar(HttpServletRequest request) {
+		List<BookingVO> list2 = searchService.returnSearch();
 		request.setAttribute("list2", list2);
 	}
 	
@@ -53,9 +56,21 @@ public class AdminController {
 		return "redirect:/admin/profit";
 	}
 	
-	@RequestMapping(value="/profitDeleteOK",method=RequestMethod.GET)
-	public String profitDeleteOK(int pnumber) {
+	@RequestMapping(value="/profitDeleteOK/{pnumber}")
+	public String profitDeleteOK(@PathVariable int pnumber) {
 		profitService.profitDelete(pnumber);
 		return "redirect:/admin/profit";
+	}
+	
+	@RequestMapping(value="/deliveryOK")
+	public String deliveryOK(int bnumber) {
+		searchService.deliveryCar(bnumber);
+		return "redirect:/admin/delivery";
+	}
+	
+	@RequestMapping(value="/returnOK")
+	public String returnOK(int bnumber) {
+		searchService.returnCar(bnumber);
+		return "redirect:/admin/return";
 	}
 }

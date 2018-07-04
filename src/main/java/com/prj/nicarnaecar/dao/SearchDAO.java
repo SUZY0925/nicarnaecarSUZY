@@ -24,4 +24,10 @@ public interface SearchDAO {
 					
 	// 반납 할 차량 보기
 		public List<BookingVO> returnSearch();
+		
+	// 인도하기
+		public void deliveryCar(int bnumber);
+			
+	// 반납하기
+		public void returnCar(int bnumber);
 }

@@ -50,5 +50,15 @@ public class SearchDAOImplXML implements SearchDAO {
 	public List<BookingVO> returnSearch() {
 		return sqlSession.selectList("return");
 	}
+	
+	@Override
+	public void deliveryCar(int bnumber) {
+		sqlSession.update("deliveryCar", bnumber);
+	}
+
+	@Override
+	public void returnCar(int bnumber) {
+		sqlSession.update("returnCar", bnumber);
+	}
 
 }

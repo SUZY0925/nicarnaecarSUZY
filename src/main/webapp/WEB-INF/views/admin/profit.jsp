@@ -78,8 +78,6 @@
 		$("#deleteBtn").on("click",function(){
 			alert("삭제되었습니다.");
 		});
-		
-		
 	})
 	function addComma(num) {
 		var regexp = /\B(?=(\d{3})+(?!\d))/g;
@@ -133,35 +131,34 @@
             <!--Table head-->
             <thead>
                 <tr>
-                    <th><h4>#Number</h4></th>
+                    <th><h4>Number</h4></th>
                     <th><h4>대상</h4></th>
-                    <th><h4>수입/지출</h4></th>
+                    <th><h5>수입/지출</h5></th>
                     <th><h4>금액</h4></th>
                     <th><h4>예약번호</h4></th>
                     <th><h4>거래내역</h4></th>
+                    <th><h4>삭제</h4></th>
                 </tr>
             </thead>
             <!--Table head-->
 
             <!--Table body-->
             <tbody id="profitTableIn">
-            	<form:form action="/admin/deleteOK?${profit.pnumber}" method="get">
-            	<button type="submit" class="btn btn-primary" id="deleteBtn" style="float:right;">삭제</button>
                 <script>
 				var str = "";
 			    <c:forEach items="${profitList }" var="profit">
 			        str += "<tr>";
-			        str += "<td><input type='checkbox' value='${profit.pnumber}'> ${profit.pnumber}</td>";
-			        str += "<td>${profit.ptarget} </td>"; 
-			        str += "<td>${profit.pinout} </td>";
+			        str += "<td>${profit.pnumber}</td>";
+			        str += "<td>${profit.ptarget}</td>"; 
+			        str += "<td>${profit.pinout}</td>";
 			        str += "<td>"+addComma("${profit.pamount}")+"원</td>"; 
-			        str += "<td>${profit.bnumber} </td>"; 
-			        str += "<td>${profit.pmemo} </td>"; 
+			        str += "<td>${profit.bnumber}</td>"; 
+			        str += "<td>${profit.pmemo}</td>"; 
+			        str += "<td><a class='btn btn-info px-3' href='/admin/profitDeleteOK/${profit.pnumber}'>삭제</a></td>"; 
 			        str += "</tr>";
 			     </c:forEach>
 			     $("#profitTableIn").html(str);
 			</script>
-			</form:form>
             </tbody>
             <!--Table body-->
 

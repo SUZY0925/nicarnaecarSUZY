@@ -14,32 +14,28 @@ function addComma(num) {
     return num.toString().replace(regexp, ',');
 }
 </script>
+<style>
+	td{
+		padding: 10px 10px 10px 10px;
+	}
+</style>
 
 <div class="col-md-10" style="height:45%">
-	<table id="deliveryTable" class="table table-bordered" style="width:100%;">
-	    <tbody>
-	    	인도할 차량
-		    <script>
-		    var str = "";
-			    <c:forEach items="${list1 }" var="list1">
-			        str += "<tr>";
-			        str += "<td>${list1.bnumber}</td>"
-			        str += "<td>${list1.vnumber}</td>"
-			        str += "<td>${list1.bin}</td>"
-			        str += "<td>${list1.bout}</td>"
-			        str += "<td>${list1.vgage}</td>"
-			        str += "<td>${list1.bprice}</td>"
-			        str += "</tr>";
-			     </c:forEach>
-			     $("#deliveryTable").html(str);
-			</script>
-	    </tbody>
-	</table>
-</div>
-<div class="col-md-10" style="height:45%">
-	<table id="returnTable" class="table table-bordered" style="width:100%;height:50%">
-	    <tbody>
-			반납할 차량
+	<table class="table table-hover table-responsive-md table-fixed" style="width:100%;">
+	    	<h2>반납할 차량</h2>
+	    	<thead>
+                <tr>
+                    <th><h4>예약번호</h4></th>
+                    <th><h4>차량번호</h4></th>
+                    <th><h4>인도날짜</h4></th>
+                    <th><h4>반납날짜</h4></th>
+                    <th><h4>인도후 기름양</h4></th>
+                    <th><h4>가격</h4></th>
+                    <th><h4>반납</h4></th>
+                </tr>
+            </thead>
+	    <tbody id="returnTable">
+	    <form:form action="/admin/returnOK" method="post">
 			<script>
 		    var str = "";
 			    <c:forEach items="${list2 }" var="list2">
@@ -49,11 +45,13 @@ function addComma(num) {
 			        str += "<td>${list2.bin}</td>"
 			        str += "<td>${list2.bout}</td>"
 			        str += "<td>${list2.vgage}</td>"
-			        str += "<td>${list2.bprice}</td>"
+			        str += "<td>"+addComma(${list2.bprice})+"원</td>"
+			        str += "<td><button type='submit'>반납</button></td>"
 			        str += "</tr>";
 			     </c:forEach>
 			     $("#returnTable").html(str);
 			</script>
+			</form:form>
 	    </tbody>
 	</table>
 </div>

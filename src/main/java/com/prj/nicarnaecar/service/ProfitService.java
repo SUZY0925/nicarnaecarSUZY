@@ -10,7 +10,7 @@ public interface ProfitService {
 	public void profitInsert(ProfitVO profitVO);
 	
 	//삭제
-	public void profitDelete(Integer pnumber);
+	public void profitDelete(int pnumber);
 	
 	//리스트
 	public List<ProfitVO> profitList();

@@ -20,8 +20,8 @@ public class ProfitDAOImplXML implements ProfitDAO {
 	}
 
 	@Override
-	public void deleteProfit(Integer pnumber) {
-		sqlSession.delete("profitDelete");
+	public void deleteProfit(int pnumber) {
+		sqlSession.delete("profitDelete", pnumber);
 	}
 
 	@Override

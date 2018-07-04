@@ -91,7 +91,6 @@
 	  $("#reservationBtn").on("click",function() {
 		  location.href = "/reservation/reservation/"+$("input:radio[name=customRadio]:checked").val()+"/"+bin+"/"+bout;
 	  });
-	  
 	});
 </script>
 	<style>

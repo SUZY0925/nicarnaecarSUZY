@@ -46,5 +46,15 @@ public class SearchServiceImplXML implements SearchService {
 	public List<BookingVO> returnSearch() {
 		return searchdao.returnSearch();
 	}
+	
+	@Override
+	public void deliveryCar(int bnumber) {
+		searchdao.deliveryCar(bnumber);
+	}
+
+	@Override
+	public void returnCar(int bnumber) {
+		searchdao.returnCar(bnumber);
+	}
 
 }

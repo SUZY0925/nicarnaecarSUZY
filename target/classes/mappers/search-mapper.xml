@@ -10,20 +10,11 @@
 	<select id="dateVehicleList" resultType="VehicleVO">
 		select * from vehicle where vehicle.vnumber not in (select booking.vnumber from booking
 		<![CDATA[where (bin <= TO_DATE(#{bin},'YYYY-MM-DD')
-   		OR  bout >  TO_DATE(#{bout},'YYYY-MM-DD')]]>) and bstatus='예약') and eoffice=#{eoffice}
+   		OR  bout >  TO_DATE(#{bout},'YYYY-MM-DD')]]>) and (bstatus='예약' or bstatus='연체')) and eoffice=#{eoffice}
 	</select>
 	
 	<select id="reservationView" resultType="VehicleVO">
 		select * from vehicle where vnumber= #{vnumber}
 	</select>
 	
-	<!-- 인도할 차량 -->
-	<select id="delivery" resultType="BookingVO">
-		select * from booking where to_date(sysdate,'yyyy-mm-dd') = to_date(bin,'yyyy-mm-dd') and bstatus = '예약'
-	</select>
-	
-	<!-- 반납할 차량 -->
-	<select id="return" resultType="BookingVO">
-		select * from booking where to_date(sysdate,'yyyy-mm-dd') = to_date(bout,'yyyy-mm-dd') and bstatus = '사용중'
-	</select>
 </mapper>

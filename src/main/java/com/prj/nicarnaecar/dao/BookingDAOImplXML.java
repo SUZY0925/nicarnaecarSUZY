@@ -45,4 +45,14 @@ public class BookingDAOImplXML implements BookingDAO {
 		return sqlSession.selectOne("bookingExtendView", map);
 	}
 
+	@Override
+	public void bookingExtendsOK(BookingVO bookingVO) {
+		sqlSession.update("bookingExtend", bookingVO);
+	}
+
+	@Override
+	public BookingVO getBookingInfo(int bnumber) {
+		return sqlSession.selectOne("getBookingInfo",bnumber);
+	}
+
 }

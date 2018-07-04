@@ -14,12 +14,12 @@
 		,#{pmemo})
 	</insert>
 	
-	<delete id="profitDelete">
+	<delete id="profitDelete" parameterType="int">
 		delete from profit where pnumber=#{pnumber}
 	</delete>
 	
 	<select id="profitList"  resultType="ProfitVO">
-		select * from profit
+		select * from profit order by pnumber desc
 	</select>
 	
 </mapper>

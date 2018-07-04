@@ -27,9 +27,39 @@
 		select * from booking where cemail = #{cemail} order by bnumber desc
 	</select>
 	
+	<select id="getBookingInfo" resultType="BookingVO">
+		select * from booking where bnumber = #{bnumber}
+	</select>
+	
 	<select id="bookingExtendView" resultType="String">
 		select to_date(bin-1,'yyyy-mm-dd') from booking 
 		where vnumber = #{vnumber} and bin > to_date(#{bout},'yyyy-mm-dd') and bstatus ='예약'
 	</select>
+	
+	<select id="bookingExtend" parameterType="BookingVO">
+		update booking set bout = #{bout}, bprice = #{bprice}
+		where bnumber = #{bnumber}
+	</select>
+	
+	
+	<!-- 인도할 차량 -->
+	<select id="delivery" resultType="BookingVO">
+		select * from booking where to_date(sysdate,'yyyy-mm-dd') = to_date(bin,'yyyy-mm-dd') and bstatus = '예약'
+	</select>
+	
+	<!-- 반납할 차량 -->
+	<select id="return" resultType="BookingVO">
+		select * from booking where to_date(sysdate,'yyyy-mm-dd') = to_date(bout,'yyyy-mm-dd') and bstatus = '사용중'
+	</select>
+	
+	<!-- 인도하기 -->
+	<update id="deliveryCar" parameterType="Integer">
+		update booking set bstatus = '사용중' where bnumber = ${bnumber}
+	</update>
+	
+	<!-- 반납하기 -->
+	<update id="returnCar" parameterType="Integer">
+		update booking set bstatus = '완료' where bnumber = ${bnumber}
+	</update>
 	
 </mapper>

@@ -14,11 +14,6 @@
 			location.href = "/mypage/join"
 		});
 
-		$("#loginBtn").on("click", function(e) {
-			e.preventDefault();
-			$("#loginform").submit();
-		});
-		
 		   $("#findid").on("click",function(e) {
 		 	var cname = $("input[name=cname]").val();
 			var cphone = $("input[name=cphone]").val();
@@ -120,7 +115,7 @@
 					<p class="font-small grey-text d-flex justify-content-end">Forgot <a href="#" data-toggle="modal" data-target="#exampleModalId" class="dark-grey-text font-weight-bold ml-1"> E-mail?</a></p>
 	                <p class="font-small grey-text d-flex justify-content-end">Forgot <a href="#" data-toggle="modal" data-target="#exampleModalPw" class="dark-grey-text font-weight-bold ml-1"> Password?</a></p>
 	            <div class="text-center mb-4">
-	                <button type="button" class="btn btn-primary btn-block z-depth-2" id="loginBtn">Log in</button>
+	                <button type="submit" class="btn btn-primary btn-block z-depth-2" id="loginBtn">Log in</button>
 	            </div>
 	            <p class="font-small grey-text d-flex justify-content-center">Don't have an account? <a href="#" class="dark-grey-text font-weight-bold ml-1" id="joinBtn"> Sign up</a></p>
 	        </div>

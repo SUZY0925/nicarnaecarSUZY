@@ -22,4 +22,10 @@ public interface BookingService {
 	// 예약연장조회
 	String bookingExtend(String vnumber, Date bout);
 	
+	// 예약연장하기
+	void bookingExtendsOK(BookingVO bookingVO);
+	
+	// 예약번호로 예약조회
+	BookingVO getBookingInfo(int bnumber);
+	
 }
