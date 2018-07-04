@@ -38,7 +38,7 @@ public class BookingDAOImplXML implements BookingDAO {
 	}
 
 	@Override
-	public BookingVO bookingExtend(String vnumber, Date bout) {
+	public String bookingExtend(String vnumber, Date bout) {
 		Map<String,Object> map = new HashMap<>();
 		map.put("vnumber", vnumber);
 		map.put("bout", bout);

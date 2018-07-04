@@ -20,6 +20,6 @@ public interface BookingDAO {
 	List<BookingVO> bookingView(String cemail);
 	
 	// 예약연장조회
-	BookingVO bookingExtend(String vnumber, Date bout);
+	String bookingExtend(String vnumber, Date bout);
 	
 }

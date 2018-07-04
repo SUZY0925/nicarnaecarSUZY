@@ -5,6 +5,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.security.Principal;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -76,12 +77,13 @@ public class ReservationController {
 		return "redirect:/reservation/reservationCheck";
 	}
 	@RequestMapping(value="/extend/{vnumber}/{bout}")
-	public String reservationExtend(@PathVariable String vnumber,@PathVariable Date bout, Model model) {
+	public String reservationExtend(@PathVariable String vnumber,@PathVariable Date bout,HttpServletRequest request, Model model) {
 		BookingVO bookingVO = new BookingVO();
-		System.out.println("날짜1 : " + bookingVO.toString());
-		bookingVO = bookingService.bookingExtend(vnumber, bout);
-		System.out.println("날짜2 : " + bookingVO.toString());
-		return "redirect:/reservation/extend";
+		bookingVO.setVnumber(vnumber);
+		bookingVO.setBout(bout);
+		model.addAttribute("bookingVO",bookingVO);
+		request.setAttribute("date",bookingService.bookingExtend(vnumber, bout));
+		return "/reservation/extend";
 	}
 	
 	
