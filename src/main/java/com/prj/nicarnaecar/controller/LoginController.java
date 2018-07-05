@@ -33,38 +33,9 @@ public class LoginController {
 	@Qualifier("loginServiceImplXML")
 	LoginService loginService;
 	
-/*	@RequestMapping(value = "/login")
-	public String login(Model model, HttpSession session, SessionStatus sessionStatus) {	
-	
-		if(session.getAttribute("login") != null) {
-			return "redirect:/"; 
-		}
-		model.addAttribute("login", new LoginVO());
-		model.addAttribute("find", new MemberVO());
-		return "login/login";	
-	}
-	
-// 로그인 처리 부분
-	@RequestMapping("/memLoginOK")
- 	public String memLoginOK(@Valid @ModelAttribute("login") LoginVO login, BindingResult result, Model model) {
-		
-		if(result.hasErrors()) {
-			return "login/login";
-		}else { 
-			MemberVO memberVO = loginService.getMember(login);
-			if(memberVO != null) {
-				model.addAttribute("login", memberVO);
-				return "redirect:/";
-			} else {
-				return "login/login";
-			}
-		}
-	}*/
-	
 	 // Security 용 로그인, 로그아웃
 	@RequestMapping("/login")
 	public String securityLogin(Model model) {
-		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if(!auth.getPrincipal().equals("anonymousUser")) {
 			System.out.println("인증" + auth.getPrincipal());
@@ -72,7 +43,6 @@ public class LoginController {
 		}
 		model.addAttribute("find",new MemberVO());
 		return "login/login";
-		
 	}
 	
 	

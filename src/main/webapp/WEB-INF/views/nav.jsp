@@ -34,25 +34,36 @@ $(function() {
     <header>
 	<nav class="navbar navbar-expand-lg navbar-dark blue darken-1">
             <div class="container">
+            
+            <sec:authorize access="isAnonymous() or hasRole('ROLE_USER')">
                 <a class="navbar-brand" href="/"><img  src="/resources/IMG/Logo2.png"></a>
-              
+            </sec:authorize>
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
+            	<a class="navbar-brand" href="/admin/admin"><img  src="/resources/IMG/Logo2.png"></a>
+            </sec:authorize>  
+            
+            
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent"style="margin-right:40%;">
                     <ul class="navbar-nav mr-auto">
+                    <sec:authorize access="isAnonymous() or hasRole('ROLE_USER')">
                         <li class="nav-item">
                            <a class="nav-link" href="/reservation/reservationCheck" style="font-family: '고딕'"><strong>예약 조회</strong></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/search/vehicleSearch" style="font-family: '고딕'"><strong>차량 조회</strong></a>
                         </li>
+                    </sec:authorize>    
                         <li class="nav-item">
                             <a class="nav-link" href="/service/notice" style="font-family:'고딕'"><strong>고객센터</strong></a>
                         </li>
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
                         <li >
                         	<a class="nav-link" href="/admin/admin" style="font-family:'고딕'"><strong>관리자 페이지</strong></a>
                         </li>
+                    </sec:authorize> 
                     </ul>
                     </div>
                 <div class="collapse navbar-collapse">
@@ -67,16 +78,17 @@ $(function() {
                         </li>
                     </sec:authorize>
 				
-					<sec:authorize access="isAuthenticated()">
+				
+					<sec:authorize access="hasRole('ROLE_USER')">
 							<li class="nav-item">
                             	<a class="nav-link" href="${pageContext.request.contextPath}/reservation/myPage">내 정보 확인</a>
                         	</li>
+                    </sec:authorize>
+                    <sec:authorize access="isAuthenticated()">
                         	<li class="nav-item">
                             	<a class="nav-link" href="${pageContext.request.contextPath}/login/logout">로그아웃</a>
                         	</li>
 					</sec:authorize>
-                        
-                        
                     </ul>
                 </div>
             </div>
