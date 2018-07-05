@@ -10,20 +10,20 @@
 
 <script>
 function addComma(num) {
-	var regexp = /\B(?=(\d{3})+(?!\d))/g;
+   var regexp = /\B(?=(\d{3})+(?!\d))/g;
     return num.toString().replace(regexp, ',');
 }
 </script>
 <style>
-	td{
-		padding: 10px 10px 10px 10px;
-	}
+   td{
+      padding: 10px 10px 10px 10px;
+   }
 </style>
 
 <div class="col-md-10" style="height:45%">
-	<table  class="table table-hover table-responsive-md table-fixed" style="width:100%;">
-		<h2>인도할 차량</h2>
-			<thead>
+   <table  class="table table-hover table-responsive-md table-fixed" style="width:100%;">
+      <h2>인도할 차량</h2>
+         <thead>
                 <tr>
                     <th><h4>예약번호</h4></th>
                     <th><h4>차량번호</h4></th>
@@ -34,26 +34,24 @@ function addComma(num) {
                     <th><h4>인도</h4></th>
                 </tr>
             </thead>
-	    <tbody id="deliveryTable">
-	    <form:form action="/admin/deliveryOK" method="post">
-		    <script>
-		    var str = "";
-			    <c:forEach items="${list1 }" var="list1">
-			        str += "<tr>";
-			        str += "<td>${list2.bnumber}</td>"
-			        str += "<td>${list1.vnumber}</td>"
-			        str += "<td>${list1.bin}</td>"
-			        str += "<td>${list1.bout}</td>"
-			        str += "<td>${list1.vgage}</td>"
-			        str += "<td>"+addComma(${list1.bprice})+"원</td>"
-			        str += "<td><button type='submit'>인도</button></td>"
-			        str += "</tr>";
-			     </c:forEach>
-			     $("#deliveryTable").html(str);
-			</script>
-			</form:form>
-	    </tbody>
-	</table>
+       <tbody id="deliveryTable">
+          <script>
+          var str = "";
+             <c:forEach items="${list1 }" var="list1">
+                 str += "<tr>";
+                 str += "<td>${list1.bnumber}</td>"
+                 str += "<td>${list1.vnumber}</td>"
+                 str += "<td>${list1.bin}</td>"
+                 str += "<td>${list1.bout}</td>"
+                 str += "<td>${list1.vgage}</td>"
+                 str += "<td>"+addComma(${list1.bprice})+"원</td>"
+                 str += "<td><a class='btn btn-info px-3' href='/admin/deliveryOK/${list1.bnumber}'>인도</a></td>"
+                 str += "</tr>";
+              </c:forEach>
+              $("#deliveryTable").html(str);
+         </script>
+       </tbody>
+   </table>
 </div>
 
 <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>

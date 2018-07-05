@@ -21,7 +21,7 @@
 
         <!--Table-->
         <table class="table table-hover table-responsive-md table-fixed">
-        <sec:authorize access="isAuthenticated()">
+        <sec:authorize access="hasRole('ROLE_ADMIN')">
 			<span style="float:right;"><a href="/service/noticeWrite">글쓰기</a></span>
 		</sec:authorize>
             <!--Table head-->

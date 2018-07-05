@@ -48,6 +48,7 @@ $(function() {
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent"style="margin-right:40%;">
                     <ul class="navbar-nav mr-auto">
+                    
                     <sec:authorize access="isAnonymous() or hasRole('ROLE_USER')">
                         <li class="nav-item">
                            <a class="nav-link" href="/reservation/reservationCheck" style="font-family: '고딕'"><strong>예약 조회</strong></a>
@@ -56,14 +57,17 @@ $(function() {
                             <a class="nav-link" href="/search/vehicleSearch" style="font-family: '고딕'"><strong>차량 조회</strong></a>
                         </li>
                     </sec:authorize>    
+                    
                         <li class="nav-item">
                             <a class="nav-link" href="/service/notice" style="font-family:'고딕'"><strong>고객센터</strong></a>
                         </li>
+                        
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
                         <li >
                         	<a class="nav-link" href="/admin/admin" style="font-family:'고딕'"><strong>관리자 페이지</strong></a>
                         </li>
                     </sec:authorize> 
+                    
                     </ul>
                     </div>
                 <div class="collapse navbar-collapse">

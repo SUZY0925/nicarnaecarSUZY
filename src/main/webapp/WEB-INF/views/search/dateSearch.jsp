@@ -113,7 +113,7 @@
 <div class="container-fulid" style="margin:auto; max-width:80%;">
 <div class="row">
 	<div class="col-6" style="border-right: 1px dotted gray;">
-	<table class="table text-center" style="width:100px; margin:auto;">
+	<table class="table table-responsive-md table-fixed"style="width:100px; margin:auto;">
 	  <thead>
 	    <tr>
 	      <th scope="col">시작일</th>
@@ -160,7 +160,7 @@
 	<div class="col-6">
 	<br /><br />
 	
-	<table id="carList" class="table table-bordered" style="width:100%;">
+	<table id="carList" class="table table-hover table-responsive-md table-fixed" style="width:100%;">
 	</table>
 		<button type="submit" class="btn btn-primary" id="reservationBtn">예약하기</button>
 	</div>

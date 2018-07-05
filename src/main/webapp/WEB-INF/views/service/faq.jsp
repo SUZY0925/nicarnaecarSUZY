@@ -22,7 +22,7 @@
 }
 
 .active, .accordion:hover {
-    background: linear-gradient(to top right, #2196f3, #1565c0);
+    background: linear-gradient(to top right, #5ca0ed, #9fc9ea);
     z-depth: 1;
 }
 
@@ -49,10 +49,8 @@
   <p>${faq.fcontent }</p>
   <br />
   <br />
-  <sec:authorize access="isAuthenticated()">
-     <c:if test="${faq.eemail eq user.username }">
+  <sec:authorize access="hasRole('ROLE_ADMIN')">
   		<a href="/service/faqModify/${faq.fnumber }">수정하기</a>
- 	 </c:if>
   </sec:authorize>
   <br />
 </div>
@@ -94,7 +92,7 @@
 				</td>
 			 </tr>
 		</table> 
-<sec:authorize access="isAuthenticated()">
+<sec:authorize access="hasRole('ROLE_ADMIN')">
 <div align='right'>
 	<a href="/service/faqWrite">글쓰기</a>
 </div>

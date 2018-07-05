@@ -56,19 +56,15 @@ $(function() {
                     <td colspan="4"><input type="text" value="${view.eemail }" readOnly class="form-control"/></td>
                 </tr>
                 <tr>
-                	<sec:authorize access="isAuthenticated()">
-                		<c:if test="${view.eemail eq user.username }">
+                	<sec:authorize access="hasRole('ROLE_ADMIN')">
                 			<td colspan="1">
                 			<a id="modifyBtn" href="#" class="btn btn-primary">수정하기</a>
                 			<a href="#" id="modifyOK" class="btn btn-primary">수정완료</a>
                 			</td>
-                		</c:if>
                 	</sec:authorize>
                 	<td colspan="2" align="right">
-                	<sec:authorize access="isAuthenticated()">
-                	<c:if test="${view.eemail eq user.username }">
+                	<sec:authorize access="hasRole('ROLE_ADMIN')">
                 		<a href="#" id="deleteBtn" class="btn btn-primary">삭제하기</a>
-                		</c:if>
                 	</sec:authorize>
                 	<a href="/service/notice" class="btn btn-primary">목록으로</a>
                 	</td>

@@ -43,9 +43,20 @@ $(document).ready(function() {
 	    <input id="myInput" class="form-control" type="text" placeholder="Search" aria-label="Search">
 	</div>
 		<!--Table-->
-	<table id="myTable" class="table table-bordered" style="width:100%;">
+	<table class="table table-hover table-responsive-md table-fixed" style="width:100%;">
+		<thead>
+			<tr>
+				<th></th>
+				<th>차종</th>
+				<th>모델명</th>
+				<th>브랜드</th>
+				<th>연료</th>
+				<th>색상</th>
+				<th>가격</th>
+			</tr>
+		</thead>
 	    <!--Table body-->
-	    <tbody>
+	    <tbody id="myTable">
 	    <script>
 	    var str = "";
 		    <c:forEach items="${list }" var="list">
