@@ -6,7 +6,7 @@ import com.prj.nicarnaecar.vo.ProfitVO;
 
 public interface ProfitService {
 
-	//수익, 지출 등록
+	//매출, 지출 등록
 	public void profitInsert(ProfitVO profitVO);
 	
 	//삭제

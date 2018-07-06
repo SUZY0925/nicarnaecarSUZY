@@ -76,14 +76,17 @@ public class ReservationController {
 		bookingService.bookingCancel(bnumber);
 		return "redirect:/reservation/reservationCheck";
 	}
-	@RequestMapping(value="/extend/{vnumber}/{bout}")
-	public String reservationExtend(@PathVariable String vnumber,@PathVariable Date bout,HttpServletRequest request, Model model) {
-		BookingVO bookingVO = new BookingVO();
-		bookingVO.setVnumber(vnumber);
-		bookingVO.setBout(bout);
+	@RequestMapping(value="/extend/{bnumber}")
+	public String reservationExtend(@PathVariable int bnumber, Model model) {
+		BookingVO bookingVO = bookingService.getBookingInfo(bnumber);
 		model.addAttribute("bookingVO",bookingVO);
-		request.setAttribute("date",bookingService.bookingExtend(vnumber, bout));
 		return "/reservation/extend";
+	}
+	@RequestMapping(value="/extendOK", method=POST)
+	public String reservationExtendOK(BookingVO bookingVO) {
+		System.out.println(bookingVO.toString());
+		bookingService.bookingExtendOK(bookingVO);
+		return "redirect:/reservation/reservationCheck";
 	}
 	
 	

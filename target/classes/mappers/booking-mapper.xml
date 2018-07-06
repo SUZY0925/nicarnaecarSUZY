@@ -23,19 +23,23 @@
 		where bnumber = #{bnumber}
 	</delete>
 	
+	<!-- 예약 전체보기 (개인) -->
 	<select id="bookingView" resultType="BookingVO">
 		select * from booking where cemail = #{cemail} order by bnumber desc
 	</select>
 	
+	<!--  -->
 	<select id="bookingExtendView" resultType="String">
 		select to_date(bin-1,'yyyy-mm-dd') from booking 
 		where vnumber = #{vnumber} and bin > to_date(#{bout},'yyyy-mm-dd') and bstatus ='예약'
 	</select>
 	
+	<!-- 예약내역보기(1개) -->
 	<select id="getBookingInfo" resultType="BookingVO">
 		select * from booking where bnumber = #{bnumber}
 	</select>
 	
+	<!-- 예약하기 -->
 	<select id="bookingExtend" parameterType="BookingVO">
 		update booking set bout = #{bout}, bprice = #{bprice}
 		where bnumber = #{bnumber}

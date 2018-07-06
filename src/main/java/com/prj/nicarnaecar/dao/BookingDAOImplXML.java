@@ -38,11 +38,18 @@ public class BookingDAOImplXML implements BookingDAO {
 	}
 
 	@Override
-	public String bookingExtend(String vnumber, Date bout) {
-		Map<String,Object> map = new HashMap<>();
-		map.put("vnumber", vnumber);
-		map.put("bout", bout);
-		return sqlSession.selectOne("bookingExtendView", map);
+	public String bookingExtend(BookingVO bookingVO) {
+		return sqlSession.selectOne("bookingExtendView", bookingVO);
+	}
+
+	@Override
+	public BookingVO getBookingInfo(int bnumber) {
+		return sqlSession.selectOne("getBookingInfo", bnumber);
+	}
+
+	@Override
+	public void bookingExtendOK(BookingVO bookingVO) {
+		sqlSession.update("bookingExtend", bookingVO);
 	}
 
 }

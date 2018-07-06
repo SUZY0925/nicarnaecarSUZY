@@ -39,8 +39,18 @@ public class BookingServiceImplXML implements BookingService {
 	}
 
 	@Override
-	public String bookingExtend(String vnumber, Date bout) {
-		return bookingdao.bookingExtend(vnumber, bout);
+	public String bookingExtend(BookingVO bookingVO) {
+		return bookingdao.bookingExtend(bookingVO);
+	}
+
+	@Override
+	public BookingVO getBookingInfo(int bnumber) {
+		return bookingdao.getBookingInfo(bnumber);
+	}
+
+	@Override
+	public void bookingExtendOK(BookingVO bookingVO) {
+		bookingdao.bookingExtendOK(bookingVO);
 	}
 
 

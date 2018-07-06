@@ -20,6 +20,11 @@ public interface BookingService {
 	List<BookingVO> bookingView(String cemail);
 	
 	// 예약연장조회
-	String bookingExtend(String vnumber, Date bout);
+	String bookingExtend(BookingVO bookingVO);
 	
+	// 예약정보 가져오기
+	BookingVO getBookingInfo(int bnumber);
+	
+	// 예약연장하기
+	void bookingExtendOK(BookingVO bookingVO);
 }

@@ -92,10 +92,10 @@
 		
 			<div class="md-form col-2" style="display:inline;">
 				<input type="text" id="form1" class="form-control" name="ptarget">
-				<label for="form1">수입/지출처</label>
+				<label for="form1">매출/지출처</label>
 			</div>
 			<div class="md-form col-1" style="display:inline;">
-			<label class="container">수입<input type="radio" checked="checked" name="pinout" value="수입">
+			<label class="container">매출<input type="radio" checked="checked" name="pinout" value="매출">
 			<span class="checkmark"></span></label>
 			</div>
 			<div class="md-form col-1" style="display:inline;">
@@ -133,7 +133,7 @@
                 <tr>
                     <th><h4>Number</h4></th>
                     <th><h4>대상</h4></th>
-                    <th><h5>수입/지출</h5></th>
+                    <th><h5>매출/지출</h5></th>
                     <th><h4>금액</h4></th>
                     <th><h4>예약번호</h4></th>
                     <th><h4>거래내역</h4></th>

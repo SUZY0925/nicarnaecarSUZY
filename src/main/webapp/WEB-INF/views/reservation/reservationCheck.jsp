@@ -72,7 +72,7 @@
 			                 	<a id="cancelBtn" href="/reservation/cancel/${book.bnumber }" class="btn btn-mdb-color btn-sm">취소</a>
 			            	</c:when>
 			            	<c:when test='${book.bstatus eq "사용중"}'>
-			                 	<a id="cancelBtn" href="/reservation/extend/${book.vnumber }/${book.bout}" class="btn btn-mdb-color btn-sm">연장</a>
+			                 	<a id="extendBtn" href="/reservation/extend/${book.bnumber }" class="btn btn-mdb-color btn-sm">연장</a>
 			            	</c:when>
 		            	</c:choose>
                     </td>
