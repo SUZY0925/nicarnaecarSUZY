@@ -40,13 +40,11 @@ public class AdminController {
 	
 	@RequestMapping("/delivery")
 	public void deliveryCar(HttpServletRequest request) {
-		List<BookingVO> list1 = searchService.deliverySearch();
-		request.setAttribute("list1", list1);
+		searchService.deliverySearch(request);
 	}
 	@RequestMapping("/return")
 	public void returnCar(HttpServletRequest request) {
-		List<BookingVO> list2 = searchService.returnSearch();
-		request.setAttribute("list2", list2);
+		searchService.returnSearch(request);
 	}
 	
 	@RequestMapping("/profit")

@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class VehicleVO {
-	int vprice, vgage;
+	int vprice, vkm;
 	String vnumber, vmaker, vmodel, vtype, voil, vcolor, vstate, vyear, eoffice;
 	Date vdate;
 }

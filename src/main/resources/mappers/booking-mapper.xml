@@ -28,7 +28,7 @@
 		select * from booking where cemail = #{cemail} order by bnumber desc
 	</select>
 	
-	<!--  -->
+	<!-- 예약연장가능한날짜 출력 -->
 	<select id="bookingExtendView" resultType="String">
 		select to_date(bin-1,'yyyy-mm-dd') from booking 
 		where vnumber = #{vnumber} and bin > to_date(#{bout},'yyyy-mm-dd') and bstatus ='예약'
@@ -46,13 +46,23 @@
 	</select>
 	
 	<!-- 인도할 차량 -->
-	<select id="delivery" resultType="BookingVO">
-		select * from booking where to_date(sysdate,'yyyy-mm-dd') = to_date(bin,'yyyy-mm-dd') and bstatus = '예약'
+	<select id="deliveryRecord" resultType="BookingVO">
+		select t2.* from (select row_number() over (order by bnumber desc) as num, t1.* from booking t1
+		where to_date(sysdate,'yyyy-mm-dd') <![CDATA[=]]> to_date(bin,'yyyy-mm-dd') and bstatus = '예약' ) t2
+		where num between #{startRecord} and #{endRecord}
+	</select>
+	<select id="deliveryCount" resultType="int">
+		select count(*) from booking where to_date(bin,'yyyy-mm-dd') = to_date(sysdate,'yyyy-mm-dd') and bstatus = '예약'
 	</select>
 	
 	<!-- 반납할 차량 -->
-	<select id="return" resultType="BookingVO">
-		select * from booking where to_date(sysdate,'yyyy-mm-dd') = to_date(bout,'yyyy-mm-dd') and bstatus = '사용중'
+	<select id="returnRecord" resultType="BookingVO">
+		select t2.* from (select row_number() over (order by bnumber desc) as num, t1.* from booking t1
+		where to_date(sysdate,'yyyy-mm-dd') <![CDATA[=]]> to_date(bout,'yyyy-mm-dd') and bstatus = '사용중') t2
+		where num between #{startRecord} and #{endRecord}
+	</select>
+	<select id="returnCount" resultType="int">
+		select count(*) from booking where to_date(bout,'yyyy-mm-dd') = to_date(sysdate,'yyyy-mm-dd') and bstatus = '사용중'
 	</select>
 	
 	<!-- 인도하기 -->

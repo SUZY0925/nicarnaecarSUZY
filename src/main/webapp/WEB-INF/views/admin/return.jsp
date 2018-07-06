@@ -20,7 +20,7 @@ function addComma(num) {
 	}
 </style>
 
-<div class="col-md-10" style="height:45%">
+<div class="col-md-10">
 	<table class="table table-hover table-responsive-md table-fixed" style="width:100%;">
 	    	<h2>반납할 차량</h2>
 	    	<thead>
@@ -29,7 +29,7 @@ function addComma(num) {
                     <th><h4>차량번호</h4></th>
                     <th><h4>인도날짜</h4></th>
                     <th><h4>반납날짜</h4></th>
-                    <th><h4>인도후 기름양</h4></th>
+                    <th><h4>주행거리(전)</h4></th>
                     <th><h4>가격</h4></th>
                     <th><h4>반납</h4></th>
                 </tr>
@@ -37,21 +37,55 @@ function addComma(num) {
 	    <tbody id="returnTable">
 			<script>
 		    var str = "";
-			    <c:forEach items="${list2 }" var="list2">
+			    <c:forEach items="${list }" var="list">
 			        str += "<tr>";
-			        str += "<td>${list2.bnumber}</td>"
-			        str += "<td>${list2.vnumber}</td>"
-			        str += "<td>${list2.bin}</td>"
-			        str += "<td>${list2.bout}</td>"
-			        str += "<td>${list2.vgage}</td>"
-			        str += "<td>"+addComma(${list2.bprice})+"원</td>"
-			        str += "<td><a class='btn btn-info px-3' href='/admin/returnOK/${list2.bnumber}'>반납</a></td>"
+			        str += "<td>${list.bnumber}</td>"
+			        str += "<td>${list.vnumber}</td>"
+			        str += "<td>${list.bin}</td>"
+			        str += "<td>${list.bout}</td>"
+ 			        str += "<td>${list.vkm}</td>"
+			        str += "<td>"+addComma(${list.bprice})+"원</td>"
+			        str += "<td><a class='btn btn-info px-3' href='/admin/returnOK/${list.bnumber}'>반납</a></td>"
 			        str += "</tr>";
 			     </c:forEach>
 			     $("#returnTable").html(str);
 			</script>
 	    </tbody>
 	</table>
+	<table style=" margin:auto;">
+         <tr>
+            <td>
+               <ul id="pageing"
+                  class="pagination pagination-sm justify-content-center">
+                  <c:if test="${page.prev }">
+                     <li class="page-item"><a class="page-link"
+                        href="delivery?page.finalEndPage">◀</a></li>
+                     <li class="page-item"><a class="page-link"
+                        href="return?${page.getmakeURL(page.startPage-1) }" aria-label="Previous">
+                           <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span>
+                     </a></li>
+                  </c:if>
+                  <c:forEach begin="${page.startPage }" end="${page.endPage }" var="PAGE">
+                     <c:if test="${page.recordCriteria.reqPage == PAGE }">
+                        <li class="page-item active"><a class="page-link" href="javascript:void(0)">${PAGE }</a></li>
+                     </c:if>
+                     <c:if test="${page.recordCriteria.reqPage != PAGE }">
+                        <li class="page-item"><a class="page-link"
+                           href="return?${page.getmakeURL(PAGE) }">${PAGE }</a></li>
+                     </c:if>
+                  </c:forEach>
+                  <c:if test="${page.next }">
+                     <li class="page-item"><a class="page-link"
+                        href="return?${page.getmakeURL(page.endPage+1) }" aria-label="Next">
+                           <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>
+                     </a></li>
+                     <li class="page-item"><a class="page-link"
+                        href="return?${page.getmakeURL(page.finalEndPage) }">▶</a></li>
+                  </c:if>
+               </ul>
+            </td>
+          </tr>
+      </table>
 </div>
 
 <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>

@@ -8,21 +8,14 @@
 <jsp:include page="/WEB-INF/views/header.jsp" />
 <jsp:include page="/WEB-INF/views/nav.jsp" />
 <jsp:include page="/WEB-INF/views/admin/sidebar.jsp" />
-
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>직원관리</title>
+
 <script>
 function supdate(p){
    alert(p+"쨔쟌");
 }
-
-
 </script>
-</head>
-<body>
-   <div>
+	<div class="col-md-10" style="height:45%;">
       <table class="table table-hover table-responsive-md table-fixed" style="text-align:center;">
       <thead>
          <tr>
@@ -84,5 +77,4 @@ function supdate(p){
       
       </table>
    </div>
-</body>
-</html>
+<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>

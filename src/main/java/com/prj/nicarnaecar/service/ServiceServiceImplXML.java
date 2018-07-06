@@ -92,7 +92,6 @@ public class ServiceServiceImplXML implements ServiceService {
 					
 		request.setAttribute("list", list);
 		request.setAttribute("page", pc);
-		
 	}
 
 	@Override

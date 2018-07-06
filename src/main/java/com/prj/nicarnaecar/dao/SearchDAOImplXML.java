@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.prj.nicarnaecar.util.RecordCriteria;
 import com.prj.nicarnaecar.vo.BookingVO;
 import com.prj.nicarnaecar.vo.VehicleVO;
 
@@ -59,6 +60,26 @@ public class SearchDAOImplXML implements SearchDAO {
 	@Override
 	public void returnCar(int bnumber) {
 		sqlSession.update("returnCar", bnumber);
+	}
+
+	@Override
+	public List<BookingVO> deliverySearch(RecordCriteria recordCriteria) {
+		return sqlSession.selectList("deliveryRecord", recordCriteria);
+	}
+
+	@Override
+	public int deliverySearchCount() {
+		return sqlSession.selectOne("deliveryCount");
+	}
+
+	@Override
+	public List<BookingVO> returnSearch(RecordCriteria recordCriteria) {
+		return sqlSession.selectList("returnRecord", recordCriteria);
+	}
+
+	@Override
+	public int returnSearchCount() {
+		return sqlSession.selectOne("returnCount");
 	}
 
 }
