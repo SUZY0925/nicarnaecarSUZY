@@ -36,4 +36,7 @@ public interface SearchDAO {
 		public void deliveryCar(int bnumber);
 	// 반납하기
 		public void returnCar(int bnumber);
+		
+/*	// 주행거리(전) 조회용
+		public int viewVKM(String vnumber);*/
 }

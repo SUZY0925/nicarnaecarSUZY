@@ -82,4 +82,9 @@ public class SearchDAOImplXML implements SearchDAO {
 		return sqlSession.selectOne("returnCount");
 	}
 
+/*	@Override
+	public int viewVKM(String vnumber) {
+		return sqlSession.selectOne("viewVKM", vnumber);
+	}*/
+
 }

@@ -80,10 +80,10 @@ public class SearchServiceImplXML implements SearchService {
 		List<BookingVO> list = deliverySearch(rc);
 		int totalRec = deliveryCount();
 		PageCriteria pc = new PageCriteria(rc,totalRec);
-
+		
 		request.setAttribute("list", list);
 		request.setAttribute("page", pc);
-		System.out.println(pc.toString());
+		
 	}
 
 	@Override
@@ -112,7 +112,6 @@ public class SearchServiceImplXML implements SearchService {
 					
 		request.setAttribute("list", list);
 		request.setAttribute("page", pc);
-		System.out.println(pc.toString());
 		
 	}
 
@@ -120,5 +119,10 @@ public class SearchServiceImplXML implements SearchService {
 	public int returnSearchCount() {
 		return searchdao.returnSearchCount();
 	}
+
+/*	@Override
+	public int viewVKM(String vnumber) {
+		return searchdao.viewVKM(vnumber);
+	}*/
 
 }
