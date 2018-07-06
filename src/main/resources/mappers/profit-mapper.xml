@@ -19,7 +19,7 @@
 	</delete>
 	
 	<select id="profitList"  resultType="ProfitVO">
-		select * from profit order by pnumber desc
+		select * from profit
 	</select>
 	
 </mapper>

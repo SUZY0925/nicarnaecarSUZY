@@ -43,10 +43,10 @@ $(function() {
             </sec:authorize>  
             
             
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent, #navbarSupportedContent2" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent"style="margin-right:40%;">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-right:40%;">
                     <ul class="navbar-nav mr-auto">
                     
                     <sec:authorize access="isAnonymous() or hasRole('ROLE_USER')">
@@ -70,7 +70,7 @@ $(function() {
                     
                     </ul>
                     </div>
-                <div class="collapse navbar-collapse">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent2">
                 <ul class="navbar-nav mr-auto">
                 
                 	<sec:authorize access="isAnonymous()">

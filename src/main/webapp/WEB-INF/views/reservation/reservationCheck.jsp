@@ -1,9 +1,11 @@
-<!-- 고객이 자기 예약내역들을 확인하는 jsp -->
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%-- <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate value="${now}" pattern="yyyyMMdd" var="nowDate" />   --%>
 
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 
@@ -70,7 +72,7 @@
 			                 	<a id="cancelBtn" href="/reservation/cancel/${book.bnumber }" class="btn btn-mdb-color btn-sm">취소</a>
 			            	</c:when>
 			            	<c:when test='${book.bstatus eq "사용중"}'>
-			                 	<a id="cancelBtn" href="/reservation/extend/${book.bnumber }" class="btn btn-mdb-color btn-sm">연장</a>
+			                 	<a id="cancelBtn" href="/reservation/extend/${book.vnumber }/${book.bout}" class="btn btn-mdb-color btn-sm">연장</a>
 			            	</c:when>
 		            	</c:choose>
                     </td>

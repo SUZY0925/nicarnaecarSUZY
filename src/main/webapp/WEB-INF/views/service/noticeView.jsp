@@ -9,21 +9,21 @@
 <jsp:include page="/WEB-INF/views/service/sidebar.jsp"></jsp:include>
 <script>
 $(function() {
-	$("#modifyOK").css({"display":"none"});
-	
-	$("#modifyBtn").on("click", function() {
-		$("#ntitle").removeAttr("readonly");
-		$("#ncontent").removeAttr("readonly");
-		$("#modifyBtn").css({"display":"none"});
-		$("#modifyOK").css({"display":""});
-	});
-	
-	$("#modifyOK").on("click", function() {
-		$("#noticeForm").attr("action","/service/noticeModifyOK").submit();
-	})
-	$("#deleteBtn").on("click", function() {
-		$("#noticeForm").attr("action","/service/noticeDelete").submit();
-	})
+   $("#modifyOK").css({"display":"none"});
+   
+   $("#modifyBtn").on("click", function() {
+      $("#ntitle").removeAttr("readonly");
+      $("#ncontent").removeAttr("readonly");
+      $("#modifyBtn").css({"display":"none"});
+      $("#modifyOK").css({"display":""});
+   });
+   
+   $("#modifyOK").on("click", function() {
+      $("#noticeForm").attr("action","/service/noticeModifyOK").submit();
+   })
+   $("#deleteBtn").on("click", function() {
+      $("#noticeForm").attr("action","/service/noticeDelete").submit();
+   })
 })
 </script>
 <div class="col-md-9">
@@ -56,18 +56,18 @@ $(function() {
                     <td colspan="4"><input type="text" value="${view.eemail }" readOnly class="form-control"/></td>
                 </tr>
                 <tr>
-                	<sec:authorize access="hasRole('ROLE_ADMIN')">
-                			<td colspan="1">
-                			<a id="modifyBtn" href="#" class="btn btn-primary">수정하기</a>
-                			<a href="#" id="modifyOK" class="btn btn-primary">수정완료</a>
-                			</td>
-                	</sec:authorize>
-                	<td colspan="2" align="right">
-                	<sec:authorize access="hasRole('ROLE_ADMIN')">
-                		<a href="#" id="deleteBtn" class="btn btn-primary">삭제하기</a>
-                	</sec:authorize>
-                	<a href="/service/notice" class="btn btn-primary">목록으로</a>
-                	</td>
+                   <sec:authorize access="hasRole('ROLE_ADMIN')">
+                         <td colspan="1">
+                         <a id="modifyBtn" href="#" class="btn btn-primary">수정하기</a>
+                         <a href="#" id="modifyOK" class="btn btn-primary">수정완료</a>
+                         </td>
+                   </sec:authorize>
+                   <td colspan="2" align="right">
+                   <sec:authorize access="hasRole('ROLE_ADMIN')">
+                      <a href="#" id="deleteBtn" class="btn btn-primary">삭제하기</a>
+                   </sec:authorize>
+                   <a href="/service/notice" class="btn btn-primary">목록으로</a>
+                   </td>
                 </tr>
             </tbody>
         </table>

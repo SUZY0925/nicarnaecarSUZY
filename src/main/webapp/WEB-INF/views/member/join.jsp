@@ -1,4 +1,4 @@
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
@@ -6,108 +6,114 @@
 
 <script>
 $(function(){
-	
-	$("input[name=password]").on("keyup",function(){
- 		if($("input[name=password]").val() != $("input[name=passwd]").val()){
- 			$(".passErr").text('비밀번호가 틀립니다.');
-			$(this).focus();
-		}else{
-			$(".passErr").text('');
-		}
-	});
-	
- 	$("#joinBtn").on("click",function(e){
-		e.preventDefault();
-		$("form").submit();
-		
-	});
-	
-	$("#joinClearBtn").on("click",function(e){
-		e.preventDefault();		
-		  $("form").each(function(){
-			    this.reset();
-			  });
-	});	
-	
-	$("#joinCancelBtn").on("click",function(e){
-		e.preventDefault();		
-			location.href="/";
-	});	 
-	      
-	});
+      $("input[name=confirm]").on("keyup",function(){
+          if($("input[name=cpasswd]").val() != $("input[name=confirm]").val()){
+             $(".passErr").text('비밀번호가 틀립니다.');
+            $(this).focus();
+         }else{
+            $(".passErr").text('');
+         }
+      });
+      
+       $("#joinBtn").on("click",function(e){
+         e.preventDefault();
+         $("form").submit();
+         
+      });
+      
+      $("#joinClearBtn").on("click",function(e){
+         e.preventDefault();      
+           $("form").each(function(){
+                this.reset();
+              });
+      });   
+      
+      $("#joinCancelBtn").on("click",function(e){
+         e.preventDefault();      
+            location.href="/";
+      });    
+   });
 
 </script>
 <style>
-	.errmsg{color:red;}
-	.passErr{color:red;}
-	#BtnDiv {
-		margin:auto;
-		margin-bottom: 2%;
-		margin-top: 2%;
-	}
-	#container {
-		margin-top:3%;
-	}
+   .errmsg{color:red;}
+   .passErr{color:red;}
+   #BtnDiv {
+      margin:auto;
+      margin-bottom: 2%;
+      margin-top: 2%;
+   }
+   #container {
+      margin-top:3%;
+   }
+   i, input{
+      display:inline;
+   }
 </style>
 </head>
-	<div class="container" id="container">
-	    <div class="card">
-	        <div class="header pt-3 grey lighten-2">
-	            <div class="row d-flex justify-content-start">
-	                <h3 class="deep-grey-text mt-3 mb-4 pb-1 mx-5">Sign up</h3>
-	            </div>
-	
-	        </div>
-	        <div class="card-body mx-4 mt-4">
-	            <div class="md-form">
-	                <input type="email" class="form-control">
-	                <label for="Form-email4">Your email</label>
-	                <form:errors path="id" cssClass="errmsg" />
-			
-	            </div>
-	
-	            <div class="md-form">
-		            <input type="password" class="form-control">
-			        <label for="Form-pass4">Your password</label>
-					<form:errors path="passwd" cssClass="errmsg" />
-	            </div>
-	            
-	            <div class="md-form">
-	            <input type="password" name="password" class="form-control" />
-	            <label for="Form-pass4">Confirm password</label>
-				<i class="passErr"></i>
-				</div>
-				
-				<div class="md-form">
-				<input type="text" class="form-control">
-				<label for="Form-text4">Your Name </label>
-				<form:errors path="name" cssClass="errmsg" /> 
-				</div>
-				
-				<div class="md-form">
-				<input type="text" class="form-control">
-				<label for="Form-text4">Your Birth </label>
-				<form:errors path="birth" cssClass="errmsg" /> 
-				</div>
-				
-				<div class="md-form">
-				<input type="text" class="form-control"> 
-				<label for="Form-text4">Your Phone</label>
-				<form:errors path="phone" type="text" />
-				</div>
-				
-				</div>
-	            <div class="row" id="BtnDiv">
-	                <div class="col"><button type="button" class="btn btn-primary btn-block z-depth-2" id="joinBtn">REGISTER</button></div>
-	            	<div class="col"><input type="button" value="Reset" id="joinClearBtn" class="btn btn-primary btn-block z-depth-2"/></div>
-					<div class="col"><input type="button" value="Back" id="joinCancelBtn" class="btn btn-primary btn-block z-depth-2"/></div>
-	            </div>
-	        </div>
-	    </div>
+   <div class="container" id="container">
+       <div class="card">
+           <div class="header pt-3 info-color lighten-2" style="color:white;">
+               <div class="row d-flex justify-content-start">
+                   <h3 class="deep-grey-text mt-3 mb-4 pb-1 mx-5">Sign up</h3>
+               </div>
+           </div>
+           <div class="card-body mx-4 mt-4">
+           <form:form modelAttribute="memberVO" action="/member/memberJoinOK" method="post">
+         <div class="md-form">
+            <i class="fa fa-envelope prefix grey-text"></i>
+            <form:input class="form-control" path="cemail"/>
+            <label for="cemail">E-mail address</label>
+            <form:errors path="cemail" cssClass="errmsg" />
+         </div>
+         
+         <div class="md-form">
+            <i class="fa fa-key prefix grey-text" aria-hidden="true"></i>
+            <form:password class="form-control" path="cpasswd"/>
+            <label for="cpasswd">Your password</label>
+            <form:errors path="cpasswd" cssClass="errmsg" />
+         </div>
+
+         <div class="md-form">
+            <i class="fa fa-key prefix grey-text" aria-hidden="true"></i>
+            <input type="password" class="form-control" name="confirm"/>
+            <label for="confirm">Confirm password</label>
+            <i class="passErr"></i>
+         </div>
+
+         <div class="md-form">
+            <i class="fa fa-child prefix grey-text"></i>
+            <form:input class="form-control" path="cname"/>
+            <label for="cname">Your Name </label>
+            <form:errors path="cname" cssClass="errmsg" />
+         </div>
+
+         <div class="md-form">
+            <i class="fa fa-birthday-cake prefix grey-text"></i>
+            <form:input class="form-control" path="cbirth"/>
+            <label for="cbirth">Your Birth </label>
+            <form:errors path="cbirth" cssClass="errmsg" />
+         </div>
+
+         <div class="md-form">
+            <i class="fa fa-phone prefix grey-text" aria-hidden="true"></i>
+            <form:input class="form-control" path="cphone"/>
+            <label for="cphone">Your Phone</label>
+            <form:errors path="cphone" cssClass="errmsg" />
+         </div>
+         </form:form>
+         </div>
+               <div class="row" id="BtnDiv">
+                   <div class="col"><button type="button" class="btn btn-primary btn-block z-depth-2" id="joinBtn">REGISTER</button></div>
+                  <div class="col"><input type="button" value="Reset" id="joinClearBtn" class="btn btn-primary btn-block z-depth-2"/></div>
+               <div class="col"><input type="button" value="Back" id="joinCancelBtn" class="btn btn-primary btn-block z-depth-2"/></div>
+               </div>
+           </div>
+       </div>
 
 <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>  
- --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>   
 
@@ -211,4 +217,4 @@ $(function(){
    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     
-<jsp:include page="/WEB-INF/views/footer.jsp" flush="true"/> 
+<jsp:include page="/WEB-INF/views/footer.jsp" flush="true"/>  --%>

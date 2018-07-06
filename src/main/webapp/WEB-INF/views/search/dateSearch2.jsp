@@ -115,62 +115,69 @@
       }
       .card{
       margin:auto;
-      margin-top:30px;
+      margin-top:5%;
       max-width:100%;
-   }
-   #from, #to{
-		margin-left:50px;
-   }
-   #fromInput, #toInput, #select1, #select2{
-   		width:272px;
-   		margin-left:50px;
-   		margin-bottom:15px;
-   }
-   #dateSearchBtn, #reservationBtn{
-   	margin-left:50px;
    }
    </style>
 
 <div class="container">
-	<div class="card">
-		<div class="card-body">
-			<div class="row">
-				<div class="col row">
-				<div class="col" style="margin-bottom:15px;"><h4>시작일</h4>
-				<div id="from" style="margin-bottom:15px;"></div>
-				<input type="text" id="fromInput" class="form-control"/>
-					<select class="custom-select" id="select1">
-	                <option value="" disabled selected>Choose your option</option>
-	                <option value="서울">서울</option>
-	                <option value="대전">대전</option>
-	                <option value="대구">대구</option>
-	                <option value="부산">부산</option>
-	                <option value="울산">울산</option>
-	            	</select>
-				</div>
-				
-				<div class="col"><h4>반납일</h4>
-				<div id="to" style="margin-bottom:15px;"></div>
-				<input type="text" id="toInput" class="form-control"/>
-					<select class="custom-select" id="select2">
-	                <option value="" disabled selected>Choose your option</option>
-	                <option value="서울">서울</option>
-	                <option value="대전">대전</option>
-	                <option value="대구">대구</option>
-	                <option value="부산">부산</option>
-	                <option value="울산">울산</option>
-	            	</select>
-	            	<button type="button" class="btn btn-primary" id="dateSearchBtn">조회하기</button>
-				</div>
-				
-				</div>
-				<div class="col-12"><h4>차량선택</h4>
-				<table id="carList" class="table table-hover table-responsive-md table-fixed" style="width:100%;">
-				</table>
-				<button type="submit" class="btn btn-primary" id="reservationBtn">예약하기</button>
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="card">
+<div class="card-body">
+<div class="row">
+   <div class="col-6" style="border-right: 1px dotted gray;">
+   <table class="table table-responsive-md table-fixed"style="width:100px; margin:auto;">
+     <thead>
+       <tr>
+         <th scope="col">시작일</th>
+         <th scope="col">종료일</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr>
+         <td><div id="from"></div><input type="text" id="fromInput" class="form-control"/></td>
+        <td><div id="to"></div><input type="text" id="toInput" class="form-control"/></td>
+       </tr>
+       <tr>
+            <td>
+               <select class="custom-select" id="select1">
+                <option value="" disabled selected>Choose your option</option>
+                <option value="서울">서울</option>
+                <option value="대전">대전</option>
+                <option value="대구">대구</option>
+                <option value="부산">부산</option>
+                <option value="울산">울산</option>
+            </select>
+            </td>
+            <td >
+               <select class="custom-select" id="select2">
+                <option value="" disabled selected>Choose your option</option>
+                <option value="서울">서울</option>
+                <option value="대전">대전</option>
+                <option value="대구">대구</option>
+                <option value="부산">부산</option>
+                <option value="울산">울산</option>
+            </select>
+            </td>
+       </tr>
+       <tr>
+          <td colspan="2">
+               <button type="button" class="btn btn-primary" id="dateSearchBtn">조회하기</button>
+            </td>
+            <td>
+            </td>
+       </tr>
+     </tbody>
+   </table>
+   </div>
+   <div class="col-6">
+   <br /><br />
+   
+   <table id="carList" class="table table-hover table-responsive-md table-fixed" style="width:100%;">
+   </table>
+      <button type="submit" class="btn btn-primary" id="reservationBtn">예약하기</button>
+   </div>
+</div>
+</div>
+</div>
 </div>
 <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>

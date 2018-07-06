@@ -10,30 +10,30 @@
      eposition;
      estate; -->
 <mapper namespace="com.prj.nicarnaecar.dao.ELoginDAO">
-   <insert id="EmemberInsert" parameterType="EmployeeVO">
+   <insert id="EInsert" parameterType="EmployeeVO">
       insert into employee(eemail,epassword,ename,ebirth,ephone,eaddress,eoffice,eposition)
-      values(#{eemail},#{ename},#{epassword},#{ebirth},#{ephone},#{eaddress},#{eoffice},#{eposition})
+      values(#{eemail},#{epassword},#{ename},#{ebirth},#{ephone},#{eaddress},#{eoffice},#{eposition})
    </insert>
    
    <select id="EgetMember" resultType="EmployeeVO">
       select * from employee where eemail=#{eemail}   
    </select>
    
-   <update id="EmemberUpdate">
+<!--    <update id="EUpdate">
       update employee set
          epassword    = #{epassword},
          eaddress    = #{eaddress},
          ephone       = #{ephone}
       where eemail    = #{eemail}
-   </update>
+   </update> -->
    
-   <update id="Emembermanage">
+   <update id="EUpdate">
       update employee set
-         epassword    = #{epassword},
-         ephone       = #{ephone},
+         ephone    = #{ephone},
          eaddress    = #{eaddress},
          eoffice    = #{eoffice},
-         eposition    = #{eposition}
+         eposition  = #{eposition},
+         estate    = #{estate}
       where eemail    = #{eemail}
    </update>
    
@@ -45,4 +45,7 @@
       select epassword from employee where eemail = #{eemail} and ebirth = #{ebirth}
    </select>
    
+    <select id="EmemberList" resultType="EmployeeVO">
+      select eoffice,ename,eposition,estate,eemail,ephone,ebirth,edate from employee order by eoffice, decode(eposition,'소장','대리','사원')
+   </select>
 </mapper>

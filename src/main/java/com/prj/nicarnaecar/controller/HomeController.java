@@ -12,20 +12,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class HomeController {
-	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+   
+   private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Principal principal) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if(auth.getName().contains("@ncnc.com")) {
-			return "/admin/admin";
-		}
-		return "home";
-	}
-	
-	@RequestMapping(value = "/test")
-	public String test() {
-		return "test/test";
-	}
+   @RequestMapping(value = "/", method = RequestMethod.GET)
+   public String home(Principal principal) {
+      Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+      if(auth.getName().contains("@ncnc.com")) {
+         return "/admin/admin";
+      }
+      return "home";
+   }
+   
+   @RequestMapping(value = "/test")
+   public String test() {
+      return "test/test2";
+   }
 }

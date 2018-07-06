@@ -50,51 +50,51 @@
   <br />
   <br />
   <sec:authorize access="hasRole('ROLE_ADMIN')">
-  		<a href="/service/faqModify/${faq.fnumber }">수정하기</a>
+        <a href="/service/faqModify/${faq.fnumber }">수정하기</a>
   </sec:authorize>
   <br />
 </div>
 </c:forEach>
 <table style="width:70%; margin:auto;">
-			<tr>
-				<td>
-					<ul id="pageing"
-						class="pagination pagination-sm justify-content-center">
-						<c:if test="${page.prev }">
-							<li class="page-item"><a class="page-link"
-								href="faq?page.finalEndPage">◀</a></li>
-							<li class="page-item"><a class="page-link"
-								href="faq?${page.getmakeURL(page.startPage-1) }" aria-label="Previous">
-									<span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span>
-							</a></li>
-						</c:if>
+         <tr>
+            <td>
+               <ul id="pageing"
+                  class="pagination pagination-sm justify-content-center">
+                  <c:if test="${page.prev }">
+                     <li class="page-item"><a class="page-link"
+                        href="faq?page.finalEndPage">◀</a></li>
+                     <li class="page-item"><a class="page-link"
+                        href="faq?${page.getmakeURL(page.startPage-1) }" aria-label="Previous">
+                           <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span>
+                     </a></li>
+                  </c:if>
 
-						<c:forEach begin="${page.startPage }" end="${page.endPage }"
-							var="PAGE">
-							<c:if test="${page.recordCriteria.reqPage == PAGE }">
-								<li class="page-item active"><a class="page-link" href="javascript:void(0)">${PAGE }</a></li>
-							</c:if>
-							<c:if test="${page.recordCriteria.reqPage != PAGE }">
-								<li class="page-item"><a class="page-link"
-									href="faq?${page.getmakeURL(PAGE) }">${PAGE }</a></li>
-							</c:if>
-						</c:forEach>
+                  <c:forEach begin="${page.startPage }" end="${page.endPage }"
+                     var="PAGE">
+                     <c:if test="${page.recordCriteria.reqPage == PAGE }">
+                        <li class="page-item active"><a class="page-link" href="javascript:void(0)">${PAGE }</a></li>
+                     </c:if>
+                     <c:if test="${page.recordCriteria.reqPage != PAGE }">
+                        <li class="page-item"><a class="page-link"
+                           href="faq?${page.getmakeURL(PAGE) }">${PAGE }</a></li>
+                     </c:if>
+                  </c:forEach>
 
-						<c:if test="${page.next }">
-							<li class="page-item"><a class="page-link"
-								href="faq?${page.getmakeURL(page.endPage+1) }" aria-label="Next">
-									<span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>
-							</a></li>
-							<li class="page-item"><a class="page-link"
-								href="faq?${page.getmakeURL(page.finalEndPage) }">▶</a></li>
-						</c:if>
-					</ul>
-				</td>
-			 </tr>
-		</table> 
+                  <c:if test="${page.next }">
+                     <li class="page-item"><a class="page-link"
+                        href="faq?${page.getmakeURL(page.endPage+1) }" aria-label="Next">
+                           <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>
+                     </a></li>
+                     <li class="page-item"><a class="page-link"
+                        href="faq?${page.getmakeURL(page.finalEndPage) }">▶</a></li>
+                  </c:if>
+               </ul>
+            </td>
+          </tr>
+      </table> 
 <sec:authorize access="hasRole('ROLE_ADMIN')">
 <div align='right'>
-	<a href="/service/faqWrite">글쓰기</a>
+   <a href="/service/faqWrite">글쓰기</a>
 </div>
 </sec:authorize>
 <script>
@@ -114,7 +114,7 @@ for (i = 0; i < acc.length; i++) {
 }
 </script>
 </div>
-		 
+       
 
 
 </div>

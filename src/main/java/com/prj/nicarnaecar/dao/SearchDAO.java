@@ -27,7 +27,6 @@ public interface SearchDAO {
 		
 	// 인도하기
 		public void deliveryCar(int bnumber);
-			
 	// 반납하기
 		public void returnCar(int bnumber);
 }

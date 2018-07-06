@@ -5,7 +5,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.security.Principal;
 import java.sql.Date;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
@@ -56,7 +55,7 @@ public class ReservationController {
 	@Qualifier("bookingServiceImplXML")
 	BookingService bookingService;
 	
-	// 본인 예약들 확인
+	
 	@RequestMapping(value="/reservationCheck",method=GET)
 	public String reservationCheck(Principal principal, Model model) {
 		String cemail = principal.getName();
@@ -64,7 +63,6 @@ public class ReservationController {
 		return "/reservation/reservationCheck";
 	}
 	
-	// 예약하기
 	@RequestMapping(value="/reservationOK", method=POST)
 	public String reservationOK(Principal principal, BookingVO bookingVO) {
 		String cemail = principal.getName();
@@ -73,35 +71,20 @@ public class ReservationController {
 		return "redirect:/reservation/reservationCheck";
 	}
 	
-	// 예약취소
 	@RequestMapping(value="/cancel/{bnumber}")
 	public String reservationCancel(@PathVariable int bnumber) {
 		bookingService.bookingCancel(bnumber);
 		return "redirect:/reservation/reservationCheck";
 	}
-	
-	
-	// 연장되는지 확인 
-	@RequestMapping(value="/extend/{bnumber}")
-	public String reservationExtend(@PathVariable int bnumber,HttpServletRequest request, Model model) {
+	@RequestMapping(value="/extend/{vnumber}/{bout}")
+	public String reservationExtend(@PathVariable String vnumber,@PathVariable Date bout,HttpServletRequest request, Model model) {
 		BookingVO bookingVO = new BookingVO();
-		bookingVO = bookingService.getBookingInfo(bnumber);
-		
+		bookingVO.setVnumber(vnumber);
+		bookingVO.setBout(bout);
 		model.addAttribute("bookingVO",bookingVO);
-		request.setAttribute("date",bookingService.bookingExtend(bookingVO.getVnumber(), bookingVO.getBout()));
+		request.setAttribute("date",bookingService.bookingExtend(vnumber, bout));
 		return "/reservation/extend";
 	}
-	
-	// 연장하기
-	@RequestMapping(value="/extendOK", method=POST)
-	public String resrvationExtendOK(BookingVO bookingVO) {
-		logger.info(bookingVO.toString());
-		bookingService.bookingExtendsOK(bookingVO);
-		
-		return "redirect:/reservation/reservationCheck";
-	}
-	
-	
 	
 	
 	
@@ -109,7 +92,7 @@ public class ReservationController {
 	@Qualifier("memberServiceImplXML")
 	MemberService memberService;
 	
-// 내 정보 페이지 접근
+	// 내 정보 페이지 접근
 	@RequestMapping(value = "/myPage")
 	public String modify(Principal principal, Model model) {
 		String cemail = principal.getName();
@@ -117,14 +100,13 @@ public class ReservationController {
 		return "/reservation/myPage";
 	}
 	
-	// 정보 수정
-	@RequestMapping(value="/modifyOK", method = RequestMethod.POST)
-	public String memberModifyOK(@Valid MemberVO memberVO, BindingResult result) {
-		if(result.hasErrors()) {
-			return "/";
-		}else {
-			memberService.memberUpdate(memberVO);
-			return "redirect:/reservation/myPage/"+memberVO.getCemail();
-		}
-	}
+   @RequestMapping(value="/modifyOK", method = RequestMethod.POST)
+   public String memberModifyOK(@Valid MemberVO memberVO, BindingResult result) {
+      if(result.hasErrors()) {
+         return "/reservation/myPage";
+      }else {
+         memberService.memberUpdate(memberVO);
+         return "redirect:/reservation/myPage";
+      }
+   }
 }
