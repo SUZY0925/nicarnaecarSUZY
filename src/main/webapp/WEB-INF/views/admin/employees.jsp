@@ -8,15 +8,54 @@
 <jsp:include page="/WEB-INF/views/header.jsp" />
 <jsp:include page="/WEB-INF/views/nav.jsp" />
 <jsp:include page="/WEB-INF/views/admin/sidebar.jsp" />
-<title>직원관리</title>
 
-<script>
-function supdate(p){
-   alert(p+"쨔쟌");
-}
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>직원관리</title>
+<style type="text/css">  
+    .hide {display:none;}  
+    .show {display:table-row; height:80px; font-size:12px;} 
+</style>
+
+ 
+
+<script type="text/javascript">  
+        $(function(){
+            var article = (".recruit .show");  
+            $(".recruit .title .btn").click(function() {  
+                var myArticle =$(this).parents().next("tr");  
+                console.log($(this).parents().next());
+                console.log(this);
+                if($(myArticle).hasClass('hide')) {  
+                    $(article).removeClass('show').addClass('hide');  
+                    $(myArticle).removeClass('hide').addClass('show');  
+                }  
+                else {  
+                    $(myArticle).addClass('hide').removeClass('show');  
+                }  
+            }); 
+        });
+        $(function(){
+            $(".checkBtn").click(function(){ 
+               
+               var str = ""
+               var tdArr = new Array();    // 배열 선언
+               var checkBtn = $(this);
+               
+               var tr = checkBtn.parent().parent();
+               var td = tr.children();
+               var ac = document.getElementsByName('eoffice');
+               console.log(ac);
+               console.log(td.getElementsByName('eoffice').value);
+            })
+        })
 </script>
-	<div class="col-md-10" style="height:45%;">
-      <table class="table table-hover table-responsive-md table-fixed" style="text-align:center;">
+
+</head>
+<body>
+      <div>
+      <table class="table table-hover table-responsive-md table-fixed recruit" style="text-align:center;">
       <thead>
          <tr>
             <td>영업소</td>
@@ -30,10 +69,9 @@ function supdate(p){
             <td></td>
          </tr>
       </thead>
-      
+      <tbody>
          <c:forEach items="${employees }" var="emp">
-         <tbody>
-         <tr>
+         <tr class="title">
             <td>${emp.eoffice }</td>
             <td>${emp.ename }</td>
             <td>${emp.eposition }</td>
@@ -42,18 +80,24 @@ function supdate(p){
             <td>${emp.ephone }</td>
             <td>${emp.ebirth }</td>
             <td>${emp.edate }</td>
-            <td><button type="button" class='btn btn-primary btn-sm accordian'  onclick="supdate('${emp.eemail}')" value="수정">수정</button></td>
+               
+            <td><button type="button" class='btn btn-primary btn-sm' value="수정">수정</button></td>
          </tr>
-         <tr class="panel">
-            <td>${emp.eoffice }</td>
-            <td>${emp.ename }</td>
-            <td>${emp.eposition }</td>
-            <td>${emp.estate }</td>
-            <td>${emp.eemail }</td>
-            <td>${emp.ephone }</td>
-            <td>${emp.ebirth }</td>
-            <td>${emp.edate }</td>
-            <td></td>
+         
+         <tr class="hide">
+            <td><input type="text" name="eoffice" value="${emp.eoffice }"/></td>
+            <td><input type="text" name="ename" value="${emp.ename }" /></td>
+            <td><select name="eposition" id="sbox">
+               <option value="소장">소장</option>
+               <option value="대리">대리</option>
+               <option value="사원">사원</option>
+            </select></td>
+            <td><input type="text" name="estate" value="${emp.estate }" /></td>
+            <td><input type="text" name="eemail" value="${emp.eemail }" /></td>
+            <td><input type="text" name="ephone" value="${emp.ephone }"/></td>
+            <td><input type="text" name="ebirth" value="${emp.ebirth }" /></td>
+            <td><input type="text" name="edate" value="${emp.edate }" readonly /></td>
+            <td><button type="button" class='btn btn-primary btn-sm checkBtn' >저장</button></td>
          </tr>
             <%-- <tr>
                <td>
@@ -72,9 +116,9 @@ function supdate(p){
                <td>8</td>
                <td>9</td>
             </tr> --%>
+               </c:forEach>
             </tbody> 
-         </c:forEach>
-      
-      </table>
+         </table>
    </div>
-<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
+</body>
+</html>
