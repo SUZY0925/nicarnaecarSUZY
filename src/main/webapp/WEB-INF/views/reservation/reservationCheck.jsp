@@ -8,13 +8,12 @@
 <fmt:formatDate value="${now}" pattern="yyyyMMdd" var="nowDate" />   --%>
 
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
-
 <script>
-	$(function () {
-		$("#cancelBtn").on("click",function() {
-			alert("예약이 취소되었습니다.");
-		});
-	})
+$(function() {
+	$("#cancelBtn").click(function() {
+		alert("예약이 취소되었습니다.");
+	});
+});
 </script>
 </head>
 <jsp:include page="/WEB-INF/views/nav.jsp"></jsp:include>
@@ -35,7 +34,8 @@
                     <th>대여시작일</th>
                     <th>대여종료일</th>
                     <th>상태</th>
-                    <th>button</th>
+                    <th>비고</th>
+                    <th></th>
                 </tr>
             </thead>
             <!--Table head-->
@@ -66,6 +66,21 @@
 			                    </c:when>
 		                    </c:choose> --%>
 		                    <td>${book.bstatus }</td>
+		                    <td>
+		                    	<c:if test='${book.bstatus eq "완료"}'>
+		                    		<script>
+		                    		function addComma(num) {
+		                    			var regexp = /\B(?=(\d{3})+(?!\d))/g;
+		                    		    return num.toString().replace(regexp, ',');
+		                    		};
+		                    		$(function() {
+		                    			var plusPrice = ${book.bkm - book.vkm} * 200;
+			                    		 $("#plusPrice").html('주행비 +'+addComma(plusPrice)+'원');
+		                    		});
+		                    		</script>
+		                    		<span id="plusPrice"></span>
+		                    	</c:if>
+		                    </td>
                     <td>
                     	<c:choose>
 	                    	<c:when test='${book.bstatus eq "예약"}'>
@@ -85,8 +100,9 @@
         <!--Table-->
 
     </div>
-    
-    <table style=" margin:auto;">
+</div>
+
+ <table style=" margin:auto;">
          <tr>
             <td>
                <ul id="pageing"
@@ -123,7 +139,7 @@
             </td>
           </tr>
       </table> 
-</div>
+
 </div>
 
 <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
