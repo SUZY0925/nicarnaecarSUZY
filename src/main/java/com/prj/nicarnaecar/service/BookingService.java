@@ -3,6 +3,9 @@ package com.prj.nicarnaecar.service;
 import java.sql.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import com.prj.nicarnaecar.util.RecordCriteria;
 import com.prj.nicarnaecar.vo.BookingVO;
 import com.prj.nicarnaecar.vo.VehicleVO;
 
@@ -18,6 +21,9 @@ public interface BookingService {
 	
 	// 예약조회
 	List<BookingVO> bookingView(String cemail);
+	List<BookingVO> bookingView(RecordCriteria recordCriteria, String cemail);
+	void bookingView(String cemail, HttpServletRequest request);
+	int bookingViewCount(String cemail);
 	
 	// 예약연장조회
 	String bookingExtend(BookingVO bookingVO);

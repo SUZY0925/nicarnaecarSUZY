@@ -43,7 +43,7 @@
             <!--Table body-->
             <tbody>
             
-            <c:forEach items="${booking }" var="book" >
+            <c:forEach items="${list }" var="book" >
                 <tr>
                     <th scope="row">${book.bnumber }</th>
                     <td colspan="3">${book.vnumber }</td>
@@ -85,6 +85,44 @@
         <!--Table-->
 
     </div>
+    
+    <table style=" margin:auto;">
+         <tr>
+            <td>
+               <ul id="pageing"
+                  class="pagination pagination-sm justify-content-center">
+                  <c:if test="${page.prev }">
+                     <li class="page-item"><a class="page-link"
+                        href="reservationCheck?page.finalEndPage">◀</a></li>
+                     <li class="page-item"><a class="page-link"
+                        href="notice?${page.getmakeURL(page.startPage-1) }" aria-label="Previous">
+                           <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span>
+                     </a></li>
+                  </c:if>
+
+                  <c:forEach begin="${page.startPage }" end="${page.endPage }"
+                     var="PAGE">
+                     <c:if test="${page.recordCriteria.reqPage == PAGE }">
+                        <li class="page-item active"><a class="page-link" href="javascript:void(0)">${PAGE }</a></li>
+                     </c:if>
+                     <c:if test="${page.recordCriteria.reqPage != PAGE }">
+                        <li class="page-item"><a class="page-link"
+                           href="reservationCheck?${page.getmakeURL(PAGE) }">${PAGE }</a></li>
+                     </c:if>
+                  </c:forEach>
+
+                  <c:if test="${page.next }">
+                     <li class="page-item"><a class="page-link"
+                        href="reservationCheck?${page.getmakeURL(page.endPage+1) }" aria-label="Next">
+                           <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>
+                     </a></li>
+                     <li class="page-item"><a class="page-link"
+                        href="reservationCheck?${page.getmakeURL(page.finalEndPage) }">▶</a></li>
+                  </c:if>
+               </ul>
+            </td>
+          </tr>
+      </table> 
 </div>
 </div>
 

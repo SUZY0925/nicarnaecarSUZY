@@ -1,8 +1,8 @@
 package com.prj.nicarnaecar.dao;
 
-import java.sql.Date;
 import java.util.List;
 
+import com.prj.nicarnaecar.util.RecordCriteria;
 import com.prj.nicarnaecar.vo.BookingVO;
 
 public interface BookingDAO {
@@ -18,6 +18,9 @@ public interface BookingDAO {
 	
 	// 예약조회
 	List<BookingVO> bookingView(String cemail);
+	List<BookingVO> bookingView(RecordCriteria recordCriteria, String cemail);
+	int bookingViewCount(String cemail);
+	
 	
 	// 예약연장조회
 	String bookingExtend(BookingVO bookingVO);

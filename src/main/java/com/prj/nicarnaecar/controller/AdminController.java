@@ -1,9 +1,7 @@
 package com.prj.nicarnaecar.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.prj.nicarnaecar.service.EmployeeService;
 import com.prj.nicarnaecar.service.ProfitService;
 import com.prj.nicarnaecar.service.SearchService;
+import com.prj.nicarnaecar.vo.BookingVO;
 import com.prj.nicarnaecar.vo.EmployeeVO;
 import com.prj.nicarnaecar.vo.ProfitVO;
 
@@ -75,9 +74,9 @@ public class AdminController {
 		return "redirect:/admin/delivery";
 	}
 	
-	@RequestMapping(value="/returnOK/{bnumber}")
-	public String returnOK(@PathVariable int bnumber) {
-		searchService.returnCar(bnumber);
+	@RequestMapping(value="/returnOK", method=POST)
+	public String returnOK(BookingVO bookingVO) {
+		searchService.returnCar(bookingVO);
 		return "redirect:/admin/return";
 	}
 	
@@ -93,6 +92,16 @@ public class AdminController {
 		employeeService.Elist(request);
 	}
 	
+	
+   @RequestMapping(value="/insert",method=RequestMethod.POST)
+   public String insert(EmployeeVO employeeVO, BindingResult result) {
+      if(result.hasErrors()) {
+         return "<script language='javascript' type='text/javascript'> alert('직원 추가 실패.'); </script>";
+      }else {
+         employeeService.Einsert(employeeVO);
+         return "redirect:/admin/employees";
+      }
+   }
 	
 	@RequestMapping(value="/update", method = RequestMethod.POST)
 	public String update(EmployeeVO employeeVO, BindingResult result) {

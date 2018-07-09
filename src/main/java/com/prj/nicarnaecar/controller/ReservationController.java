@@ -56,12 +56,14 @@ public class ReservationController {
 	BookingService bookingService;
 	
 	
+	
 	@RequestMapping(value="/reservationCheck",method=GET)
-	public String reservationCheck(Principal principal, Model model) {
+	public String reservationCheck(Principal principal, Model model, HttpServletRequest request) {
 		String cemail = principal.getName();
-		model.addAttribute("booking",bookingService.bookingView(cemail));
+		bookingService.bookingView(cemail, request);
 		return "/reservation/reservationCheck";
 	}
+	
 	
 	@RequestMapping(value="/reservationOK", method=POST)
 	public String reservationOK(Principal principal, BookingVO bookingVO) {

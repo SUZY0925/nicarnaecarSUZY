@@ -40,8 +40,6 @@ public interface SearchService {
 	public void deliveryCar(int bnumber);
 
 	// 반납하기
-	public void returnCar(int bnumber);
+	public void returnCar(BookingVO bookingVO);
 	
-	// 주행거리 인도 업데이트
-	int vkmDelivery(int bnumber);
 }

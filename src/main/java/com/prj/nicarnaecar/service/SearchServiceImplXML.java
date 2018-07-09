@@ -58,8 +58,8 @@ public class SearchServiceImplXML implements SearchService {
 	}
 
 	@Override
-	public void returnCar(int bnumber) {
-		searchdao.returnCar(bnumber);
+	public void returnCar(BookingVO bookingVO) {
+		searchdao.returnCar(bookingVO);
 	}
 
 	@Override
@@ -116,11 +116,6 @@ public class SearchServiceImplXML implements SearchService {
 	@Override
 	public int returnSearchCount() {
 		return searchdao.returnSearchCount();
-	}
-
-	@Override
-	public int vkmDelivery(int bnumber) {
-		return searchdao.vkmDelivery(bnumber);
 	}
 
 }

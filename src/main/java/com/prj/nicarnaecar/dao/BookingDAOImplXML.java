@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.prj.nicarnaecar.util.RecordCriteria;
 import com.prj.nicarnaecar.vo.BookingVO;
 
 @Repository
@@ -50,6 +51,20 @@ public class BookingDAOImplXML implements BookingDAO {
 	@Override
 	public void bookingExtendOK(BookingVO bookingVO) {
 		sqlSession.update("bookingExtend", bookingVO);
+	}
+
+	@Override
+	public List<BookingVO> bookingView(RecordCriteria recordCriteria, String cemail) {
+		Map<String,Object> map = new HashMap<>();
+		map.put("startRecord", recordCriteria.getStartRecord());
+		map.put("endRecord", recordCriteria.getEndRecord());
+		map.put("cemail", cemail);
+		return sqlSession.selectList("bookingViewRecord", map);
+	}
+
+	@Override
+	public int bookingViewCount(String cemail) {
+		return sqlSession.selectOne("bookingViewCount", cemail);
 	}
 
 }

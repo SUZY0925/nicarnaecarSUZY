@@ -58,8 +58,8 @@ public class SearchDAOImplXML implements SearchDAO {
 	}
 
 	@Override
-	public void returnCar(int bnumber) {
-		sqlSession.update("returnCar", bnumber);
+	public void returnCar(BookingVO bookingVO) {
+		sqlSession.update("returnCar", bookingVO);
 	}
 
 	@Override
@@ -80,11 +80,6 @@ public class SearchDAOImplXML implements SearchDAO {
 	@Override
 	public int returnSearchCount() {
 		return sqlSession.selectOne("returnCount");
-	}
-
-	@Override
-	public int vkmDelivery(int bnumber) {
-		return sqlSession.update("vkmDelivery", bnumber);
 	}
 
 }

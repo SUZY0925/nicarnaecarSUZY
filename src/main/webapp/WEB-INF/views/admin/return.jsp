@@ -13,6 +13,63 @@ function addComma(num) {
 	var regexp = /\B(?=(\d{3})+(?!\d))/g;
     return num.toString().replace(regexp, ',');
 }
+function uncomma(num) {
+    var num = String(num);
+    return num.replace(/[^\d]+/g, '');
+}
+
+function getkm(i){
+	$("#vkm").val(document.getElementsByName('forvkm')[i].childNodes[0].nodeValue);
+	$("#bnumber").val(document.getElementsByName('forbnumber')[i].childNodes[0].nodeValue);
+	$("#vnumber").val(document.getElementsByName('forbvnumber')[i].childNodes[0].nodeValue);
+}
+$(function() {
+	$("#view").hide();
+	$("#form").show();
+	var str = "";
+    <c:forEach items="${list }" var="list" varStatus="status">
+        str += "<tr>";
+        str += "<td name='forbnumber'>${list.bnumber}</td>"
+        str += "<td name='forbvnumber'>${list.vnumber}</td>"
+        str += "<td>${list.bin}</td>"
+        str += "<td>${list.bout}</td>"
+	    str += "<td name='forvkm'>"+addComma(${list.vkm})+"km</td>"
+        str += "<td>"+addComma(${list.bprice})+"원</td>"
+        // str += "<td><a class='btn btn-info px-3' href='/admin/returnOK/${list.bnumber}'>반납</a></td>"
+        str += "<td><button data-toggle='modal' data-target='#exampleModalReturn' onclick='getkm(${status.index})' class='btn btn-info px-3'>반납</button></td>"
+        str += "</tr>";
+     </c:forEach>
+     $("#returnTable").html(str);
+     
+     
+     $("#returnNext").click(function() {
+    	 var vkm = $("#vkm").val();
+		 vkm = vkm.substr(0, vkm.indexOf(['k']));
+		 vkm = uncomma(vkm);
+		 var bkm = $("#bkm").val();
+    	 
+    	 if (bkm == "") {
+    		 alert("주행거리(후)를 입력하세요!");
+    		 return;
+    	 } else if(bkm < vkm) {
+			 alert("주행거리(후)가 주행거리(전)보다 적으면 안됩니다!");
+			 return;
+    	 } else {
+    		 $("#view").show();
+    		 $("#form").hide();
+    		 
+    		 $("#kmPrice").html('청구된 주행비용은 '+addComma((bkm-vkm)*200)+'원 입니다.');
+    	 }
+     })
+     
+     $("#returnOK").click(function() {
+    	 var vkm = $("#vkm").val();
+		 vkm = vkm.substr(0, vkm.indexOf(['k']));
+		 vkm = uncomma(vkm);
+		 $("#vkm").val(vkm);
+    	 returnForm.submit();
+     })
+})
 </script>
 <style>
 	td{
@@ -35,23 +92,13 @@ function addComma(num) {
                 </tr>
             </thead>
 	    <tbody id="returnTable">
-			<script>
-		    var str = "";
-			    <c:forEach items="${list }" var="list">
-			        str += "<tr>";
-			        str += "<td>${list.bnumber}</td>"
-			        str += "<td>${list.vnumber}</td>"
-			        str += "<td>${list.bin}</td>"
-			        str += "<td>${list.bout}</td>"
- 			        str += "<td>${list.vkm}</td>"
-			        str += "<td>"+addComma(${list.bprice})+"원</td>"
-			        str += "<td><a class='btn btn-info px-3' href='/admin/returnOK/${list.bnumber}'>반납</a></td>"
-			        str += "</tr>";
-			     </c:forEach>
-			     $("#returnTable").html(str);
-			</script>
 	    </tbody>
 	</table>
+	
+	<form:form id="returnForm" action="/admin/returnOK" method="post">
+	<jsp:include page="/WEB-INF/views/admin/returnModal.jsp"/>
+	</form:form>
+	
 	<table style=" margin:auto;">
          <tr>
             <td>

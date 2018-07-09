@@ -3,10 +3,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%
-	request.setCharacterEncoding("utf-8");
-	System.out.println(session.getAttribute("vkm"));
-%>
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/nav.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/admin/sidebar.jsp"></jsp:include>
@@ -31,7 +27,6 @@ function addComma(num) {
                     <th><h4>차량번호</h4></th>
                     <th><h4>인도날짜</h4></th>
                     <th><h4>반납날짜</h4></th>
-                    <th><h4>주행거리(전)</h4></th>
                     <th><h4>가격</h4></th>
                     <th><h4>인도</h4></th>
                 </tr>
@@ -45,7 +40,6 @@ function addComma(num) {
 			        str += "<td>${list.vnumber}</td>";
 			        str += "<td>${list.bin}</td>";
 			        str += "<td>${list.bout}</td>";
- 			        str += "<td>${list.vkm}</td>"; 
 			        str += "<td>"+addComma(${list.bprice})+"원</td>";
 			        str += "<td><a class='btn btn-info px-3' href='/admin/deliveryOK/${list.bnumber}'>인도</a></td>";
 			        str += "</tr>";

@@ -12,7 +12,7 @@
 <mapper namespace="com.prj.nicarnaecar.dao.ELoginDAO">
    <insert id="EInsert" parameterType="EmployeeVO">
       insert into employee(eemail,epassword,ename,ebirth,ephone,eaddress,eoffice,eposition)
-      values(#{eemail},#{epassword},#{ename},#{ebirth},#{ephone},#{eaddress},#{eoffice},#{eposition})
+      values(#{eemail}||'@ncnc.com',#{epassword},#{ename},#{ebirth},#{ephone},#{eaddress},#{eoffice},#{eposition})
    </insert>
    
    <select id="EgetMember" resultType="EmployeeVO">

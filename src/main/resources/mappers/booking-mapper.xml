@@ -27,6 +27,14 @@
 	<select id="bookingView" resultType="BookingVO">
 		select * from booking where cemail = #{cemail} order by bnumber desc
 	</select>
+	<select id="bookingViewRecord" resultType="BookingVO">
+		select t2.* from (select row_number() over (order by bnumber desc) as num, t1.* from booking t1) t2
+		where num between #{startRecord} and #{endRecord} and cemail=#{cemail}
+	</select>
+	<select id="bookingViewCount" parameterType="String" resultType="int">
+		select count(*) from booking where cemail = #{cemail}
+	</select>
+	
 	
 	<!-- 예약연장가능한날짜 출력 -->
 	<select id="bookingExtendView" resultType="String">
@@ -67,16 +75,14 @@
 	
 	<!-- 인도하기 -->
 	<update id="deliveryCar">
-		update booking set bstatus='사용중' where bnumber = #{bnumber}
+		update booking set bstatus='사용중',
+		vkm = (select vkm from vehicle where vnumber = (select vnumber from booking where bnumber = #{bnumber}))
+		where bnumber = #{bnumber}
 	</update>
 	
 	<!-- 반납하기 -->
 	<update id="returnCar">
-		update booking set bstatus='완료' where bnumber = #{bnumber}
+		update booking set bstatus='완료', bkm = #{bkm}, vnumber = #{vnumber} where bnumber = #{bnumber}
 	</update>
 	
-	<!-- 인도할때 예약테이블 주행거리 업데이트 -->
-	<update id="vkmDelivery">
-		update booking set vkm = (select vkm from vehicle where vnumber = (select vnumber from booking where bnumber = #{bnumber})) where bnumber = #{bnumber} 
-	</update>
 </mapper>
