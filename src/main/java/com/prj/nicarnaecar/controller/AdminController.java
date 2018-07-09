@@ -7,13 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.prj.nicarnaecar.service.EmployeeService;
 import com.prj.nicarnaecar.service.ProfitService;
 import com.prj.nicarnaecar.service.SearchService;
-import com.prj.nicarnaecar.vo.BookingVO;
 import com.prj.nicarnaecar.vo.EmployeeVO;
 import com.prj.nicarnaecar.vo.ProfitVO;
 
@@ -47,10 +48,10 @@ public class AdminController {
 		searchService.returnSearch(request);
 	}
 	
+	
 	@RequestMapping("/profit")
 	public void profit(HttpServletRequest request) {
-		List<ProfitVO> profitList = profitService.profitList();
-		request.setAttribute("profitList", profitList);
+		profitService.profitList(request);
 	}
 	
 	@RequestMapping("/profitInsertOK")
@@ -65,6 +66,9 @@ public class AdminController {
 		return "redirect:/admin/profit";
 	}
 	
+	
+	
+	
 	@RequestMapping(value="/deliveryOK/{bnumber}")
 	public String deliveryOK(@PathVariable int bnumber) {
 		searchService.deliveryCar(bnumber);
@@ -77,10 +81,26 @@ public class AdminController {
 		return "redirect:/admin/return";
 	}
 	
+	/*@RequestMapping(value="/employees")
+	public String employees(HttpServletRequest request) {
+		List<EmployeeVO> list = employeeService.Elist();
+		request.setAttribute("employees", list);
+		return "admin/employees";
+	}
+	*/
 	@RequestMapping(value="/employees")
-   public String employees(HttpServletRequest request) {
-      List<EmployeeVO> list = employeeService.Elist();
-      request.setAttribute("employees", list);
-      return "/admin/employees";
-   }
+	public void employees(HttpServletRequest request) {
+		employeeService.Elist(request);
+	}
+	
+	
+	@RequestMapping(value="/update", method = RequestMethod.POST)
+	public String update(EmployeeVO employeeVO, BindingResult result) {
+		if(result.hasErrors()) {
+			return "/admin/employees";
+		}else {
+			employeeService.EUpdate(employeeVO);
+			return "redirect:/admin/employees";
+		}
+	}
 }

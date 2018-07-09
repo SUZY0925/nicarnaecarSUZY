@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.prj.nicarnaecar.util.RecordCriteria;
 import com.prj.nicarnaecar.vo.ProfitVO;
 
 @Repository
@@ -27,6 +28,16 @@ public class ProfitDAOImplXML implements ProfitDAO {
 	@Override
 	public List<ProfitVO> profitList() {
 		return sqlSession.selectList("profitList");
+	}
+
+	@Override
+	public List<ProfitVO> profitList(RecordCriteria recordCriteria) {
+		return sqlSession.selectList("profitRecord", recordCriteria);
+	}
+
+	@Override
+	public int profitCount() {
+		return sqlSession.selectOne("profitCount");
 	}
 
 }

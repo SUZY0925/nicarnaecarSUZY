@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.prj.nicarnaecar.util.RecordCriteria;
 import com.prj.nicarnaecar.vo.EmployeeVO;
 
 @Repository
@@ -27,6 +28,16 @@ public class EmployeeDAOImplXML implements EmployeeDAO {
 	@Override
 	public void Einsert(EmployeeVO employeeVO) {
 		sqlSession.insert("EInsert", employeeVO);
+	}
+
+	@Override
+	public List<EmployeeVO> Elist(RecordCriteria recordCriteria) {
+		return sqlSession.selectList("EmemberRecord", recordCriteria);
+	}
+
+	@Override
+	public int ECount() {
+		return sqlSession.selectOne("EmemberCount");
 	}
 
 }

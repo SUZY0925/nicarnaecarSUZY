@@ -29,11 +29,11 @@
    
    <update id="EUpdate">
       update employee set
-         ephone    = #{ephone},
-         eaddress    = #{eaddress},
-         eoffice    = #{eoffice},
-         eposition  = #{eposition},
-         estate    = #{estate}
+      	eoffice 	= #{eoffice},
+      	ename 		= #{ename},
+      	eposition  = #{eposition},
+      	estate 	= #{estate},
+        ephone 	= #{ephone}
       where eemail    = #{eemail}
    </update>
    
@@ -46,6 +46,15 @@
    </select>
    
     <select id="EmemberList" resultType="EmployeeVO">
-      select eoffice,ename,eposition,estate,eemail,ephone,ebirth,edate from employee order by eoffice, decode(eposition,'소장','대리','사원')
+      select eoffice,ename,eposition,estate,eemail,ephone,ebirth,edate from employee order by eoffice, decode(eposition,'소장',1,'대리',2,'사원',3)
+   </select>
+   
+   <select id="EmemberRecord" resultType="EmployeeVO">
+      select t2.* from (select row_number() over (order by eoffice, decode(eposition,'소장',1,'대리',2,'사원',3)) as num, t1.* from employee t1) t2
+		where num between #{startRecord} and #{endRecord}
+   </select>
+   
+   <select id="EmemberCount" resultType="int">
+   		select count(*) from employee
    </select>
 </mapper>

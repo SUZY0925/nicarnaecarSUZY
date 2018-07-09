@@ -22,4 +22,13 @@
 		select * from profit
 	</select>
 	
+	<select id="profitRecord" resultType="ProfitVO">
+		select t2.* from (select row_number() over (order by pnumber desc) as num, t1.* from profit t1) t2
+		where num between #{startRecord} and #{endRecord}
+	</select>
+	
+	<select id="profitCount" resultType="int">
+		select count(*) from profit
+	</select>
+	
 </mapper>

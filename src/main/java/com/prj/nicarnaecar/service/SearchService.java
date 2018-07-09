@@ -28,6 +28,7 @@ public interface SearchService {
 	List<BookingVO> deliverySearch(RecordCriteria recordCriteria);
 	void deliverySearch(HttpServletRequest request);
 	int deliveryCount();
+	
 
 	// 반납 할 차량 보기
 	public List<BookingVO> returnSearch();
@@ -41,6 +42,6 @@ public interface SearchService {
 	// 반납하기
 	public void returnCar(int bnumber);
 	
-/*	// 주행거리(전) 조회용
-	public int viewVKM(String vnumber);*/
+	// 주행거리 인도 업데이트
+	int vkmDelivery(int bnumber);
 }

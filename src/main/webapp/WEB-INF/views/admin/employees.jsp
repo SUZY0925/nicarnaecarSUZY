@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
@@ -9,24 +8,16 @@
 <jsp:include page="/WEB-INF/views/nav.jsp" />
 <jsp:include page="/WEB-INF/views/admin/sidebar.jsp" />
 
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>직원관리</title>
-<style type="text/css">  
+<style>  
     .hide {display:none;}  
-    .show {display:table-row; height:80px; font-size:12px;} 
+    .show {display:table-row; background-color:#ececec;} 
 </style>
-
- 
-
-<script type="text/javascript">  
+<script>  
         $(function(){
             var article = (".recruit .show");  
-            $(".recruit .title .btn").click(function() {  
+            $(".recruit .title a").click(function() {  
                 var myArticle =$(this).parents().next("tr");  
-                console.log($(this).parents().next());
-                console.log(this);
                 if($(myArticle).hasClass('hide')) {  
                     $(article).removeClass('show').addClass('hide');  
                     $(myArticle).removeClass('hide').addClass('show');  
@@ -36,26 +27,28 @@
                 }  
             }); 
         });
-        $(function(){
-            $(".checkBtn").click(function(){ 
-               
-               var str = ""
-               var tdArr = new Array();    // 배열 선언
-               var checkBtn = $(this);
-               
-               var tr = checkBtn.parent().parent();
-               var td = tr.children();
-               var ac = document.getElementsByName('eoffice');
-               console.log(ac);
-               console.log(td.getElementsByName('eoffice').value);
-            })
-        })
+        
+        function upupdate(i){
+           console.log(i);
+           document.vo.eoffice.value = document.getElementsByName('office')[i].value;
+           document.vo.ename.value = document.getElementsByName('name')[i].value;
+           document.vo.eposition.value = document.getElementsByName('position')[i].value;
+           document.vo.estate.value = document.getElementsByName('state')[i].value;
+           document.vo.ephone.value = document.getElementsByName('phone')[i].value;
+           document.vo.eemail.value = document.getElementsByName('email')[i].value;
+           document.vo.submit();
+        } 
 </script>
-
-</head>
-<body>
       <div>
-      <table class="table table-hover table-responsive-md table-fixed recruit" style="text-align:center;">
+      <form:form modelAttribute="employeeVO" action="/admin/update" method="post" name="vo">
+         <input type="hidden" name="eoffice" />
+         <input type="hidden" name="ename" />
+         <input type="hidden" name="eposition"/>
+         <input type="hidden" name="estate"/>
+         <input type="hidden" name="eemail"/>
+         <input type="hidden" name="ephone"/>
+      </form:form>
+      <table class="table table-hover table-responsive-md table-fixed recruit" style="text-align:center;width:950px;">
       <thead>
          <tr>
             <td>영업소</td>
@@ -64,61 +57,86 @@
             <td>재직상태</td>
             <td>EMAIL</td>
             <td>전화번호</td>
-            <td>생년월일</td>
             <td>입사일</td>
             <td></td>
          </tr>
       </thead>
       <tbody>
-         <c:forEach items="${employees }" var="emp">
-         <tr class="title">
-            <td>${emp.eoffice }</td>
-            <td>${emp.ename }</td>
-            <td>${emp.eposition }</td>
-            <td>${emp.estate }</td>
-            <td>${emp.eemail }</td>
-            <td>${emp.ephone }</td>
-            <td>${emp.ebirth }</td>
-            <td>${emp.edate }</td>
-               
-            <td><button type="button" class='btn btn-primary btn-sm' value="수정">수정</button></td>
+         <c:forEach items="${list }" var="emp" varStatus="status" >
+         <tr class="title" style="width:100%;">
+            <td style="width:8%;">${emp.eoffice }</td>
+            <td style="width:10%;">${emp.ename }</td>
+            <td style="width:8%;">${emp.eposition }</td>
+            <td style="width:8%;">${emp.estate }</td>
+            <td style="width:10%;">${emp.eemail }</td>
+            <td style="width:7%;">${emp.ephone }</td>
+            <td style="width:10%;">${emp.edate }</td>
+            <td style="width:7%;"><a href="#" >수정</a></td>
          </tr>
-         
-         <tr class="hide">
-            <td><input type="text" name="eoffice" value="${emp.eoffice }"/></td>
-            <td><input type="text" name="ename" value="${emp.ename }" /></td>
-            <td><select name="eposition" id="sbox">
-               <option value="소장">소장</option>
-               <option value="대리">대리</option>
-               <option value="사원">사원</option>
+         <tr class="hide" style="width:100%;">
+            <td><select class="form-control form-control-sm" name="office" >
+	               <option value="울산" <c:if test="${emp.eoffice eq '울산' }">selected</c:if>>울산</option>
+	               <option value="서울" <c:if test="${emp.eoffice eq '서울' }">selected</c:if>>서울</option>
+	               <option value="대구" <c:if test="${emp.eoffice eq '대구' }">selected</c:if>>대구</option>
+	               <option value="부산" <c:if test="${emp.eoffice eq '부산' }">selected</c:if>>부산</option>
+	               <option value="대전" <c:if test="${emp.eoffice eq '대전' }">selected</c:if>>대전</option>
+	            </select>
+            </td>
+            <td><input type="text" class="form-control form-control-sm" name="name" value="${emp.ename }" /></td>
+            <td><select class="form-control form-control-sm" name="position" >
+               <option value="소장" <c:if test="${emp.eposition eq '소장' }">selected</c:if>>소장</option>
+               <option value="대리" <c:if test="${emp.eposition eq '대리' }">selected</c:if>>대리</option>
+               <option value="사원" <c:if test="${emp.eposition eq '사원' }">selected</c:if>>사원</option>
             </select></td>
-            <td><input type="text" name="estate" value="${emp.estate }" /></td>
-            <td><input type="text" name="eemail" value="${emp.eemail }" /></td>
-            <td><input type="text" name="ephone" value="${emp.ephone }"/></td>
-            <td><input type="text" name="ebirth" value="${emp.ebirth }" /></td>
-            <td><input type="text" name="edate" value="${emp.edate }" readonly /></td>
-            <td><button type="button" class='btn btn-primary btn-sm checkBtn' >저장</button></td>
+            <td><select class="form-control form-control-sm" name="state" >
+               <option value="재직" <c:if test="${emp.estate eq '재직' }">selected</c:if>>재직</option>
+               <option value="퇴직" <c:if test="${emp.estate eq '퇴직' }">selected</c:if>>퇴직</option>
+               <option value="휴직" <c:if test="${emp.estate eq '휴직' }">selected</c:if>>휴직</option>
+            </select></td>
+            
+            <td><input type="text" class="form-control form-control-sm" name="email" value="${emp.eemail }" readOnly/></td>
+            <td><input type="text" class="form-control form-control-sm" name="phone" value="${emp.ephone }"/></td>
+            <td>${emp.edate }</td>
+            <td style="width:7%;"><a href="#" onclick="upupdate('${status.index}');">저장</a></td>
          </tr>
-            <%-- <tr>
-               <td>
-               <input type="text" name="eoffice" value="${emp.eoffice }"/>
-               </td>
-               <td>
-               <input type="text" name="ename" value="${emp.ename }" />
-               </td>
-               <td>
-               <select name="eposition" id="sbox"></select>
-               </td>
-               <td>4</td>
-               <td>5</td>
-               <td>6</td>
-               <td>7</td>
-               <td>8</td>
-               <td>9</td>
-            </tr> --%>
                </c:forEach>
             </tbody> 
          </table>
+         
+         <table style=" margin:auto;">
+         <tr>
+            <td>
+               <ul id="pageing"
+                  class="pagination pagination-sm justify-content-center">
+                  <c:if test="${page.prev }">
+                     <li class="page-item"><a class="page-link"
+                        href="employees?page.finalEndPage">◀</a></li>
+                     <li class="page-item"><a class="page-link"
+                        href="employees?${page.getmakeURL(page.startPage-1) }" aria-label="Previous">
+                           <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span>
+                     </a></li>
+                  </c:if>
+                  <c:forEach begin="${page.startPage }" end="${page.endPage }" var="PAGE">
+                     <c:if test="${page.recordCriteria.reqPage == PAGE }">
+                        <li class="page-item active"><a class="page-link" href="javascript:void(0)">${PAGE }</a></li>
+                     </c:if>
+                     <c:if test="${page.recordCriteria.reqPage != PAGE }">
+                        <li class="page-item"><a class="page-link"
+                           href="employees?${page.getmakeURL(PAGE) }">${PAGE }</a></li>
+                     </c:if>
+                  </c:forEach>
+                  <c:if test="${page.next }">
+                     <li class="page-item"><a class="page-link"
+                        href="employees?${page.getmakeURL(page.endPage+1) }" aria-label="Next">
+                           <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>
+                     </a></li>
+                     <li class="page-item"><a class="page-link"
+                        href="employees?${page.getmakeURL(page.finalEndPage) }">▶</a></li>
+                  </c:if>
+               </ul>
+            </td>
+          </tr>
+      </table>
+      
    </div>
-</body>
-</html>
+<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>

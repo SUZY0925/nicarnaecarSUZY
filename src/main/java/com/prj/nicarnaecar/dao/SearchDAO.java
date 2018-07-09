@@ -26,6 +26,7 @@ public interface SearchDAO {
 		List<BookingVO> deliverySearch(RecordCriteria recordCriteria);
 		int deliverySearchCount();
 		
+		
 					
 	// 반납 할 차량 보기
 		public List<BookingVO> returnSearch();
@@ -37,6 +38,6 @@ public interface SearchDAO {
 	// 반납하기
 		public void returnCar(int bnumber);
 		
-/*	// 주행거리(전) 조회용
-		public int viewVKM(String vnumber);*/
+	// 주행거리 인도 업데이트
+		int vkmDelivery(int bnumber);
 }

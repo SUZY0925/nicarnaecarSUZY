@@ -83,7 +83,6 @@ public class SearchServiceImplXML implements SearchService {
 		
 		request.setAttribute("list", list);
 		request.setAttribute("page", pc);
-		
 	}
 
 	@Override
@@ -112,7 +111,6 @@ public class SearchServiceImplXML implements SearchService {
 					
 		request.setAttribute("list", list);
 		request.setAttribute("page", pc);
-		
 	}
 
 	@Override
@@ -120,9 +118,9 @@ public class SearchServiceImplXML implements SearchService {
 		return searchdao.returnSearchCount();
 	}
 
-/*	@Override
-	public int viewVKM(String vnumber) {
-		return searchdao.viewVKM(vnumber);
-	}*/
+	@Override
+	public int vkmDelivery(int bnumber) {
+		return searchdao.vkmDelivery(bnumber);
+	}
 
 }

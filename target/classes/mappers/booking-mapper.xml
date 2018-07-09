@@ -74,8 +74,9 @@
 	<update id="returnCar">
 		update booking set bstatus='완료' where bnumber = #{bnumber}
 	</update>
-	<!-- 차량 주행거리 (전) 보기용..
-	<select id="viewVKM" resultType="int">
-		select vkm from vehicle where vnumber = #{vnumber}
-	</select> -->
+	
+	<!-- 인도할때 예약테이블 주행거리 업데이트 -->
+	<update id="vkmDelivery">
+		update booking set vkm = (select vkm from vehicle where vnumber = (select vnumber from booking where bnumber = #{bnumber})) where bnumber = #{bnumber} 
+	</update>
 </mapper>

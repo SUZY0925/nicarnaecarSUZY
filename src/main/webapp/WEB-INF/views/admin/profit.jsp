@@ -99,7 +99,7 @@
             <tbody id="profitTableIn">
                 <script>
             var str = "";
-             <c:forEach items="${profitList }" var="profit">
+             <c:forEach items="${list }" var="profit">
                  str += "<tr>";
                  str += "<td>${profit.pnumber}</td>";
                  str += "<td>${profit.ptarget}</td>"; 
@@ -120,5 +120,42 @@
 
     </div>
 </div>
+<table style=" margin:auto;">
+         <tr>
+            <td>
+               <ul id="pageing"
+                  class="pagination pagination-sm justify-content-center">
+                  <c:if test="${page.prev }">
+                     <li class="page-item"><a class="page-link"
+                        href="profit?page.finalEndPage">◀</a></li>
+                     <li class="page-item"><a class="page-link"
+                        href="profit?${page.getmakeURL(page.startPage-1) }" aria-label="Previous">
+                           <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span>
+                     </a></li>
+                  </c:if>
+
+                  <c:forEach begin="${page.startPage }" end="${page.endPage }"
+                     var="PAGE">
+                     <c:if test="${page.recordCriteria.reqPage == PAGE }">
+                        <li class="page-item active"><a class="page-link" href="javascript:void(0)">${PAGE }</a></li>
+                     </c:if>
+                     <c:if test="${page.recordCriteria.reqPage != PAGE }">
+                        <li class="page-item"><a class="page-link"
+                           href="profit?${page.getmakeURL(PAGE) }">${PAGE }</a></li>
+                     </c:if>
+                  </c:forEach>
+
+                  <c:if test="${page.next }">
+                     <li class="page-item"><a class="page-link"
+                        href="profit?${page.getmakeURL(page.endPage+1) }" aria-label="Next">
+                           <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>
+                     </a></li>
+                     <li class="page-item"><a class="page-link"
+                        href="profit?${page.getmakeURL(page.finalEndPage) }">▶</a></li>
+                  </c:if>
+               </ul>
+            </td>
+          </tr>
+      </table> 
 </div>
 <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
