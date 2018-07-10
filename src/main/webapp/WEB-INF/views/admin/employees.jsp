@@ -40,7 +40,7 @@ $(function(){
    });
    
    $("#idCheck").on("click",function(e){
-	   var reqId = /([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~,-])|([!,@,#,$,%,^,&,*,?,_,~,-].*[a-zA-Z0-9])/
+	  var reqId = /([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~,-])|([!,@,#,$,%,^,&,*,?,_,~,-].*[a-zA-Z0-9])/
  	  var eemail = $("#eemail").val();
  	  if(eemail == "") {
  		  alert("사용하실 이메일을 입력해주세요!");
@@ -50,6 +50,7 @@ $(function(){
  	  if(reqId.test(eemail)) {
  		  console.log(eemail);
  		  alert("아이디에 사용할 수 없는 문자가 들어가있습니다!");
+ 		  idck = 0; 
 		   	  return false;
  	  }
  	  $.ajax({
@@ -89,6 +90,23 @@ $(function(){
 		   return false;
 	   } else if($("#epassword").val() != $("input[name=confirm]").val()){ 
 		   alert("비밀번호를 확인하세요!");
+		   $("#epassword").focus();
+		   return false;
+	   } else if($("#ename").val().lenght > 20 && $("#ename").val().lenght < 4) {
+		   alert("이름은 4-20자 이하로 입력하여야 합니다!");
+		   $("#ename").focus();
+		   return false;
+	   } else if($("#ephone").val().length <= 11) {
+		   alert("전화번호는 10 또는 11자리의 숫자로 입력햐여야 합니다!");
+		   $("#ephone").focus();
+		   return false;
+	   } else if($("#ebirth").val().length != 8) {
+		   alert("생년월일은 '19990101' 형식으로 입력해주세요!");
+		   $("#ebirth").focus();
+		   return false;
+	   } else if($("#epassword").val().length < 20) {
+		   alert("비밀번호는 20자리 이내로 입력하셔야 합니다!");
+		   $("#epassword").focus();
 		   return false;
 	   }
 	   else {
@@ -120,7 +138,16 @@ $(function(){
 	   if(document.getElementsByName('phone')[i].value == "" || document.getElementsByName('name')[i].value == "") {
 		   alert("빈칸을 전부 채워주세요!");
 		   return false;
-	   } else {
+	   } else if(document.getElementsByName('phone')[i].value <= 11) {
+		   alert("전화번호는 10 또는 11자리의 숫자로 입력햐여야 합니다!");
+		   document.getElementsByName('phone')[i].focus();
+		   return false;
+	   } else if(document.getElementsByName('name')[i].value > 20 || document.getElementsByName('name')[i].value < 4) {
+		   alert("이름은 4-20자 이하로 입력하여야 합니다!");
+		   document.getElementsByName('name')[i].focus();
+		   return false;
+	   }
+	   else {
 	      console.log(i);
 	      document.vo.eoffice.value = document.getElementsByName('office')[i].value;
 	      document.vo.ename.value = document.getElementsByName('name')[i].value;
