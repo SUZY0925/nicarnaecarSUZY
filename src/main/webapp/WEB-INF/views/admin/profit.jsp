@@ -42,17 +42,17 @@
 <form:form action="/admin/profitInsertOK" method="post">
    <div class="card">
       <div class="card-body row">
-      <h2 class="container-fluid">수입/지출 입력</h2>
+      <h2 class="container-fluid">매출/지출 입력</h2>
          <div class="container-fluid row">
             <div class="md-form col">
                <input type="text" id="form1" class="form-control" name="ptarget">
-               <label for="form1">수입/지출처</label>
+               <label for="form1">대상</label>
             </div>
                <div class="btn-group col" data-toggle="buttons"
                   style="margin-top: 10px; margin-left: 20px;">
                   <label class="btn btn-primary active form-check-label"> <input
                      class="form-check-input" type="radio" checked autocomplete="off"
-                     value="수입" name="pinout">수입
+                     value="수입" name="pinout">매출
                   </label> <label class="btn btn-primary form-check-label"> <input
                      class="form-check-input" type="radio" autocomplete="off"
                      value="지출" name="pinout">지출
@@ -86,7 +86,7 @@
                 <tr>
                     <th><h5>Number</h5></th>
                     <th><h5>대상</h5></th>
-                    <th><h5>수입/지출</h5></th>
+                    <th><h5>매출/지출</h5></th>
                     <th><h5>금액</h5></th>
                     <th><h5>예약번호</h5></th>
                     <th><h5>거래내역</h5></th>

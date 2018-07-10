@@ -75,7 +75,7 @@ $(function() {
 		                    		};
 		                    		$(function() {
 		                    			var plusPrice = ${book.bkm - book.vkm} * 200;
-			                    		 $("#plusPrice").html('주행비 +'+addComma(plusPrice)+'원');
+			                    		 $("#plusPrice").html('주행거리:'+addComma(${book.bkm - book.vkm})+'km'+' 주행비:'+addComma(plusPrice)+'원');
 		                    		});
 		                    		</script>
 		                    		<span id="plusPrice"></span>
