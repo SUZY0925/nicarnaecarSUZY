@@ -40,4 +40,9 @@ public class EmployeeDAOImplXML implements EmployeeDAO {
 		return sqlSession.selectOne("EmemberCount");
 	}
 
+	@Override
+	public int eidCheck(String eemail) {
+		return sqlSession.selectOne("eidCheck", eemail);
+	}
+
 }

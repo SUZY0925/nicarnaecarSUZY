@@ -57,4 +57,9 @@
    <select id="EmemberCount" resultType="int">
    		select count(*) from employee
    </select>
+   
+   <select id="eidCheck" resultType="int">
+   		select count(*) from employee where eemail = #{eemail}
+   </select>
+   
 </mapper>

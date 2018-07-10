@@ -17,4 +17,6 @@ public interface EmployeeDAO {
 	//직원추가
 	public void Einsert(EmployeeVO employeeVO);
 	
+	//직원 아이디 검색
+	public int eidCheck(String eemail);
 }

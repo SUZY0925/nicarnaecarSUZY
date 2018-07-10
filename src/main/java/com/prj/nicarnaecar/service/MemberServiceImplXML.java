@@ -45,4 +45,9 @@ public class MemberServiceImplXML implements MemberService {
 		return memberdao.findPW(memberVO);
 	}
 
+	@Override
+	public int idCheck(String cemail) {
+		return memberdao.idCheck(cemail);
+	}
+
 }

@@ -32,4 +32,8 @@
 	<select id="findPW" resultType="MemberVO">
 		select cpasswd from customers where cemail=#{cemail} and cbirth = #{cbirth}
 	</select>
+	
+	<select id="idCheck" resultType="int">
+		select count(*) from customers where cemail = #{cemail}
+	</select>
 </mapper>

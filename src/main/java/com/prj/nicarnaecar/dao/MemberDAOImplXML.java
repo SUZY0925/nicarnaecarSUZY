@@ -42,4 +42,9 @@ public class MemberDAOImplXML implements MemberDAO{
 		return sqlSession.selectOne("findPW",memberVO);
 	}
 
+	@Override
+	public int idCheck(String cemail) {
+		return sqlSession.selectOne("idCheck", cemail);
+	}
+
 }

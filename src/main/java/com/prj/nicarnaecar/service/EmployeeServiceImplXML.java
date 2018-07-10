@@ -57,11 +57,17 @@ public class EmployeeServiceImplXML implements EmployeeService {
 					
 		request.setAttribute("list", list);
 		request.setAttribute("page", pc);
+		request.setAttribute("employeeVO", new EmployeeVO());
 	}
 
 	@Override
 	public int ECount() {
 		return employeeDAO.ECount();
+	}
+
+	@Override
+	public int eidCheck(String eemail) {
+		return employeeDAO.eidCheck(eemail);
 	}
 
 }

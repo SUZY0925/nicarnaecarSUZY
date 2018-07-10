@@ -16,4 +16,6 @@ public interface MemberDAO {
 	
 	public MemberVO findID(MemberVO memberVO);
 	public MemberVO findPW(MemberVO memberVO);
+	
+	public int idCheck(String cemail);
 }

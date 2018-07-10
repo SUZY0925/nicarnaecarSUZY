@@ -17,4 +17,6 @@ public interface MemberService {
 	
 	public MemberVO findID(MemberVO memberVO);
 	public MemberVO findPW(MemberVO memberVO);
+	
+	public int idCheck(String cemail);
 }

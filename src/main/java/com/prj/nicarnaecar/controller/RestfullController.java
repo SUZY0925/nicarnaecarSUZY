@@ -1,14 +1,23 @@
 package com.prj.nicarnaecar.controller;
 
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.prj.nicarnaecar.service.EmployeeService;
 import com.prj.nicarnaecar.service.MemberService;
 import com.prj.nicarnaecar.vo.MemberVO;
 
@@ -42,5 +51,40 @@ public class RestfullController {
 					return memberVO.getCpasswd();
 				}
 		}
+		
+		// 회원가입시 이메일 중복체크
+		@RequestMapping(value="/memEmailCheck", method=POST, produces = "text/json; charset=UTF-8")
+		public ResponseEntity<String> memberEmailCheck(@RequestBody String cemail) throws UnsupportedEncodingException {
+			ResponseEntity<String> responseEntity = null;
+			try {
+				responseEntity = new ResponseEntity<String>(String.valueOf(memberService.idCheck(URLDecoder.decode(cemail.substring(7), "UTF-8"))),  HttpStatus.OK);
+			} catch (Exception e) {
+				e.printStackTrace();
+				responseEntity = new ResponseEntity<String>("Fail", HttpStatus.BAD_REQUEST);
+			}
+			return responseEntity;
+		}
+		
+		
+		@Autowired
+		@Qualifier("employeeServiceImplXML")
+		EmployeeService employeeService;
+		
+		// 직원추가시 아이디 중복체크
+		@RequestMapping(value="/emplEmailCheck", method=POST, produces = "text/json; charset=UTF-8")
+		public ResponseEntity<String> employeesEmailCheck(@RequestBody String eemail) throws UnsupportedEncodingException {
+			ResponseEntity<String> responseEntity = null;
+			String aa = URLDecoder.decode(eemail.substring(7), "UTF-8") +"@ncnc.com";
+			try {
+				responseEntity = new ResponseEntity<String>(String.valueOf(employeeService.eidCheck(aa)), HttpStatus.OK);
+			} catch (Exception e) {
+				e.printStackTrace();
+				responseEntity = new ResponseEntity<String>("Fail", HttpStatus.BAD_REQUEST);
+			}
+			return responseEntity;
+		}
+		
+		
+		
 			
 }

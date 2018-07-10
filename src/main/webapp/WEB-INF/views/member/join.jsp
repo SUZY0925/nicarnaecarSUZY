@@ -5,7 +5,9 @@
 <jsp:include page="/WEB-INF/views/nav.jsp"></jsp:include>
 
 <script>
+
 $(function(){
+	 var idck = 0; 
       $("input[name=confirm]").on("keyup",function(){
           if($("input[name=cpasswd]").val() != $("input[name=confirm]").val()){
              $(".passErr").text('비밀번호가 틀립니다.');
@@ -16,9 +18,18 @@ $(function(){
       });
       
        $("#joinBtn").on("click",function(e){
-         e.preventDefault();
-         $("form").submit();
-         
+    	   if(idck == 0) {
+    		   alert("아이디 중복 검사를 해주세요!");
+    		   return false;
+    	   } else if($("#idUncheck").val() != $("#cemail").val()) {
+    		   idck = 0;
+    		   alert("아이디 중복 검사를 다시 해주세요!");
+    		   return false;
+    	   } 
+    	   else {
+		         e.preventDefault();
+		         $("form").submit();
+    	   }
       });
       
       $("#joinClearBtn").on("click",function(e){
@@ -31,7 +42,50 @@ $(function(){
       $("#joinCancelBtn").on("click",function(e){
          e.preventDefault();      
             location.href="/";
-      });    
+      }); 
+      
+      
+      // 이메일 중복 체크
+      $("#idCheck").on("click",function(e){
+    	  var regEmail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+/*     	  var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/; */ 
+    	  var cemail = $("#cemail").val();
+    	  if(cemail == "") {
+    		  alert("사용하실 이메일을 입력해주세요!");
+    		  return false;
+    	  }
+    	  
+    	  if(!regEmail.test($("#cemail").val())) {
+    		  alert("올바른 이메일 형식으로 입력하세요!");
+   		   	  return false;
+    	  }
+    	  $.ajax({
+    	  	type : 'POST',
+    	  	data : {
+    	  	 cemail : cemail
+    	  	},
+    	  	url : "/memEmailCheck",
+    	  	dataType : "json",
+    	  	contentType : "application/json; charset=UTF-8",
+    	  	success : function(data) {
+    	  		console.log(data)
+    	  		if(data == 0) {
+    	  			idck = 1; 
+    	  			alert("사용가능한 아이디 입니다.");
+    	  			$("#idUncheck").val(cemail);
+    	  		} else if(data >= 1){
+    	  			alert("이미 사용중인 아이디 입니다.");
+    	  		}
+    	  	},
+    	  	error : function(error) {
+    	  		console.log(error);
+    	  	}
+    	  });
+      });
+      
+      
+      
+      
    });
 
 </script>
@@ -62,9 +116,10 @@ $(function(){
            <form:form modelAttribute="memberVO" action="/member/memberJoinOK" method="post">
          <div class="md-form">
             <i class="fa fa-envelope prefix grey-text"></i>
-            <form:input class="form-control" path="cemail"/>
+            <form:input class="form-control" path="cemail" style="width:82%; display:inline;"/> <button type="button" id="idCheck" class="btn btn-primary btn-sm">E-mail Check</button>
             <label for="cemail">E-mail address</label>
             <form:errors path="cemail" cssClass="errmsg" />
+            <input type="hidden" id="idUncheck"/>
          </div>
          
          <div class="md-form">

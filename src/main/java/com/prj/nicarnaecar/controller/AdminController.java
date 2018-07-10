@@ -1,6 +1,8 @@
 package com.prj.nicarnaecar.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -96,12 +98,13 @@ public class AdminController {
    @RequestMapping(value="/insert",method=RequestMethod.POST)
    public String insert(EmployeeVO employeeVO, BindingResult result) {
       if(result.hasErrors()) {
-         return "<script language='javascript' type='text/javascript'> alert('직원 추가 실패.'); </script>";
+         return "/admin/employees";
       }else {
          employeeService.Einsert(employeeVO);
          return "redirect:/admin/employees";
       }
    }
+   
 	
 	@RequestMapping(value="/update", method = RequestMethod.POST)
 	public String update(EmployeeVO employeeVO, BindingResult result) {
