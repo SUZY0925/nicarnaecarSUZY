@@ -7,6 +7,10 @@
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/nav.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/admin/sidebar.jsp"></jsp:include>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" href="/resources/css/billboard.css">
+<script src = "/resources/js/billboard.js"></script>
+
 <style>
    .table-fixed {
     table-layout: fixed;
@@ -25,12 +29,28 @@
    .form-check-label{
       height:50px;
    }
+   
 </style>
 <script>
    $(function(){
+     
       $("#deleteBtn").on("click",function(){
          alert("삭제되었습니다.");
       });
+      
+      $("#div0").siblings().hide();
+      $("#pin").on("click", function() {
+         $("#div0, #div3").siblings().show();
+         $("#form1").val("고객");
+         $("#form1").attr("readonly",true);
+      });
+      $("#pout").on("click", function() {
+       $("#div3").hide();
+       $("#div3").siblings().show();
+       $("#form1").val("");
+        $("#form1").attr("readonly",false);
+      });
+      
    })
    function addComma(num) {
       var regexp = /\B(?=(\d{3})+(?!\d))/g;
@@ -44,31 +64,32 @@
       <div class="card-body row">
       <h2 class="container-fluid">매출/지출 입력</h2>
          <div class="container-fluid row">
-            <div class="md-form col">
-               <input type="text" id="form1" class="form-control" name="ptarget">
+            <div class="btn-group col" data-toggle="buttons"
+            style="margin-top: 10px; margin-left: 20px;" id="div0">
+               <label class="btn btn-primary active form-check-label" id="pin">
+               <input class="form-check-input" type="radio" autocomplete="off"
+                  value="매출" name="pinout">매출
+               </label>
+               <label class="btn btn-primary form-check-label" id="pout">
+                  <input class="form-check-input" type="radio" autocomplete="off"
+                  value="지출" name="pinout">지출
+               </label>
+         </div>
+         <div class="md-form col" id="div1">
+               <input type="text" id="form1" class="form-control" name="ptarget" value=" ">
                <label for="form1">대상</label>
             </div>
-               <div class="btn-group col" data-toggle="buttons"
-                  style="margin-top: 10px; margin-left: 20px;">
-                  <label class="btn btn-primary active form-check-label"> <input
-                     class="form-check-input" type="radio" checked autocomplete="off"
-                     value="수입" name="pinout">매출
-                  </label> <label class="btn btn-primary form-check-label"> <input
-                     class="form-check-input" type="radio" autocomplete="off"
-                     value="지출" name="pinout">지출
-                  </label>
-               </div>
-               <div class="md-form col">
-               <input type="text" id="form3" class="form-control" name="pamount">
-               <label for="form3">금액</label>
+               <div class="md-form col" id="div2">
+               <input type="text" id="form2" class="form-control" name="pamount" value=" ">
+               <label for="form2">금액</label>
             </div>
-            <div class="md-form col">
-               <input type="text" id="form4" class="form-control" name="bnumber">
-               <label for="form4">예약번호</label>
+            <div class="md-form col" id="div3">
+               <input type="text" id="form3" class="form-control" name="bnumber" value=" ">
+               <label for="form3">예약번호</label>
             </div>
-            <div class="md-form col">
-               <input type="text" id="form5" class="form-control" name="pmemo">
-               <label for="form5">거래내역</label>
+            <div class="md-form col" id="div4">
+               <input type="text" id="form4" class="form-control" name="pmemo" value=" ">
+               <label for="form4">거래내역</label>
             </div>
          </div>
             <input type="submit" class="btn btn-primary" style="margin-left:80%; margin-top:10px;" value="입력" />
@@ -80,7 +101,7 @@
     <div class="card-body">
         <!--Table-->
         <table class="table table-hover table-fixed" id="profitTable">
-         <h2 style="display:block;">거래 목록</h2>
+         <h2>거래 목록</h2>
             <!--Table head-->
             <thead>
                 <tr>
