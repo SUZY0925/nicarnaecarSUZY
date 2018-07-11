@@ -66,11 +66,11 @@
 	<!-- 반납할 차량 -->
 	<select id="returnRecord" resultType="BookingVO">
 		select t2.* from (select row_number() over (order by bnumber desc) as num, t1.* from booking t1
-		where to_date(sysdate,'yyyy-mm-dd') <![CDATA[=]]> to_date(bout,'yyyy-mm-dd') and bstatus = '사용중') t2
+		where (to_date(sysdate,'yyyy-mm-dd') = to_date(bout,'yyyy-mm-dd') and bstatus = '사용중') OR bstatus = '연체') t2
 		where num between #{startRecord} and #{endRecord}
 	</select>
 	<select id="returnCount" resultType="int">
-		select count(*) from booking where to_date(bout,'yyyy-mm-dd') = to_date(sysdate,'yyyy-mm-dd') and bstatus = '사용중'
+		select count(*) from booking where (to_date(bout,'yyyy-mm-dd') = to_date(sysdate,'yyyy-mm-dd') and bstatus = '사용중') OR bstatus = '연체'
 	</select>
 	
 	<!-- 인도하기 -->

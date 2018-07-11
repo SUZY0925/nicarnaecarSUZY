@@ -90,7 +90,7 @@ public class AdminController {
 	}
 	*/
 	@RequestMapping(value="/employees")
-	public void employees(HttpServletRequest request) {
+	public void employees(HttpServletRequest request) throws Exception {
 		employeeService.Elist(request);
 	}
 	

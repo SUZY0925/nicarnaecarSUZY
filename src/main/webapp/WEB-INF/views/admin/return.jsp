@@ -3,6 +3,10 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate value="${now}" pattern="yyyyMMdd" var="nowDate" />
 
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/nav.jsp"></jsp:include>
@@ -22,7 +26,12 @@ function getkm(i){
 	$("#vkm").val(document.getElementsByName('forvkm')[i].childNodes[0].nodeValue);
 	$("#bnumber").val(document.getElementsByName('forbnumber')[i].childNodes[0].nodeValue);
 	$("#vnumber").val(document.getElementsByName('forbvnumber')[i].childNodes[0].nodeValue);
+	$("#bout").val(document.getElementsByName('forbout')[i].childNodes[0].nodeValue);
+	$("#bin").val(document.getElementsByName('forbin')[i].childNodes[0].nodeValue);
+	$("#vprice").val(document.getElementsByName('forbprice')[i].value);
 }
+
+
 $(function() {
 	$("#view").hide();
 	$("#form").show();
@@ -31,18 +40,43 @@ $(function() {
         str += "<tr>";
         str += "<td name='forbnumber'>${list.bnumber}</td>"
         str += "<td name='forbvnumber'>${list.vnumber}</td>"
-        str += "<td>${list.bin}</td>"
-        str += "<td>${list.bout}</td>"
+        str += "<td name='forbin'>${list.bin}</td>"
+        str += "<td name='forbout'>${list.bout}</td>"
 	    str += "<td name='forvkm'>"+addComma(${list.vkm})+"km</td>"
         str += "<td>"+addComma(${list.bprice})+"원</td>"
-        // str += "<td><a class='btn btn-info px-3' href='/admin/returnOK/${list.bnumber}'>반납</a></td>"
-        str += "<td><button data-toggle='modal' data-target='#exampleModalReturn' onclick='getkm(${status.index})' class='btn btn-info px-3'>반납</button></td>"
+        str += "<input type='hidden' name='forbprice' value='"+${list.bprice}+"' />"
+        <fmt:formatDate value="${list.bout}" pattern="yyyyMMdd" var="outDate" /> 
+        
+        <c:if test='${nowDate > outDate}'>
+        	str += "<td><button data-toggle='modal' data-target='#exampleModalReturn' onclick='getkm(${status.index})' class='btn btn-danger px-3'>반납</button></td>"
+        </c:if>
+        	
+        <c:if test='${nowDate == outDate}'>
+        	str += "<td><button data-toggle='modal' data-target='#exampleModalReturn' onclick='getkm(${status.index})' class='btn btn-info px-3'>반납</button></td>"
+        </c:if>
+        	
         str += "</tr>";
      </c:forEach>
      $("#returnTable").html(str);
      
-     
      $("#returnNext").click(function() {
+    	var bout = $("#bout").val();
+ 	 	var arr = bout.split('-');
+ 	 	bout = arr[0].concat(arr[1],arr[2]);
+ 	 	bout = bout *1;
+ 	 	
+ 	 	var bin = $("#bin").val();
+ 	 	var arr2 = bin.split('-');
+ 	 	bin = arr2[0].concat(arr2[1],arr2[2]);
+ 	 	bin = bin *1;
+ 	 	
+ 	 	var bprice = $("#vprice").val();
+ 	 	
+ 	 	var now = ${nowDate};
+ 	 	now = now*1;
+ 	 	var extandPrice = (now - bout) * (bprice / (bout-bin+1));
+ 	 	
+ 	 	
     	 var vkm = $("#vkm").val();
 		 vkm = vkm.substr(0, vkm.indexOf(['k']));
 		 vkm = uncomma(vkm);
@@ -50,15 +84,19 @@ $(function() {
     	 
     	 if (bkm == "") {
     		 alert("주행거리(후)를 입력하세요!");
-    		 return;
-    	 } else if(bkm < vkm) {
+    	 } else if((bkm*1) < (vkm*1)) {
+    		 console.log("bkm : " +bkm)
+    		 console.log("vkm : " + vkm)
 			 alert("주행거리(후)가 주행거리(전)보다 적으면 안됩니다!");
-			 return;
     	 } else {
     		 $("#view").show();
     		 $("#form").hide();
     		 
     		 $("#kmPrice").html('청구된 주행비용은 '+addComma((bkm-vkm)*200)+'원 입니다.');
+    		 
+    		 if(now > bout) {
+    				$("#extendPrice").html("<br>연체비는 "+addComma(extandPrice)+"원 입니다.");
+    		 }
     	 }
      })
      

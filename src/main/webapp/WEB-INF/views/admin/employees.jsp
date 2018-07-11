@@ -14,7 +14,7 @@
  .hide {
 	display: none;
 }
-.showl {
+.showT {
 	display: table-row;
 	background-color: #ececec;
 }
@@ -22,6 +22,34 @@
 .passErr{color:red;}
 </style>
 <script>
+function changeS(){
+	   var selparent = document.getElementById("oselect");
+	   var selnam = document.getElementById("searchname").value;
+	    var selval = selparent.options[selparent.selectedIndex].value;
+	   console.log(selval, selnam);
+	   self.location = 'employees?reqPage=1'
+	      +'&oselect='
+	      +selval
+	      +'&ename='
+	      +selnam
+	      ;
+	      
+	}
+	$(function(){
+	   $('#searchBtn').click(function(){
+	      var selparent = document.getElementById("oselect");
+	      var selnam = document.getElementById("searchname").value;
+	       var selval = selparent.options[selparent.selectedIndex].value;
+	       console.log(selval+":::");
+	       self.location = 'employees?reqPage=1'
+	          +'&oselect='
+	         +selval
+	         +'&ename='
+	         +selnam
+	         ; 
+	   });
+	});
+	
 $(function(){
 	var idck = 0; 
    $(".Iresetbtn").click(function(){
@@ -117,19 +145,16 @@ $(function(){
    })
 
    
-   
-   
-   
 });
    $(function() {
-      var article = (".recruit .showl");
+      var article = (".recruit .showT");
       $(".recruit .title a").click(function() {
          var myArticle = $(this).parents().next("tr");
          if ($(myArticle).hasClass('hide')) {
-            $(article).removeClass('showl').addClass('hide');
-            $(myArticle).removeClass('hide').addClass('showl');
+            $(article).removeClass('showT').addClass('hide');
+            $(myArticle).removeClass('hide').addClass('showT');
          } else {
-            $(myArticle).addClass('hide').removeClass('showl');
+            $(myArticle).addClass('hide').removeClass('showT');
          }
       });
    });
@@ -160,21 +185,34 @@ $(function(){
    }
 </script>
 <div>
-	<form:form modelAttribute="employeeVO" action="/admin/update"
-		method="post" name="vo">
-		<input type="hidden" name="eoffice" />
-		<input type="hidden" name="ename" />
-		<input type="hidden" name="eposition" />
-		<input type="hidden" name="estate" />
-		<input type="hidden" name="eemail" />
-		<input type="hidden" name="ephone" />
-	</form:form>
-	<table
-		class="table table-hover table-responsive-md table-fixed recruit"
-		style="text-align: center; width: 950px;">
-		<thead>
-			<tr>
-				<td>영업소</td>
+   <h2>직원 정보</h2>
+   <input type="text" id="searchname" value="${param.ename }"/><button id="searchBtn">검색</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addemp" style="float:right;padding-left: 20px;
+    padding-right: 20px;">직원추가</button>
+   <form:form modelAttribute="employeeVO" action="/admin/update"
+      method="post" name="vo">
+      <input type="hidden" name="eoffice" />
+      <input type="hidden" name="ename" />
+      <input type="hidden" name="eposition" />
+      <input type="hidden" name="estate" />
+      <input type="hidden" name="eemail" />
+      <input type="hidden" name="ephone" />
+   </form:form>
+   <table
+      class="table table-hover table-responsive-md table-fixed recruit"
+      style="text-align: center; width: 950px;">
+      <thead>
+         <tr>
+            <td>
+               <select id="oselect" name="oselect" onchange="changeS()" style="border:0px;outline:0px;">
+                  <option value="">영업소</option>
+                  <option value="울산" <c:if test="${param.oselect eq '울산' }">selected</c:if>>울산</option>
+                  <option value="서울" <c:if test="${param.oselect eq '서울' }">selected</c:if>>서울</option>
+                  <option value="대구" <c:if test="${param.oselect eq '대구' }">selected</c:if>>대구</option>
+                  <option value="부산" <c:if test="${param.oselect eq '부산' }">selected</c:if>>부산</option>
+                  <option value="대전" <c:if test="${param.oselect eq '대전' }">selected</c:if>>대전</option>
+               </select>
+            </td>
 				<td>이름</td>
 				<td>직급</td>
 				<td>재직상태</td>
@@ -281,8 +319,6 @@ $(function(){
 	</table>
 </div>
 <div>
-	<a href="#" class="btn btn-primary" data-toggle="modal"
-		data-target="#addemp">직원추가</a>
 </div>
 <!--  -->
 <!--  -->
