@@ -326,15 +326,11 @@ $(function(){
 <!--  -->
 
 <div class="modal fade" id="addemp" tabindex="-1" role="dialog"
-	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title">직원 추가</h5>
-				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
 			</div>
 			<form:form action="/admin/insert" method="post"	modelAttribute="employeeVO" id="insertemp" name="insertemp">
 				<div class="modal-body">
