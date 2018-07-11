@@ -26,6 +26,7 @@ $(function() {
    })
 })
 </script>
+<title>Notice</title>
 <div class="col-md-9">
 <h2>Notice</h2>
    <div class="card">

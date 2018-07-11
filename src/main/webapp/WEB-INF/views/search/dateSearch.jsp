@@ -94,7 +94,20 @@
      });
      
      $("#reservationBtn").on("click",function() {
-        location.href = "/reservation/reservation/"+$("input:radio[name=customRadio]:checked").val()+"/"+bin+"/"+bout;
+    	 $.ajax ({
+    		 type : "POST",
+    		 url : "/bookingCheck",
+    		 success : function(data) {
+    			 if(data != 0) {
+    				 alert("고객님은 연체상태이므로 예약이 불가능 합니다!");
+    			 } else {
+    				 console.log("예약가능");
+    				 location.href = "/reservation/reservation/"+$("input:radio[name=customRadio]:checked").val()+"/"+bin+"/"+bout;
+    			 }
+    		 },
+             error : function(e) {
+             }
+    	 })
      });
    });
 </script>

@@ -33,4 +33,7 @@ public interface BookingService {
 	
 	// 예약연장하기
 	void bookingExtendOK(BookingVO bookingVO);
+	
+	// 예약 전 연장여부 조회
+	int bookingCheck(String cemail);
 }

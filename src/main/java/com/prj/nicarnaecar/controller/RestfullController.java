@@ -4,6 +4,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.prj.nicarnaecar.service.BookingService;
 import com.prj.nicarnaecar.service.EmployeeService;
 import com.prj.nicarnaecar.service.MemberService;
 import com.prj.nicarnaecar.vo.MemberVO;
@@ -84,6 +86,28 @@ public class RestfullController {
 			return responseEntity;
 		}
 		
+		
+		
+		
+		@Autowired
+		@Qualifier("bookingServiceImplXML")
+		BookingService bookingService;
+		
+		// 예약 시도 시 연장된 거래 유무 체크
+		@RequestMapping(value="/bookingCheck", method=POST)
+		public ResponseEntity<String> bookingCheck(Principal principal) {
+			ResponseEntity<String> responseEntity = null;
+			String cemail = principal.getName();
+			
+			try {
+				responseEntity = new ResponseEntity<String>(String.valueOf(bookingService.bookingCheck(cemail)), HttpStatus.OK);
+			} catch (Exception e) {
+				e.printStackTrace();
+				responseEntity = new ResponseEntity<String>("Fail", HttpStatus.BAD_REQUEST);
+			}
+			
+			return responseEntity;
+		}
 		
 		
 			

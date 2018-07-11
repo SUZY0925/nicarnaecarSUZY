@@ -47,7 +47,7 @@
         	<span id="extendPrice"></span>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">BACK</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="bbtn">BACK</button>
         <button type="button" class="btn btn-primary" id="returnOK">RETURN</button>
       </div>
     </div>

@@ -20,6 +20,7 @@
 		})
 	})
 </script>
+<title>1 : 1</title>
 <div class="col-md-9">
 
 <!-- Material form contact -->

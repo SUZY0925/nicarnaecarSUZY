@@ -1,9 +1,11 @@
 package com.prj.nicarnaecar.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
-import static org.springframework.web.bind.annotation.RequestMethod.*;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -15,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.prj.nicarnaecar.service.EmployeeService;
 import com.prj.nicarnaecar.service.ProfitService;
 import com.prj.nicarnaecar.service.SearchService;
+import com.prj.nicarnaecar.service.VehicleService;
 import com.prj.nicarnaecar.vo.BookingVO;
 import com.prj.nicarnaecar.vo.EmployeeVO;
 import com.prj.nicarnaecar.vo.ProfitVO;
+import com.prj.nicarnaecar.vo.VehicleVO;
 
 @Controller
 @RequestMapping("/admin")
@@ -34,6 +38,10 @@ public class AdminController {
 	@Autowired
 	@Qualifier("employeeServiceImplXML")
 	EmployeeService employeeService;
+	
+   @Autowired
+   @Qualifier("vehicleServiceImplXML")
+   VehicleService vehicleService;
 	
 	@RequestMapping("/admin")
 	public void admin() {
@@ -115,4 +123,23 @@ public class AdminController {
 			return "redirect:/admin/employees";
 		}
 	}
+	
+   @RequestMapping("/carList")
+   public void carList(HttpServletRequest request) {
+      List<VehicleVO> vlist = vehicleService.VehicleList();
+      request.setAttribute("vlist", vlist);
+   }
+   
+   @RequestMapping(value="/insertCarOK", method = RequestMethod.POST)
+   public String insertCarOK(VehicleVO vehicleVO) {
+      vehicleService.insertCar(vehicleVO);
+      return "redirect:/admin/carList";
+   }
+   
+   @RequestMapping(value="/deleteCarOK", method = RequestMethod.POST)
+   public String updateCarOK(VehicleVO vehicleVO) {
+      vehicleService.updateCar(vehicleVO);
+      return "redirect:/admin/carList";
+   }
+
 }

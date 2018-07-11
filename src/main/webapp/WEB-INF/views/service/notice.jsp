@@ -13,7 +13,7 @@
 }
 </style>
 <jsp:include page="/WEB-INF/views/service/sidebar.jsp"></jsp:include>
-
+<title>Notice</title>
 <div class="col-md-9">
 <h2>Notice</h2>
    <div class="card">

@@ -17,6 +17,7 @@ $(function() {
 	})
 })
 </script>
+<title>FAQ</title>
 <div class="col-md-9">
 <h2>FAQ Modify</h2>
    <div class="card">

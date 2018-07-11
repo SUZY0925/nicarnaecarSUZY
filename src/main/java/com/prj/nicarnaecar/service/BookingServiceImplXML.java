@@ -86,5 +86,10 @@ public class BookingServiceImplXML implements BookingService {
 		request.setAttribute("page", pc);
 	}
 
+	@Override
+	public int bookingCheck(String cemail) {
+		return bookingdao.bookingCheck(cemail);
+	}
+
 
 }

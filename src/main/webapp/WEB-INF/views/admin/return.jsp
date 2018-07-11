@@ -60,22 +60,31 @@ $(function() {
      $("#returnTable").html(str);
      
      $("#returnNext").click(function() {
+    	var bprice = $("#vprice").val();
+    	 
+    	// 반납일
     	var bout = $("#bout").val();
- 	 	var arr = bout.split('-');
- 	 	bout = arr[0].concat(arr[1],arr[2]);
- 	 	bout = bout *1;
- 	 	
+        bout = new Date(bout);
+        
+ 	 	// 대여일
  	 	var bin = $("#bin").val();
- 	 	var arr2 = bin.split('-');
- 	 	bin = arr2[0].concat(arr2[1],arr2[2]);
- 	 	bin = bin *1;
+ 	 	bin = new Date(bin);
  	 	
- 	 	var bprice = $("#vprice").val();
- 	 	
+ 	 	// 오늘
  	 	var now = ${nowDate};
- 	 	now = now*1;
- 	 	var extandPrice = (now - bout) * (bprice / (bout-bin+1));
+ 	 	now = new Date();
  	 	
+ 	 	var diff = bout - bin;
+ 	    var currDay = 24 * 60 * 60 * 1000;
+ 	    
+ 	    // 반납일과 대여일간의 차이?
+ 	    var bookingTerm = parseInt(diff/currDay);
+ 	 	
+ 	    // 오늘 - bout
+ 	    diff = now - bout;
+ 	    
+ 	    var overTerm = parseInt(diff/currDay); 
+ 	 	var extandPrice = (overTerm) * (bprice / (bookingTerm+1));
  	 	
     	 var vkm = $("#vkm").val();
 		 vkm = vkm.substr(0, vkm.indexOf(['k']));
@@ -94,7 +103,7 @@ $(function() {
     		 
     		 $("#kmPrice").html('청구된 주행비용은 '+addComma((bkm-vkm)*200)+'원 입니다.');
     		 
-    		 if(now > bout) {
+    		 if(overTerm > 0) { 
     				$("#extendPrice").html("<br>연체비는 "+addComma(extandPrice)+"원 입니다.");
     		 }
     	 }
@@ -107,6 +116,14 @@ $(function() {
 		 $("#vkm").val(vkm);
     	 returnForm.submit();
      })
+     
+     $("#bbtn").click(function(){
+	     $("#form").show();
+			 $("#view").hide();
+		    $("#returnForm").each(function() {
+		   	 this.reset();
+		    })
+	})
 })
 </script>
 <style>
@@ -136,7 +153,7 @@ $(function() {
 	<form:form id="returnForm" action="/admin/returnOK" method="post">
 	<jsp:include page="/WEB-INF/views/admin/returnModal.jsp"/>
 	</form:form>
-	
+	<!--  -->
 	<table style=" margin:auto;">
          <tr>
             <td>

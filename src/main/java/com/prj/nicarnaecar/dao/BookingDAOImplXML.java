@@ -67,4 +67,9 @@ public class BookingDAOImplXML implements BookingDAO {
 		return sqlSession.selectOne("bookingViewCount", cemail);
 	}
 
+	@Override
+	public int bookingCheck(String cemail) {
+		return sqlSession.selectOne("bookingCheck", cemail);
+	}
+
 }

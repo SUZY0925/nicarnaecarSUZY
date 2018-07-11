@@ -25,8 +25,10 @@ $(function(){
     		   idck = 0;
     		   alert("아이디 중복 검사를 다시 해주세요!");
     		   return false;
-    	   } 
-    	   else {
+    	   } else if($("input[name=cpasswd]").val() != $("input[name=confirm]").val()){
+    		   alert("비밀번호를 확인해주세요!");
+    		   return false;
+        	} else {
 		         e.preventDefault();
 		         $("form").submit();
     	   }

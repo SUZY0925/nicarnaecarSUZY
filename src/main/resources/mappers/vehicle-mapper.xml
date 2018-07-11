@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.prj.nicarnaecar.dao.VehicleDAO">
+
+   <select id="VehicleList" resultType="VehicleVO">
+      select * from vehicle where vnumber != '지출'
+   </select>
+   
+   <insert id="insertVehicle">
+      insert into VEHICLE values 
+      (#{vnumber},#{vmaker},#{vmodel},#{vtype},#{vyear},
+      #{voil},#{vcolor},sysdate,#{eoffice},'대기',#{vprice},#{vkm})
+   </insert>
+   
+   <update id="updateVehicle">
+      update vehicle set
+      eoffice = #{eoffice},
+      vprice = #{vprice},
+      vkm = #{vkm} where vnumber = #{vnumber}
+   </update>
+   
+   <update id="deleteVehicle">
+      update vehicle set
+      vstate = #{vstate} where vnumber = #{vnumber}
+   </update>
+ </mapper>  

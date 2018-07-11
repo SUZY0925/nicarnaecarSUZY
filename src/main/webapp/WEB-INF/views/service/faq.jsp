@@ -34,7 +34,7 @@
 }
 </style>
 <jsp:include page="/WEB-INF/views/service/sidebar.jsp"></jsp:include>
-
+<title>FAQ</title>
 <div class="col-md-9">
 <h2 class="animated pulse">FAQ</h2>
 
