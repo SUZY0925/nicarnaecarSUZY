@@ -34,7 +34,7 @@ function changeS(){
 	      +selnam
 	      ;
 	      
-	}
+}
 	$(function(){
 	   $('#searchBtn').click(function(){
 	      var selparent = document.getElementById("oselect");
@@ -50,14 +50,16 @@ function changeS(){
 	   });
 	});
 	
+	
 $(function(){
 	var idck = 0; 
-   $(".Iresetbtn").click(function(){
-      /*  $('#ename').val(""); */
-      $('.card').children().children().children().val("");
 
+	$(".Iresetbtn").click(function(){ 
+      $("#insertemp").each(function() {
+    	  	this.reset();
+    	});
    });
-   
+	
    $("input[name=confirm]").on("keyup",function(){
        if($("#epassword").val() != $("input[name=confirm]").val()){
           $(".passErr").text('비밀번호가 틀립니다.');
