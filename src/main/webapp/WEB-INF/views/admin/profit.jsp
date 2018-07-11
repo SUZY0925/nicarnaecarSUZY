@@ -32,24 +32,46 @@
    
 </style>
 <script>
-   $(function(){
-     
-      $("#deleteBtn").on("click",function(){
+
+$(function() {
+	  $("#deleteBtn").on("click",function(){
          alert("삭제되었습니다.");
       });
       
       $("#div0").siblings().hide();
+      
       $("#pin").on("click", function() {
          $("#div0, #div3").siblings().show();
          $("#form1").val("고객");
          $("#form1").attr("readonly",true);
       });
+      
+      $("#pin").trigger("click");
+      
       $("#pout").on("click", function() {
        $("#div3").hide();
        $("#div3").siblings().show();
-       $("#form1").val("");
+       $("#form1").val(' ');
         $("#form1").attr("readonly",false);
       });
+      
+      $("#profitInsert").click(function() {
+    	  if($("#form1").val() == "고객") {
+    		  if($("#form2").val() == " " || $("#form3").val() == " "|| $("#form4").val() == " ") {
+    			  alert("빈칸을 채워주세요!");
+    			  return false;
+    		  } else {
+    			  $("#insertForm").submit();
+    		  }
+    	  }else {
+    		  if($("#form2").val() == " " || $("#form4").val() == " ") {
+    			  alert("빈칸을 채워주세요!");
+    			  return false;
+    		  } else {
+    			  $("#insertForm").submit();
+    		  }
+    	  }
+      })
       
    })
    function addComma(num) {
@@ -59,7 +81,7 @@
 </script>
 
 <div class="col-md-10">
-<form:form action="/admin/profitInsertOK" method="post">
+<form:form action="/admin/profitInsertOK" method="post" id="insertForm">
    <div class="card">
       <div class="card-body row">
       <h2 class="container-fluid">매출/지출 입력</h2>
@@ -67,7 +89,7 @@
             <div class="btn-group col" data-toggle="buttons"
             style="margin-top: 10px; margin-left: 20px;" id="div0">
                <label class="btn btn-primary active form-check-label" id="pin">
-               <input class="form-check-input" type="radio" autocomplete="off"
+               <input class="form-check-input" type="radio" autocomplete="off" id="aa"
                   value="매출" name="pinout">매출
                </label>
                <label class="btn btn-primary form-check-label" id="pout">
@@ -92,7 +114,7 @@
                <label for="form4">거래내역</label>
             </div>
          </div>
-            <input type="submit" class="btn btn-primary" style="margin-left:80%; margin-top:10px;" value="입력" />
+            <input type="button" id="profitInsert" class="btn btn-primary" style="margin-left:80%; margin-top:10px;" value="입력" />
       </div>
    </div>
 </form:form>
