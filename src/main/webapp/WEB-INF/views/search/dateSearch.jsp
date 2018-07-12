@@ -65,7 +65,9 @@
             dataType : "JSON",
             success : function(data) {
                var a = 1;
+               $("#carListText").html('<br><h4 style="margin-left:40%;">차량선택</h4>');
                $.each(data, function() {
+            	   
                   str += "<tr>";
                   
                   str += "<th scope='row'>";
@@ -150,7 +152,7 @@
 		<div class="card-body">
 			<div class="row">
 				<div class="col row">
-				<div class="col" style="margin-bottom:15px;"><h4>시작일</h4>
+				<div class="col" style="margin-bottom:15px;"><h4 style="margin-left:30%;">시작일</h4>
 				<div id="from" style="margin-bottom:15px;"></div>
 				<input type="text" id="fromInput" class="form-control"/>
 					<select class="custom-select" id="select1">
@@ -163,7 +165,7 @@
 	            	</select>
 				</div>
 				
-				<div class="col"><h4>반납일</h4>
+				<div class="col"><h4 style="margin-left:30%;">반납일</h4>
 				<div id="to" style="margin-bottom:15px;"></div>
 				<input type="text" id="toInput" class="form-control"/>
 					<select class="custom-select" id="select2">
@@ -178,7 +180,7 @@
 				</div>
 				
 				</div>
-				<div class="col-12"><h4>차량선택</h4>
+				<div class="col-12"><span id="carListText"></span>
 				<table id="carList" class="table table-hover table-responsive-md table-fixed" style="width:100%;">
 				</table>
 				<button type="submit" class="btn btn-primary" id="reservationBtn">예약하기</button>

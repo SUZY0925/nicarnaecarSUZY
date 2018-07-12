@@ -188,7 +188,6 @@ $(function(){
 </script>
 <div>
    <h2>직원 정보</h2>
-   <input type="text" id="searchname" value="${param.ename }"/><button id="searchBtn">검색</button>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addemp" style="float:right;padding-left: 20px;
     padding-right: 20px;">직원추가</button>
    <form:form modelAttribute="employeeVO" action="/admin/update"
@@ -318,7 +317,13 @@ $(function(){
 				</ul>
 			</td>
 		</tr>
+		<tr>
+			<td>
+				<input type="text" id="searchname" value="${param.ename }"/><button class="btn btn-primary btn-sm" id="searchBtn">Search</button>
+			</td>
+		</tr>
 	</table>
+	
 </div>
 <div>
 </div>

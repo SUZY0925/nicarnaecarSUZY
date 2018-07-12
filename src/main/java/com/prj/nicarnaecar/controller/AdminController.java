@@ -155,5 +155,12 @@ public class AdminController {
       vehicleService.deleteCar(vnumber);
       return "redirect:/admin/carList";
    }
+   
+   
+   
+   @RequestMapping(value="/profitGraph")
+   public String profitGraph() {
+   	return "/admin/profitGraph";
+   }
 
 }

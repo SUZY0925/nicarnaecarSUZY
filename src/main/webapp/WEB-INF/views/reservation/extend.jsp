@@ -106,7 +106,7 @@ $(function() {
 <div class="card-body">
 <div class="row">
    <div class="col-6" style="border-right: 1px dotted gray;">
-			연장 할 날짜 선택
+			<h4 style="margin-left:20%;">날짜 선택</h4>
 			<div id="datepicker"></div>
 			<input type="hidden" name="bnumber" value="${bookingVO.bnumber }"/>
 			<input type="text" name="bout" id="bout"/>

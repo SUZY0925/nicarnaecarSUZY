@@ -85,7 +85,7 @@ $(function(){
                <label for="form5">년식</label>
             </div>
             <div class="md-form col">
-            	이미지 <input type="file" name="file" />
+            	<input type="file" name="file" class="form-control-file"/>
             </div>
             
          </div>
