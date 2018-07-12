@@ -144,9 +144,15 @@ public class AdminController {
       return "redirect:/admin/carList";
    }
    
-   @RequestMapping(value="/deleteCarOK", method = RequestMethod.POST)
+   @RequestMapping(value="/updateCarOK/", method = RequestMethod.POST)
    public String updateCarOK(VehicleVO vehicleVO) {
       vehicleService.updateCar(vehicleVO);
+      return "redirect:/admin/carList";
+   }
+   
+   @RequestMapping(value="/deleteCarOK/{vnumber}", method = RequestMethod.GET)
+   public String deleteCarOK(@PathVariable String vnumber) {
+      vehicleService.deleteCar(vnumber);
       return "redirect:/admin/carList";
    }
 

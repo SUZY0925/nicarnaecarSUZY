@@ -30,10 +30,31 @@
    }
 </style>
 <script>
-   function addComma(num) {
-      var regexp = /\B(?=(\d{3})+(?!\d))/g;
-       return num.toString().replace(regexp, ',');
-   }
+$(function(){
+	   $(".modalbtn").click(function() {
+	      var td = $(this).parents().parents().children();
+	      var number = td.eq(0).text();
+	      var office = td.eq(8).text();
+	      var price = td.eq(10).text();
+	      var km = td.eq(11).text();
+	      console.log($(this));
+	      $("#exampleForm1").val(office);
+	      $("#exampleForm2").val(uncomma(price));
+	      $("#exampleForm3").val(km);
+	      $("#exampleForm4").val(number);
+	      $("#deletebtn").click(function(){
+	         self.location = "/admin/deleteCarOK/"+number;
+	      })
+	   })
+	})
+	   function addComma(num) {
+	      var regexp = /\B(?=(\d{3})+(?!\d))/g;
+	       return num.toString().replace(regexp, ',');
+	   }
+	   function uncomma(num) {
+	       var num = String(num);
+	       return num.replace(/[^\d]+/g, '');
+	   }
 </script>
 
 
@@ -106,7 +127,7 @@
    <div class="card">
     <div class="card-body">
         <!--Table-->
-        <table class="table table-hover table-fixed" id="vehicleTable">
+        <table class="table table-hover table-fixed" id="vehicleTable" style="text-align:center;">
          <h2>차량 목록</h2>
             <!--Table head-->
             <thead>
@@ -139,14 +160,14 @@
                  str += "<td>${vlist.vtype}</td>";
                  str += "<td>${vlist.vyear}</td>";
                  str += "<td>${vlist.voil}</td>";
-                 str += "<td style='color:${vlist.vcolor};'><h3>●</h3></td>"; 
+                 str += "<td style='color:${vlist.vcolor}; background-color:#ececec;'><h3>●</h3></td>"; 
 /*                  str += "<td>${vlist.vcolor}</td>";  */
                  str += "<td>${vlist.vdate}</td>";
                  str += "<td>${vlist.eoffice}</td>"; 
                  str += "<td>${vlist.vstate}</td>"; 
                  str += "<td>"+addComma("${vlist.vprice}")+"원</td>"; 
                  str += "<td>${vlist.vkm}</td>"; 
-                 str += "<td><button class='btn btn-info px-3 a' data-toggle='modal' data-target='#exampleModal'>"
+                 str += "<td><button class='btn btn-info px-3 a modalbtn' data-toggle='modal' data-target='#exampleModal'>"
                  str += "수정</button></td>"; 
                  str += "</tr>";
               </c:forEach>
@@ -198,6 +219,7 @@
           </tr>
       </table> 
 
+<form:form action="/admin/updateCarOK/">
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -208,15 +230,23 @@
                 </button>
             </div>
             <div class="modal-body">
-                ...
+               <label for="exampleForm1">지역</label>
+               <input type="text" id="exampleForm1" class="form-control" name="eoffice">
+               <label for="exampleForm2">가격</label>
+               <input type="text" id="exampleForm2" class="form-control" name="vprice">
+               <label for="exampleForm3">주행거리</label>
+               <input type="text" id="exampleForm3" class="form-control" name="vkm">
+               <input type="hidden" id="exampleForm4" name="vnumber">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-danger" id="deletebtn">폐차</button>
+                <button type="submit" class="btn btn-primary">수정</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
             </div>
         </div>
     </div>
 </div>
+</form:form>
 
 
 <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>

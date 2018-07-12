@@ -43,7 +43,7 @@ $(document).ready(function() {
 	    <input id="myInput" class="form-control" type="text" placeholder="Search" aria-label="Search">
 	</div>
 		<!--Table-->
-	<table id="myTable" class="table table-bordered" style="width:100%;">
+	<table id="myTable" class="table table-bordered" style="width:100%; text-align:center;">
 	    <!--Table body-->
 	    <tbody>
 	    <script>
@@ -56,7 +56,7 @@ $(document).ready(function() {
 		        str += "<td>${list.vmaker} </td>";
 		        str += "<td>${list.voil} </td>"; 
 		        /* str += "<td>${list.vcolor} </td>";  */
-		         str += "<td style='color:${list.vcolor};'><h3>●</h3></td>";  
+		         str += "<td style='color:${list.vcolor}; background-color:#ececec;'><h3>●</h3></td>";  
 		        str += "<td>"+addComma("${list.vprice}")+"원</td>"; 
 		        str += "</tr>";
 		     </c:forEach>

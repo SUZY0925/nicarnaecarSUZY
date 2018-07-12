@@ -21,8 +21,9 @@
       vkm = #{vkm} where vnumber = #{vnumber}
    </update>
    
-   <update id="deleteVehicle">
+   <update id="deleteVehicle" parameterType="String">
       update vehicle set
-      vstate = #{vstate} where vnumber = #{vnumber}
+      vstate = '폐차' where vnumber = #{vnumber}
    </update>
+   
  </mapper>  
