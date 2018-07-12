@@ -1,5 +1,3 @@
-<!-- 예약연장하기 -->
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -19,16 +17,16 @@
       margin-top:10%;
       max-width:90%;
    }
-	
-	#datepicker div{
- 		background-color: white;
- 	}
- 	
- 	#datepicker span , #datepicker a{
- 		font-family: 고딕;
-	}
- 	
- 	#datepicker .ui-state-default{
+   
+   #datepicker div{
+       background-color: white;
+    }
+    
+    #datepicker span , #datepicker a{
+       font-family: 고딕;
+   }
+    
+    #datepicker .ui-state-default{
         border: none;
     }
       #datepicker .ui-state-highlight{
@@ -41,60 +39,65 @@
       }
 </style>
 <script>
-	function addComma(num) {
-		var regexp = /\B(?=(\d{3})+(?!\d))/g;
-	    return num.toString().replace(regexp, ',');
-	}
+   function addComma(num) {
+      var regexp = /\B(?=(\d{3})+(?!\d))/g;
+       return num.toString().replace(regexp, ',');
+   }
 $(function() {
-		var minDate = '${bookingVO.bout }';
-		var maxDate = '';
-		var bout = '';
-		
-		if(${date == null}) {
-			maxDate = '+30d';
-		} else {
-			maxDate = '${date }-1';
-		}
-		 $( "#datepicker" ).datepicker({
-		   	dateFormat: 'yy-mm-dd',
-		   	  minDate: minDate,
-		   	  maxDate: maxDate,
-		   	  
-		   	onSelect: function( selectedDate ) {
-			   	bout = $("#datepicker").datepicker('getDate');
-			   	bout = bout.toLocaleDateString();
-			   	var bout2 = bout.replace(/. /g,'-');
-			 	bout = bout2.replace('.','');
-				   	
-		  	$("#bout").val(bout);
-		   	}
-		  })
-		  
-		  $("#priceView").on("click",function() {
-			  	var vbout = '${bookingVO.bout }';
-			  	var vbin = '${bookingVO.bin }';
-			  	var vbout2 = vbout.split('-');
-			  	var vbin2 = vbin.split('-');
-			  	var vdat1 = new Date(vbin2[0], vbin2[1], vbin2[2]);
-		        var vdat2 = new Date(vbout2[0], vbout2[1], vbout2[2]);
-		        var vdiff = vdat2 - vdat1;
-				var vcurrDay = 24 * 60 * 60 * 1000;
-			  	var vprice = '${bookingVO.bprice}' / ((vdiff/vcurrDay)+1);
-			  	console.log(vbout);
-			  	console.log(vbin);
-			  	
-			  	var pbin = minDate.split('-');
-		     	var pbout = bout.split('-');
-		        var dat1 = new Date(pbin[0], pbin[1], pbin[2]);
-		        var dat2 = new Date(pbout[0], pbout[1], pbout[2]);
-		        var diff = dat2 - dat1;
-				var currDay = 24 * 60 * 60 * 1000;
+      var minDate = '${bookingVO.bout }';
+      var maxDate = '';
+      var bout = '';
+      
+      if(${date == null}) {
+         maxDate = '+30d';
+      } else {
+         maxDate = '${date }-1';
+      }
+       $( "#datepicker" ).datepicker({
+            dateFormat: 'yy-mm-dd',
+              minDate: minDate,
+              maxDate: maxDate,
+              
+            onSelect: function( selectedDate ) {
+               bout = $("#datepicker").datepicker('getDate');
+               bout = bout.toLocaleDateString();
+               var bout2 = bout.replace(/. /g,'-');
+             bout = bout2.replace('.','');
+                  
+           $("#bout").val(bout);
+            }
+        })
+        
+        $("#priceView").on("click",function() {
+              var vbout = '${bookingVO.bout }';
+              var vbin = '${bookingVO.bin }';
+              var vbout2 = vbout.split('-');
+              var vbin2 = vbin.split('-');
+              var vdat1 = new Date(vbin2[0], vbin2[1], vbin2[2]);
+              var vdat2 = new Date(vbout2[0], vbout2[1], vbout2[2]);
+              var vdiff = vdat2 - vdat1;
+            var vcurrDay = 24 * 60 * 60 * 1000;
+              var vprice = '${bookingVO.bprice}' / ((vdiff/vcurrDay)+1);
+              console.log(vbout);
+              console.log(vbin);
+              
+              var pbin = minDate.split('-');
+              var pbout = bout.split('-');
+              var dat1 = new Date(pbin[0], pbin[1], pbin[2]);
+              var dat2 = new Date(pbout[0], pbout[1], pbout[2]);
+              var diff = dat2 - dat1;
+            var currDay = 24 * 60 * 60 * 1000;
 
-				var num = addComma((parseInt(diff/currDay)) * vprice);
-				var priceInput = (parseInt(diff/currDay)) * vprice;
-				$("#priceInput").val(${bookingVO.bprice}+priceInput);
-				$("#total").html("총 결제 금액은 <b>"+num+"원</b> 입니다.");
-		  })
+            var num = addComma((parseInt(diff/currDay)) * vprice);
+            var priceInput = (parseInt(diff/currDay)) * vprice;
+            $("#priceInput").val(${bookingVO.bprice}+priceInput);
+            $("#total").html("총 결제 금액은 <b>"+num+"원</b> 입니다.");
+        })
+        
+        $("#checkbtn").hide();
+       $("#priceView").click(function() {
+          $("#checkbtn").show();
+       })
    });
 </script>
 <title>Reservation Check</title>
@@ -105,28 +108,27 @@ $(function() {
 <div class="card">
 <div class="card-body">
 <div class="row">
-   <div class="col-6" style="border-right: 1px dotted gray;">
-			<h4 style="margin-left:20%;">날짜 선택</h4>
-			<div id="datepicker"></div>
-			<input type="hidden" name="bnumber" value="${bookingVO.bnumber }"/>
-			<input type="text" name="bout" id="bout"/>
-			<br />
-			<br />
-			<br />
-			<button type="button" id="priceView" class="btn btn-primary">조회하기</button>
+   <div class="col" style="border-right: 1px dotted gray;">
+         <h4 style="margin-left:20%;">날짜 선택</h4>
+         <div id="datepicker"></div>
+         <input type="hidden" name="bnumber" value="${bookingVO.bnumber }"/>
+         <input type="text" name="bout" id="bout"/>
+         <br />
+         <br />
+         <br />
+         <button type="button" id="priceView" class="btn btn-primary">조회하기</button>
    </div>
    
-   <div class="col-6">
-         <div class="row-6" >
+   <div class="col">
+         <div class="row" >
          <input type="hidden" id="priceInput" name="bprice"/>
          <h2>
-         	<span id="total"></span>
+            <span id="total"></span>
          </h2>
-         
-         <div class="row-6" style="position:relative; float:right; top:140px;">
-            <button type="submit" class="btn btn-pink" id="extendOK"><i class="fa fa-plane pr-2" aria-hidden="true"></i>예약연장</button>
-              <button type="button" class="btn btn-purple" id="cancel"><i class="fa fa-times pr-2" aria-hidden="true"></i>돌아가기</button>
          </div>
+         <div class="row" id="checkbtn" style="float:right;">
+            <button type="submit" class="btn btn-pink" id="extendOK"><i class="fa fa-plane pr-2" aria-hidden="true"></i>예약연장</button>
+            <button type="button" class="btn btn-purple" id="cancel"><i class="fa fa-times pr-2" aria-hidden="true"></i>돌아가기</button>
    </div>
    </div>
 </div>
