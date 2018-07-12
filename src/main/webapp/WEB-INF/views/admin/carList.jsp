@@ -38,7 +38,7 @@
 
 
 <div class="col-md-10" style="margin-top: 25px;">
-<form:form action="/admin/insertCarOK" method="post">
+<form:form action="/admin/insertCarOK?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
    <div class="card">
       <div class="card-body row">
       <h2 class="container-fluid">차량 추가</h2>
@@ -63,7 +63,9 @@
                <input type="text" id="form5" class="form-control" name="vyear">
                <label for="form5">년식</label>
             </div>
-            <div class="md-form col"></div>
+            <div class="md-form col">
+            	이미지 <input type="file" name="file" />
+            </div>
             
          </div>
          <div class="container-fluid row">
@@ -72,8 +74,8 @@
                <label for="form6">유종</label>
             </div>
          <div class="md-form col">
-               <input type="text" id="form7" class="form-control" name="vcolor">
-               <label for="form7">색</label>
+               		색상  <input type="color" id="" name="vcolor">
+<!--                <input type="text" id="form7" class="form-control" name="vcolor"> -->
             </div>
             <div class="md-form col">
                <input type="text" id="form8" class="form-control" name="eoffice">
@@ -137,7 +139,8 @@
                  str += "<td>${vlist.vtype}</td>";
                  str += "<td>${vlist.vyear}</td>";
                  str += "<td>${vlist.voil}</td>";
-                 str += "<td>${vlist.vcolor}</td>"; 
+                 str += "<td style='color:${vlist.vcolor};'><h3>●</h3></td>"; 
+/*                  str += "<td>${vlist.vcolor}</td>";  */
                  str += "<td>${vlist.vdate}</td>";
                  str += "<td>${vlist.eoffice}</td>"; 
                  str += "<td>${vlist.vstate}</td>"; 

@@ -6,6 +6,7 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 
 	<!-- spring security 적용에서 제외 -->
+	
 	<http pattern="/resources/**" security="none"/>
 	<http pattern="/img/**" security="none"/>
 	<http pattern="/css/**" security="none"/>
@@ -18,7 +19,7 @@
 		authentication-failure-url="/login/login?fail" />
 		<!-- login-processing-url="/j_spring_security_check"/> -->
 	
-		<!-- access="isAuthenticated()" : 인증된 사용자만 접근 -->
+ 		<!-- access="isAuthenticated()" : 인증된 사용자만 접근 -->
 		<intercept-url pattern="/admin/**" access="hasAuthority('ROLE_ADMIN')"/>
 		<intercept-url pattern="/reservation/**" access="isAuthenticated()"/>
 		<intercept-url pattern="/search/**" access="isAuthenticated()"/>
@@ -27,7 +28,7 @@
 		<intercept-url pattern="/login/**" access="permitAll"/>
 		<intercept-url pattern="/service/**" access="permitAll"/>
 		<intercept-url pattern="/member/**" access="permitAll"/>
-		<intercept-url pattern="/**" access="permitAll"/>
+		<intercept-url pattern="/**" access="permitAll"/> 
 		
 		
 		<!-- 로그인 성공시 주소지정 -->
@@ -45,6 +46,7 @@
 
 	<beans:bean id="encoder" class="org.springframework.security.crypto.password.NoOpPasswordEncoder" />
 	<beans:bean id="userService" class="com.prj.nicarnaecar.dao.LoginDAOImplSecurity"></beans:bean>
+	
 	<!-- <beans:bean id="EmployeeService" class="com.prj.nicarnaecar.dao.ELoginDAOImplSecurity"></beans:bean> -->
 
 	<authentication-manager>

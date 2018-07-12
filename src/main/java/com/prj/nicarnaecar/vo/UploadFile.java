@@ -1,4 +1,6 @@
 package com.prj.nicarnaecar.vo;
+
+
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;

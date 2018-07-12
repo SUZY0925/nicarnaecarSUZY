@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>
@@ -24,7 +25,19 @@
     <url-pattern>/</url-pattern>
   </servlet-mapping>
 
-  
+
+	  	<filter>
+		<filter-name>MultipartFilter</filter-name>
+		<filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
+	</filter>
+	
+	<filter>
+    <display-name>springMultipartFilter</display-name>
+    <filter-name>springMultipartFilter</filter-name>
+    <filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
+	</filter>
+
+	
   <!-- 한글 처리 -->
    <filter>
       <filter-name>encodingFilter</filter-name>
@@ -41,12 +54,6 @@
    <!-- 한글처리 끝 -->
 
 
-	<filter>
-		<filter-name>MultipartFilter</filter-name>
-		<filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
-	</filter>
-   
-   
      <!-- 스프링 시큐리티 시작 -->
   <filter>
   	<filter-name>springSecurityFilterChain</filter-name>

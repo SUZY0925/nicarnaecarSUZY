@@ -15,12 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.prj.nicarnaecar.service.EmployeeService;
+import com.prj.nicarnaecar.service.FileUpLoad;
 import com.prj.nicarnaecar.service.ProfitService;
 import com.prj.nicarnaecar.service.SearchService;
 import com.prj.nicarnaecar.service.VehicleService;
 import com.prj.nicarnaecar.vo.BookingVO;
 import com.prj.nicarnaecar.vo.EmployeeVO;
 import com.prj.nicarnaecar.vo.ProfitVO;
+import com.prj.nicarnaecar.vo.UploadFile;
 import com.prj.nicarnaecar.vo.VehicleVO;
 
 @Controller
@@ -42,6 +44,9 @@ public class AdminController {
    @Autowired
    @Qualifier("vehicleServiceImplXML")
    VehicleService vehicleService;
+   
+   @Autowired
+   FileUpLoad fileupload;
 	
 	@RequestMapping("/admin")
 	public void admin() {
@@ -131,8 +136,11 @@ public class AdminController {
    }
    
    @RequestMapping(value="/insertCarOK", method = RequestMethod.POST)
-   public String insertCarOK(VehicleVO vehicleVO) {
-      vehicleService.insertCar(vehicleVO);
+   public String insertCarOK(VehicleVO vehicleVO, UploadFile uploadFile, HttpServletRequest request) {
+   	
+   	if(fileupload.upload(uploadFile, request, vehicleVO.getVmodel())) {
+   		vehicleService.insertCar(vehicleVO);
+   	}
       return "redirect:/admin/carList";
    }
    

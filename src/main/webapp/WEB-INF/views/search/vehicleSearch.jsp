@@ -55,7 +55,8 @@ $(document).ready(function() {
 		        str += "<td>${list.vmodel} ${list.vyear } </td>"; 
 		        str += "<td>${list.vmaker} </td>";
 		        str += "<td>${list.voil} </td>"; 
-		        str += "<td>${list.vcolor} </td>"; 
+		        /* str += "<td>${list.vcolor} </td>";  */
+		         str += "<td style='color:${list.vcolor};'><h3>●</h3></td>";  
 		        str += "<td>"+addComma("${list.vprice}")+"원</td>"; 
 		        str += "</tr>";
 		     </c:forEach>

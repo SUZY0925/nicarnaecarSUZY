@@ -79,7 +79,8 @@
                   str += "<td>" + this.vmodel+ "</td>";
                   str += "<td>" + this.vmaker+ "</td>";
                   str += "<td>" + this.voil+ "</td>";
-                  str += "<td>" + this.vcolor+ "</td>";
+                  /* str += "<td>" + this.vcolor+ "</td>"; */
+                  str += "<td style='color:" + this.vcolor + ";'><h3>●</h3></td>";  
                   
                   str += "<td>" + addComma(this.vprice)+ "원</td>";
                   str += "</tr>";
