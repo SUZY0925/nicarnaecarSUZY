@@ -53,8 +53,11 @@ public class SearchDAOImplXML implements SearchDAO {
 	}
 
 	@Override
-	public void deliveryCar(int bnumber) {
-		sqlSession.update("deliveryCar", bnumber);
+	public void deliveryCar(int bnumber, String eemail) {
+		Map<String,Object> map = new HashMap<>();
+		map.put("bnumber", bnumber);
+		map.put("eemail", eemail);
+		sqlSession.update("deliveryCar", map);
 	}
 
 	@Override

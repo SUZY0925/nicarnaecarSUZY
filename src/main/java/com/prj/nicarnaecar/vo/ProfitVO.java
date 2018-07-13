@@ -11,4 +11,5 @@ public class ProfitVO {
 	public int pamount;
 	public Integer bnumber;
 	public String pmemo;
+	public String eemail;
 }

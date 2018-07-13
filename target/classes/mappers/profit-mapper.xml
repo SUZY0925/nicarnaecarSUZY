@@ -5,8 +5,8 @@
 <mapper namespace="com.prj.nicarnaecar.dao.ProfitDAO">	
 	
 	<insert id="profitInsert" parameterType="ProfitVO">
-		insert into PROFIT(pnumber,ptarget,pinout,pamount,bnumber,pmemo)
-		values(profit_seq.nextval,#{ptarget},#{pinout},#{pamount},
+		insert into PROFIT(pnumber,ptarget,pinout,pamount,eemail,bnumber,pmemo)
+		values(profit_seq.nextval,#{ptarget},#{pinout},#{pamount},#{eemail},
 		<choose>
 			<when test='bnumber == null'>0</when>
 			<when test='bnumber != null'>#{bnumber}</when>

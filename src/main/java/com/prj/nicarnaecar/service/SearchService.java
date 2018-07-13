@@ -37,7 +37,7 @@ public interface SearchService {
 	int returnSearchCount();
 
 	// 인도하기
-	public void deliveryCar(int bnumber);
+	public void deliveryCar(int bnumber, String eemail);
 
 	// 반납하기
 	public void returnCar(BookingVO bookingVO);

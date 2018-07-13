@@ -19,6 +19,7 @@ function addComma(num) {
 	}
 </style>
 <div class="col-md-10">
+
 	<table  class="table table-hover table-responsive-md table-fixed" style="width:100%;">
 		<h2>인도할 차량</h2>
 			<thead>

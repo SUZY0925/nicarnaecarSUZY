@@ -74,15 +74,16 @@
 	</select>
 	
 	<!-- 인도하기 -->
-	<update id="deliveryCar">
-		update booking set bstatus='사용중',
+	<update id="deliveryCar" parameterType="MAP">
+		update booking set bstatus='사용중', bdelivery=#{eemail},
 		vkm = (select vkm from vehicle where vnumber = (select vnumber from booking where bnumber = #{bnumber}))
 		where bnumber = #{bnumber}
 	</update>
 	
 	<!-- 반납하기 -->
 	<update id="returnCar">
-		update booking set bstatus='완료', bkm = #{bkm}, vnumber = #{vnumber} where bnumber = #{bnumber}
+		update booking set bstatus='완료', bkm = #{bkm}, vnumber = #{vnumber}, breturn = #{breturn} 
+		where bnumber = #{bnumber}
 	</update>
 	
 	<!-- 예약 전 연체된 예약 유무 조회 -->

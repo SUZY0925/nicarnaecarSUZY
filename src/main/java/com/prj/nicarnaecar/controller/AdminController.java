@@ -2,6 +2,7 @@ package com.prj.nicarnaecar.controller;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -69,7 +70,9 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/profitInsertOK")
-	public String profitInsertOK(ProfitVO profitVO) {
+	public String profitInsertOK(ProfitVO profitVO, Principal principal) {
+		profitVO.setEemail(principal.getName());
+		System.out.println(profitVO.toString());
 		profitService.profitInsert(profitVO);
 		return "redirect:/admin/profit";
 	}
@@ -84,13 +87,14 @@ public class AdminController {
 	
 	
 	@RequestMapping(value="/deliveryOK/{bnumber}")
-	public String deliveryOK(@PathVariable int bnumber) {
-		searchService.deliveryCar(bnumber);
+	public String deliveryOK(@PathVariable int bnumber, Principal principal) {
+		searchService.deliveryCar(bnumber, principal.getName());
 		return "redirect:/admin/delivery";
 	}
 	
 	@RequestMapping(value="/returnOK", method=POST)
-	public String returnOK(BookingVO bookingVO) {
+	public String returnOK(BookingVO bookingVO, Principal principal) {
+		bookingVO.setBreturn(principal.getName());
 		searchService.returnCar(bookingVO);
 		return "redirect:/admin/return";
 	}

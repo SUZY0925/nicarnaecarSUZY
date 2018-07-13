@@ -7,6 +7,6 @@ import lombok.Data;
 @Data
 public class BookingVO {
 	int bnumber, vkm, bkm;
-	String vnumber, cemail, bstatus, boption, bprice;
+	String vnumber, cemail, bstatus, boption, bprice, bdelivery, breturn;
 	Date bin, bout;
 }

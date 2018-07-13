@@ -53,8 +53,8 @@ public class SearchServiceImplXML implements SearchService {
 	}
 
 	@Override
-	public void deliveryCar(int bnumber) {
-		searchdao.deliveryCar(bnumber);
+	public void deliveryCar(int bnumber, String eemail) {
+		searchdao.deliveryCar(bnumber, eemail);
 	}
 
 	@Override
