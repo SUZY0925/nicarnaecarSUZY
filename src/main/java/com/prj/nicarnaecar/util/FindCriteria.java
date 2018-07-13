@@ -8,6 +8,11 @@ public class FindCriteria extends RecordCriteria {
    
    public FindCriteria() {   //
    }
+   
+   public FindCriteria(int reqPage,String search) {
+      super(reqPage);
+      this.search = search;
+   }
 
    public FindCriteria(int reqPage, String option, String search) {
       super(reqPage);

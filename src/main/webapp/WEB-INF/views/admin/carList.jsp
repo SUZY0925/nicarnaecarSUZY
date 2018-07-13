@@ -30,7 +30,14 @@
    }
 </style>
 <script>
+
+	
 $(function(){
+		$("#insertVehicleBtn").click(function() {
+			$("#vehicleInsertForm").submit();
+		})
+	
+	
 	   $(".modalbtn").click(function() {
 	      var td = $(this).parents().parents().children();
 	      var number = td.eq(0).text();
@@ -46,6 +53,17 @@ $(function(){
 	         self.location = "/admin/deleteCarOK/"+number;
 	      })
 	   })
+	   
+	   
+	   $("#searchBtn").click(function() {
+			  if ($("input[name=search]").val() == "") {
+				alert("검색할 단어를 입력해주세요!");
+				$("input[name=search]").focus();
+				return false;
+			}
+			 location.href = "carList?"+"search="+$("[name=search]").val() ;  
+			self.location = "carList?reqPage=1"+"&search="+$("[name=search]").val();
+		});	
 	})
 	   function addComma(num) {
 	      var regexp = /\B(?=(\d{3})+(?!\d))/g;
@@ -59,7 +77,7 @@ $(function(){
 
 
 <div class="col-md-10" style="margin-top: 25px;">
-<form:form action="/admin/insertCarOK?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
+<form:form id="vehicleInsertForm" action="/admin/insertCarOK?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
    <div class="card">
       <div class="card-body row">
       <h2 class="container-fluid">차량 추가</h2>
@@ -115,8 +133,8 @@ $(function(){
                <label for="form11">주행거리</label>
             </div>
             <div class="md-form col" style="margin-top:10px; padding-left: 25px; padding-right: 5px;">
-               <input type="submit" class="btn btn-primary"
-               style="padding-left: 13px; padding-right: 13px;" value="차량추가" />
+               <button type="button" class="btn btn-primary"
+               style="padding-left: 13px; padding-right: 13px;" id="insertVehicleBtn">차량추가</button>
             </div>
          </div>
       </div>
@@ -152,7 +170,7 @@ $(function(){
             <tbody id="carTableIn">
                 <script>
             var str = "";
-             <c:forEach items="${vlist }" var="vlist">
+             <c:forEach items="${list }" var="vlist">
                  str += "<tr>";
                  str += "<td>${vlist.vnumber}</td>";
                  str += "<td>${vlist.vmaker}</td>";
@@ -182,49 +200,58 @@ $(function(){
     </div>
 </div>
 <table style=" margin:auto;">
-         <tr>
-            <td>
-               <ul id="pageing"
-                  class="pagination pagination-sm justify-content-center">
-                  <c:if test="${page.prev }">
-                     <li class="page-item"><a class="page-link"
-                        href="carList?page.finalEndPage">◀</a></li>
-                     <li class="page-item"><a class="page-link"
-                        href="carList?${page.getmakeURL(page.startPage-1) }" aria-label="Previous">
-                           <span aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span>
-                     </a></li>
-                  </c:if>
+	<tr>
+		<td>
+			<ul id="pageing"
+				class="pagination pagination-sm justify-content-center">
+				<c:if test="${page.prev }">
+					<li class="page-item"><a class="page-link"
+						href="carList?page.finalEndPage">◀</a></li>
+					<li class="page-item"><a class="page-link"
+						href="carList?${page.getmakeURL(page.startPage-1) }"
+						aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+							<span class="sr-only">Previous</span>
+					</a></li>
+				</c:if>
 
-                  <c:forEach begin="${page.startPage }" end="${page.endPage }"
-                     var="PAGE">
-                     <c:if test="${page.recordCriteria.reqPage == PAGE }">
-                        <li class="page-item active"><a class="page-link" href="javascript:void(0)">${PAGE }</a></li>
-                     </c:if>
-                     <c:if test="${page.recordCriteria.reqPage != PAGE }">
-                        <li class="page-item"><a class="page-link"
-                           href="carList?${page.getmakeURL(PAGE) }">${PAGE }</a></li>
-                     </c:if>
-                  </c:forEach>
+				<c:forEach begin="${page.startPage }" end="${page.endPage }"
+					var="PAGE">
+					<c:if test="${page.recordCriteria.reqPage == PAGE }">
+						<li class="page-item active"><a class="page-link"
+							href="javascript:void(0)">${PAGE }</a></li>
+					</c:if>
+					<c:if test="${page.recordCriteria.reqPage != PAGE }">
+						<li class="page-item"><a class="page-link"
+							href="carList?${page.getmakeURL(PAGE) }">${PAGE }</a></li>
+					</c:if>
+				</c:forEach>
 
-                  <c:if test="${page.next }">
-                     <li class="page-item"><a class="page-link"
-                        href="carList?${page.getmakeURL(page.endPage+1) }" aria-label="Next">
-                           <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>
-                     </a></li>
-                     <li class="page-item"><a class="page-link"
-                        href="carList?${page.getmakeURL(page.finalEndPage) }">▶</a></li>
-                  </c:if>
-               </ul>
-            </td>
-          </tr>
-      </table> 
+				<c:if test="${page.next }">
+					<li class="page-item"><a class="page-link"
+						href="carList?${page.getmakeURL(page.endPage+1) }"
+						aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span
+							class="sr-only">Next</span>
+					</a></li>
+					<li class="page-item"><a class="page-link"
+						href="carList?${page.getmakeURL(page.finalEndPage) }">▶</a></li>
+				</c:if>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<input type="text" name="search" id="" class="form-control-sm" value="${search }" />
+			<button type="button" class="btn btn-dark btn-sm" id="searchBtn" >검색</button> <br /> <br />
+		</td>
+	</tr>
+</table>
 
 <form:form action="/admin/updateCarOK/">
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">차량 수정</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -247,6 +274,5 @@ $(function(){
     </div>
 </div>
 </form:form>
-
 
 <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>

@@ -7,6 +7,39 @@
    <select id="VehicleList" resultType="VehicleVO">
       select * from vehicle where vnumber != '지출'
    </select>
+   <select id="VehicleListRecord" resultType="VehicleVO">
+   	select t2.*
+		from (select row_number() over (order by vmodel) as num, t1.*
+		from vehicle t1) t2
+		where num between #{startRecord} and #{endRecord}
+   </select>
+   
+   <select id="VehicleListCount" resultType="int">
+   	  select count(*) from vehicle
+   </select>
+   
+   <select id="SearchVehicleList" resultType="VehicleVO">
+		select t2.* from (select row_number() over (order by vmodel) as num, t1.*
+		from vehicle t1 where 
+			vmodel like '%'||#{search}||'%' or vmaker like '%'||#{search}||'%' or
+			vtype like '%'||#{search}||'%' or voil like '%'||#{search}||'%' or
+			vcolor like '%'||#{search}||'%' or eoffice like '%'||#{search}||'%' or
+			vstate like '%'||#{search}||'%'
+		) t2  
+   </select>
+   
+   <select id="SearchVehicleListCount" resultType="int">
+    	select count(*) from (select row_number() over (order by vmodel) as num, t1.*
+		from vehicle t1 where 
+			vmodel like '%'||#{search}||'%' or vmaker like '%'||#{search}||'%' or
+			vtype like '%'||#{search}||'%' or voil like '%'||#{search}||'%' or
+			vcolor like '%'||#{search}||'%' or eoffice like '%'||#{search}||'%' or
+			vstate like '%'||#{search}||'%'
+		) t2  
+   </select>
+   
+   
+   
    
    <insert id="insertVehicle">
       insert into VEHICLE values 

@@ -30,7 +30,7 @@ $(function() {
             <thead>
                 <tr>
                     <th>예약번호</th>
-                    <th colspan="3">예약내역</th>
+                    <th>예약내역</th>
                     <th>대여시작일</th>
                     <th>대여종료일</th>
                     <th>상태</th>
@@ -46,7 +46,7 @@ $(function() {
             <c:forEach items="${list }" var="book" >
                 <tr>
                     <th scope="row">${book.bnumber }</th>
-                    <td colspan="3">${book.vnumber }</td>
+                    <td>${book.vnumber }</td>
                     <td>${book.bin }</td>
                     <td>${book.bout }</td>
                     	<%-- <fmt:formatDate value="${book.bin}" pattern="yyyyMMdd" var="inDate" />  

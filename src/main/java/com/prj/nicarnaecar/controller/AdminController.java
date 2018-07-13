@@ -133,11 +133,21 @@ public class AdminController {
 		}
 	}
 	
+	
+	
+/*	
    @RequestMapping("/carList")
    public void carList(HttpServletRequest request) {
       List<VehicleVO> vlist = vehicleService.VehicleList();
       request.setAttribute("vlist", vlist);
+   }*/
+   @RequestMapping("/carList")
+   public void carList(HttpServletRequest request) {
+      vehicleService.VehicleList(request);
    }
+   
+   
+   
    
    @RequestMapping(value="/insertCarOK", method = RequestMethod.POST)
    public String insertCarOK(VehicleVO vehicleVO, UploadFile uploadFile, HttpServletRequest request) {
