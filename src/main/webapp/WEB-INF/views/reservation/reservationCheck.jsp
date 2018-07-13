@@ -35,7 +35,7 @@ $(function() {
                     <th>대여종료일</th>
                     <th>상태</th>
                     <th>비고</th>
-                    <th></th>
+                    <th>연장/취소</th>
                 </tr>
             </thead>
             <!--Table head-->
@@ -67,7 +67,7 @@ $(function() {
 		                    </c:choose> --%>
 		                    <td>${book.bstatus }</td>
 		                    <td>
-		                    	<c:if test='${book.bstatus eq "완료"}'>
+		                    	<%-- <c:if test='${book.bstatus eq "완료"}'>
 		                    		<script>
 		                    		function addComma(num) {
 		                    			var regexp = /\B(?=(\d{3})+(?!\d))/g;
@@ -79,7 +79,7 @@ $(function() {
 		                    		});
 		                    		</script>
 		                    		<span id="plusPrice"></span>
-		                    	</c:if>
+		                    	</c:if> --%>
 		                    </td>
                     <td>
                     	<c:choose>
