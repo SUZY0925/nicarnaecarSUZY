@@ -9,11 +9,32 @@
 
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 <script>
+function addComma(num) {
+    var regexp = /\B(?=(\d{3})+(?!\d))/g;
+     return num.toString().replace(regexp, ',');
+ }
 $(function() {
 	$("#cancelBtn").click(function() {
 		alert("예약이 취소되었습니다.");
 	});
 });
+function detail(i) {
+	$.ajax( {
+		type : "GET",
+		url : "/detail/"+document.getElementsByName('bnumber')[i].value,
+		dataType : "JSON",
+        success : function(data) {
+        	var str = "";
+        	$.each(data, function() {
+        		str += "<b>" + this.pmemo +"</b> : " +addComma(this.pamount)+ "원<br>";
+        	})
+        	$(".modal-body").html(str);
+        },
+        error : function(e) {
+        	console.log(e);
+        }
+	})
+}
 </script>
 </head>
 <jsp:include page="/WEB-INF/views/nav.jsp"></jsp:include>
@@ -23,7 +44,6 @@ $(function() {
 <h2>Reservation Check</h2>
    <div class="card">
     <div class="card-body">
-
         <!--Table-->
         <table class="table table-hover table-responsive-md table-fixed">
             <!--Table head-->
@@ -34,8 +54,9 @@ $(function() {
                     <th>대여시작일</th>
                     <th>대여종료일</th>
                     <th>상태</th>
-                    <th>비고</th>
+                    <th>지역</th>
                     <th>연장/취소</th>
+                    <th>상세조회</th>
                 </tr>
             </thead>
             <!--Table head-->
@@ -43,54 +64,28 @@ $(function() {
             <!--Table body-->
             <tbody>
             
-            <c:forEach items="${list }" var="book" >
+            <c:forEach items="${list }" var="book" varStatus="i">
                 <tr>
                     <th scope="row">${book.bnumber }</th>
                     <td>${book.vnumber }</td>
                     <td>${book.bin }</td>
                     <td>${book.bout }</td>
-                    	<%-- <fmt:formatDate value="${book.bin}" pattern="yyyyMMdd" var="inDate" />  
-                    	<fmt:formatDate value="${book.bout}" pattern="yyyyMMdd" var="outDate" />  
-		                   	<c:choose>
-			                   	<c:when test='${book.bstatus eq "취소"}'>
-			                   		취소
-			                   	</c:when>
-			                   	<c:when test="${nowDate > outDate}">
-			                   		사용완료
-			                    </c:when>
-			                    <c:when test="${nowDate <= outDate && nowDate >= inDate}">
-			                   		사용중
-			                    </c:when>
-			                    <c:when test="${nowDate <= outDate && nowDate < inDate}">
-			                   		예약완료
-			                    </c:when>
-		                    </c:choose> --%>
-		                    <td>${book.bstatus }</td>
-		                    <td>
-		                    	<%-- <c:if test='${book.bstatus eq "완료"}'>
-		                    		<script>
-		                    		function addComma(num) {
-		                    			var regexp = /\B(?=(\d{3})+(?!\d))/g;
-		                    		    return num.toString().replace(regexp, ',');
-		                    		};
-		                    		$(function() {
-		                    			var plusPrice = ${book.bkm - book.vkm} * 200;
-			                    		 $("#plusPrice").html('주행거리:'+addComma(${book.bkm - book.vkm})+'km'+' 주행비:'+addComma(plusPrice)+'원');
-		                    		});
-		                    		</script>
-		                    		<span id="plusPrice"></span>
-		                    	</c:if> --%>
-		                    </td>
-                    <td>
-                    	<c:choose>
-	                    	<c:when test='${book.bstatus eq "예약"}'>
-			                 	<a id="cancelBtn" href="/reservation/cancel/${book.bnumber }" class="btn btn-mdb-color btn-sm">취소</a>
-			            	</c:when>
-			            	<c:when test='${book.bstatus eq "사용중"}'>
-			                 	<a id="extendBtn" href="/reservation/extend/${book.bnumber }" class="btn btn-mdb-color btn-sm">연장</a>
-			            	</c:when>
-		            	</c:choose>
-                    </td>
+		            <td>${book.bstatus }</td>
+		            <td>${book.eoffice }</td>
+		            <td>
+		                <c:choose>
+			               <c:when test='${book.bstatus eq "예약"}'>
+					           <a id="cancelBtn" href="/reservation/cancel/${book.bnumber }" class="btn btn-mdb-color btn-sm">취소</a>
+					       </c:when>
+					       <c:when test='${book.bstatus eq "사용중"}'>
+					           <a id="extendBtn" href="/reservation/extend/${book.bnumber }" class="btn btn-mdb-color btn-sm">연장</a>
+					       </c:when>
+				        </c:choose>
+                    </td>		                    
+		            <td>
+		               <input type="hidden" name="bnumber" value='${book.bnumber }' />
+		               <button class="btn btn-mdb-color btn-sm" data-toggle='modal' data-target='#detail' onClick="detail('${i.index}');">상세조회</button>
+		            </td>
                 </tr>
             </c:forEach>
             </tbody>
@@ -139,7 +134,22 @@ $(function() {
             </td>
           </tr>
       </table> 
+</div>
 
+
+<div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">예약 상세정보</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
 </div>
 
 <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>

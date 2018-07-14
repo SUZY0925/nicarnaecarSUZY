@@ -5,6 +5,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.prj.nicarnaecar.service.BookingService;
 import com.prj.nicarnaecar.service.EmployeeService;
 import com.prj.nicarnaecar.service.MemberService;
+import com.prj.nicarnaecar.service.ProfitService;
 import com.prj.nicarnaecar.vo.MemberVO;
+import com.prj.nicarnaecar.vo.ProfitVO;
 
 
 @RestController
@@ -110,5 +114,21 @@ public class RestfullController {
 		}
 		
 		
+		@Autowired
+		@Qualifier("profitServiceImplXML")
+		ProfitService profitService;
+		
+		@RequestMapping(value="/detail/{bnumber}")
+		public ResponseEntity<List<ProfitVO>> detail(@PathVariable int bnumber) {
+			ResponseEntity<List<ProfitVO>> responseEntity = null;
+			try {
+				responseEntity = new ResponseEntity<List<ProfitVO>>(profitService.customerDetailProfit(bnumber), HttpStatus.OK);
+			} catch (Exception e) {
+				e.printStackTrace();
+				responseEntity = new ResponseEntity<List<ProfitVO>>(HttpStatus.BAD_REQUEST);
+			}
+			
+			return responseEntity;
+		}
 			
 }

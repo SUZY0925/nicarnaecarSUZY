@@ -81,6 +81,7 @@
          </div>
          <input type="hidden" value="${vehicleVO.vnumber }" name="vnumber">
          <input type="hidden" id="priceInput" name="bprice">
+         <input type="hidden" name="eoffice" value="${vehicleVO.eoffice }"/>
    </div>
    <div class="col-6">
          <div class="row-6" >

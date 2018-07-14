@@ -44,6 +44,7 @@ $(function() {
         str += "<td name='forbout'>${list.bout}</td>"
 	    str += "<td name='forvkm'>"+addComma(${list.vkm})+"km</td>"
         str += "<td>"+addComma(${list.bprice})+"원</td>"
+        str += "<td>${list.eoffice}</td>"
         str += "<input type='hidden' name='forbprice' value='"+${list.bprice}+"' />"
         <fmt:formatDate value="${list.bout}" pattern="yyyyMMdd" var="outDate" /> 
         
@@ -143,6 +144,7 @@ $(function() {
                     <th><h4>반납날짜</h4></th>
                     <th><h4>주행거리(전)</h4></th>
                     <th><h4>가격</h4></th>
+                    <th><h4>지역</h4></th>
                     <th><h4>반납</h4></th>
                 </tr>
             </thead>

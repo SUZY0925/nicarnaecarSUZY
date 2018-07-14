@@ -31,4 +31,49 @@
 		select count(*) from profit
 	</select>
 	
+	<select id="profitDetail" resultType="ProfitVO">
+		select * from profit where bnumber=#{bnumber}
+	</select>
+	
+	<select id="profitFind" resultType="ProfitVO">
+		select t2.* from (select row_number() over (order by pnumber) as num, t1.*
+		from profit t1 where
+		
+		<choose>
+			<when test='option == "예약번호"'>
+				bnumber = #{search}
+			</when>
+			<when test='option == "거래내역"'>
+				pmemo = #{search}
+			</when>
+			<when test='option == "거래자"'>
+				eemail = #{search}
+			</when>
+		<otherwise>
+			bnumber = #{search} or pmemo = #{search} or eemail = #{search}
+		</otherwise>
+		</choose>
+			) t2 where num between #{startRecord} and #{endRecord}
+	</select>
+	
+	<select id="profitFindCount" resultType="int">
+		select count(*) from (select row_number() over (order by pnumber) as num, t1.*
+		from profit t1 where
+		
+		<choose>
+			<when test='option == "예약번호"'>
+				bnumber = #{search}
+			</when>
+			<when test='option == "거래내역"'>
+				pmemo = #{search}
+			</when>
+			<when test='option == "거래자"'>
+				eemail = #{search}
+			</when>
+		<otherwise>
+			bnumber = #{search} or pmemo = #{search} or eemail = #{search}
+		</otherwise>
+		</choose>
+			) t2 
+	</select>
 </mapper>

@@ -4,8 +4,8 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.prj.nicarnaecar.dao.BookingDAO">	
 	<insert id="bookingInsert">
-		insert into booking(bnumber, vnumber, cemail, bin, bout, bprice) values
-		(booking_seq.nextval, #{vnumber}, #{cemail}, #{bin}, #{bout}, #{bprice})
+		insert into booking(bnumber, vnumber, cemail, bin, bout, bprice, eoffice) values
+		(booking_seq.nextval, #{vnumber}, #{cemail}, #{bin}, #{bout}, #{bprice}, #{eoffice})
 	</insert>
 	
 	<update id="bookingModify">

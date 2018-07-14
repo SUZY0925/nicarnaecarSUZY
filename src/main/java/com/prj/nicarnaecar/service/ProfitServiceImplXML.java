@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.prj.nicarnaecar.dao.ProfitDAO;
+import com.prj.nicarnaecar.util.FindCriteria;
 import com.prj.nicarnaecar.util.PageCriteria;
 import com.prj.nicarnaecar.util.RecordCriteria;
 import com.prj.nicarnaecar.vo.NoticeVO;
@@ -43,7 +44,7 @@ public class ProfitServiceImplXML implements ProfitService {
 
 	@Override
 	public void profitList(HttpServletRequest request) {
-		int reqPage = 0;
+		/*int reqPage = 0;
 		if (request.getParameter("reqPage") == null || request.getParameter("reqPage") == "") {
 			reqPage = 1;
 		} else {
@@ -56,13 +57,64 @@ public class ProfitServiceImplXML implements ProfitService {
 		PageCriteria pc = new PageCriteria(rc,totalRec);
 					
 		request.setAttribute("list", list);
-		request.setAttribute("page", pc);
+		request.setAttribute("page", pc);*/
+		
+		int reqPage = 0;
+		if (request.getParameter("reqPage") == null || request.getParameter("reqPage") == "") {
+			reqPage = 1;
+		} else {
+			reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		}
+		
+		String option = request.getParameter("option");
+		String search = request.getParameter("search");
+		
+		List<ProfitVO> list = null;
+		PageCriteria pc = null;
+		RecordCriteria rc = null;
+				
+		// 검색조건이 없는 경우
+				if(option == null || search.trim().equals("")) {
+					rc = new RecordCriteria(reqPage);
+					list = profitList(rc);
+					int totalRec = profitCount();
+					pc = new PageCriteria(rc,totalRec);
+					
+		// 검색조건이 있는 경우			
+				} else {
+					rc = new FindCriteria(reqPage,option,search);
+					list = SearchProfitList((FindCriteria)rc);
+					int totalRec = SearchProfitListCount((FindCriteria)rc);
+					pc = new PageCriteria(rc, totalRec);
+					
+					request.setAttribute("findCriteria", (FindCriteria)rc);
+				}
+				
+				request.setAttribute("list", list);
+				request.setAttribute("page", pc);
+				request.setAttribute("option",option);
+				request.setAttribute("search",search);
 		
 	}
 
 	@Override
 	public int profitCount() {
 		return profitDAO.profitCount();
+	}
+
+	@Override
+	public List<ProfitVO> customerDetailProfit(int bnumber) {
+		return profitDAO.customerDetailProfit(bnumber);
+	}
+
+	@Override
+	public List<ProfitVO> SearchProfitList(FindCriteria findCriteria) {
+		return profitDAO.SearchProfitList(findCriteria);
+	}
+
+	@Override
+	public int SearchProfitListCount(FindCriteria findCriteria) {
+		return profitDAO.SearchProfitListCount(findCriteria);
 	}
 
 	

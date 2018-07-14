@@ -29,6 +29,7 @@ function addComma(num) {
                     <th><h4>인도날짜</h4></th>
                     <th><h4>반납날짜</h4></th>
                     <th><h4>가격</h4></th>
+                    <th><h4>지역</h4></th>
                     <th><h4>인도</h4></th>
                 </tr>
             </thead>
@@ -42,6 +43,7 @@ function addComma(num) {
 			        str += "<td>${list.bin}</td>";
 			        str += "<td>${list.bout}</td>";
 			        str += "<td>"+addComma(${list.bprice})+"원</td>";
+			        str += "<td>${list.eoffice}</td>"
 			        str += "<td><a class='btn btn-info px-3' href='/admin/deliveryOK/${list.bnumber}'>인도</a></td>";
 			        str += "</tr>";
 			     </c:forEach>

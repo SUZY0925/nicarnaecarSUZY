@@ -72,6 +72,19 @@ $(function() {
     		  }
     	  }
       })
+      $("#searchBtn").click(function() {
+		  if ($("input[name=search]").val() == "") {
+			window.alert("검색할 단어를 입력해주세요!");
+			$("input[name=search]").focus();
+			return false;
+		} else if($("[name=option]").val()=="예약번호" && !$.isNumeric($("#search").val()))  {
+			alert("예약번호는 숫자만 입력 가능합니다!");
+			return false;
+		} else {
+		 	location.href = "profit?option=" + $("[name=option]").val() +"&search="+$("[name=search]").val() ;  
+			self.location = "profit?reqPage=1"+"&option="+$("[name=option]").val()+"&search="+$("[name=search]").val();
+		}
+	});	
       
    })
    function addComma(num) {
@@ -198,6 +211,17 @@ $(function() {
                   </c:if>
                </ul>
             </td>
+          </tr>
+          <tr>
+          	<td>
+          		<select name="option" class="form-control-sm">
+          		<option <c:out value="${option == '예약번호' ? 'selected' : ''}" />>예약번호</option>
+						<option <c:out value="${option == '거래내역' ? 'selected' : ''}" />>거래내역</option>
+						<option <c:out value="${option == '거래자' ? 'selected' : ''}" />>거래자</option>
+				</select>
+				<input type="text" name="search" id="search" class="form-control-sm" value="${search }" />
+				<button type="button" class="btn btn-dark btn-sm" id="searchBtn" >검색</button> <br /> <br />
+			</td>
           </tr>
       </table> 
 </div>

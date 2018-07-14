@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.prj.nicarnaecar.util.FindCriteria;
 import com.prj.nicarnaecar.util.RecordCriteria;
 import com.prj.nicarnaecar.vo.ProfitVO;
 
@@ -38,6 +39,21 @@ public class ProfitDAOImplXML implements ProfitDAO {
 	@Override
 	public int profitCount() {
 		return sqlSession.selectOne("profitCount");
+	}
+
+	@Override
+	public List<ProfitVO> customerDetailProfit(int bnumber) {
+		return sqlSession.selectList("profitDetail", bnumber);
+	}
+
+	@Override
+	public List<ProfitVO> SearchProfitList(FindCriteria findCriteria) {
+		return sqlSession.selectList("profitFind",findCriteria);
+	}
+
+	@Override
+	public int SearchProfitListCount(FindCriteria findCriteria) {
+		return sqlSession.selectOne("profitFindCount", findCriteria);
 	}
 
 }

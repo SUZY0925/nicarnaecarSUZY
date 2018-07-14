@@ -64,12 +64,12 @@ public class ReservationController {
 		return "/reservation/reservationCheck";
 	}
 	
-	
 	@RequestMapping(value="/reservationOK", method=POST)
 	public String reservationOK(Principal principal, BookingVO bookingVO) {
 		String cemail = principal.getName();
 		bookingVO.setCemail(cemail);
 		bookingService.bookingInsert(bookingVO);
+		System.out.println(bookingVO.toString());
 		return "redirect:/reservation/reservationCheck";
 	}
 	
@@ -90,6 +90,9 @@ public class ReservationController {
 		bookingService.bookingExtendOK(bookingVO);
 		return "redirect:/reservation/reservationCheck";
 	}
+	
+	
+	
 	
 	
 	
