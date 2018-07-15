@@ -114,6 +114,7 @@ public class AdminController {
 	
    @RequestMapping(value="/insert",method=RequestMethod.POST)
    public String insert(EmployeeVO employeeVO, BindingResult result) {
+	   System.out.println(employeeVO.toString());
       if(result.hasErrors()) {
          return "/admin/employees";
       }else {

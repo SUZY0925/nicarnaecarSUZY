@@ -122,11 +122,11 @@ $(function(){
 		   alert("비밀번호를 확인하세요!");
 		   $("#epassword").focus();
 		   return false;
-	   } else if($("#ename").val().lenght > 20 && $("#ename").val().lenght < 4) {
-		   alert("이름은 4-20자 이하로 입력하여야 합니다!");
+	   } else if($("#ename").val().lenght > 20 || $("#ename").val().length < 4) {
+		   alert("이름은 4-20자로 입력하여야 합니다!");
 		   $("#ename").focus();
 		   return false;
-	   } else if($("#ephone").val().length <= 11) {
+	   } else if($("#ephone").val().length <= 10 || $("#ephone").val().length > 11) {
 		   alert("전화번호는 10 또는 11자리의 숫자로 입력햐여야 합니다!");
 		   $("#ephone").focus();
 		   return false;
@@ -134,12 +134,14 @@ $(function(){
 		   alert("생년월일은 '19990101' 형식으로 입력해주세요!");
 		   $("#ebirth").focus();
 		   return false;
-	   } else if($("#epassword").val().length < 20) {
+	   } else if($("#epassword").val().length > 20) {
 		   alert("비밀번호는 20자리 이내로 입력하셔야 합니다!");
 		   $("#epassword").focus();
 		   return false;
 	   }
 	   else {
+		   console.log($("#eemail").val())
+		   console.log($("#epassword").val())
 		   /* $("#eemail").val(($("#eeemail").val()+"@ncnc.com")); */
 	         e.preventDefault();
 	         $("#insertemp").submit();
@@ -342,14 +344,14 @@ $(function(){
 					<div class="card">
 						<div class="card-body mx-4 mt-4">
 							<div class="md-form">
-								<input type="text" id="eemail" class="form-control" style="width: 40%; display: inline;" />
+								<input type="text" id="eemail" name="eemail" class="form-control" style="width: 40%; display: inline;" />
 								@ncnc.com
 								<label for="Form-email4">Your email</label>
 								<button type="button" id="idCheck" class="btn btn-primary btn-sm">E-mail Check</button>
 								<input type="hidden" id="idUncheck"/> 
 							</div>
 							<div class="md-form pb-3">
-								<input type="password" id="epassword" class="form-control" />
+								<input type="password" id="epassword" name="epassword" class="form-control" />
 								<label for="Form-pass4">Your password</label>
 								<form:errors path="epassword" cssClass="errmsg" />
 							</div>
@@ -359,22 +361,22 @@ $(function(){
 								<i class="passErr"></i>
 							</div>
 							<div class="md-form">
-								<input type="text" id="ename" class="form-control" />
+								<input type="text" id="ename" name="ename" class="form-control" />
 								<label for="Form-email4">Your Name</label>
 								<form:errors path="ename" cssClass="errmsg" />
 							</div>
 							<div class="md-form">
-								<input type="text" id="ebirth" class="form-control" /> <label
+								<input type="text" id="ebirth" name="ebirth" class="form-control" /> <label
 									for="Form-email4">Your birthday</label>
 									<form:errors path="ebirth" cssClass="errmsg" />
 							</div>
 							<div class="md-form">
-								<input type="text" id="ephone" class="form-control" /> <label
+								<input type="text" id="ephone" name="ephone" class="form-control" /> <label
 									for="Form-email4">Your Phone Number</label>
 									<form:errors path="ephone" cssClass="errmsg" />
 							</div>
 							<div class="md-form">
-								<input type="text" id="eaddress" class="form-control" /> <label
+								<input type="text" id="eaddress" name="eaddress" class="form-control" /> <label
 									for="Form-email4">Your Address</label>
 							</div>
 							<div class="md-form">
