@@ -1,5 +1,6 @@
 package com.prj.nicarnaecar.service;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +13,6 @@ import com.prj.nicarnaecar.dao.SearchDAO;
 import com.prj.nicarnaecar.util.PageCriteria;
 import com.prj.nicarnaecar.util.RecordCriteria;
 import com.prj.nicarnaecar.vo.BookingVO;
-import com.prj.nicarnaecar.vo.NoticeVO;
 import com.prj.nicarnaecar.vo.VehicleVO;
 
 @Service

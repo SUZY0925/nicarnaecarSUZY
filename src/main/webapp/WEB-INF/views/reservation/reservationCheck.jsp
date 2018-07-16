@@ -26,7 +26,9 @@ function detail(i) {
         success : function(data) {
         	var str = "";
         	$.each(data, function() {
-        		str += "<b>" + this.pmemo +"</b> : " +addComma(this.pamount)+ "원<br>";
+        		str += "<table><tr>";
+        		str += "<td><b>" + this.pmemo +"</b></td><td>" +addComma(this.pamount)+ "원<br></td>";
+        		str += "</tr></table>";
         	})
         	$(".modal-body").html(str);
         },
@@ -147,6 +149,8 @@ function detail(i) {
                 </button>
             </div>
             <div class="modal-body">
+            
+            
             </div>
         </div>
     </div>

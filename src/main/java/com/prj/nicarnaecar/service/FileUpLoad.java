@@ -31,6 +31,7 @@ public class FileUpLoad {
 			
 			// 새 파일 생성~
 			File file = new File(rootPath+attachPath+vmodel+".png");
+			System.out.println(rootPath+attachPath);
 			try {
 				// 임시파일을 서버에 저장
 				uploadfile.transferTo(file);

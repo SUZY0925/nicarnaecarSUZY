@@ -34,7 +34,23 @@
 	
 $(function(){
 		$("#insertVehicleBtn").click(function() {
-			$("#vehicleInsertForm").submit();
+			if($("#form1").val()=="" || $("#form2").val()=="" || $("#form3").val()=="" ||
+					$("#form4").val()=="" || $("#form5").val()=="" ||$("#form6").val()=="" ||
+					$("#form8").val()=="" || $("#form10").val()=="" || $("#form11").val()=="") {
+				alert("빈칸을 모두 작성해주세요!");
+				return false;
+			} else if(!$.isNumeric($("#form5").val())) {
+				alert("출시년도는 숫자만 입력 가능합니다!");
+				return false;
+			} else if(!$.isNumeric($("#form10").val())) {
+				alert("가격은 숫자만 입력 가능합니다!");
+				return false;
+			} else if(!$.isNumeric($("#form11").val())) {
+				alert("주행거리는 숫자만 입력 가능합니다!");
+				return false;
+			} else {
+				$("#vehicleInsertForm").submit();
+			}
 		})
 	
 	
@@ -44,11 +60,14 @@ $(function(){
 	      var office = td.eq(8).text();
 	      var price = td.eq(10).text();
 	      var km = td.eq(11).text();
+	      var vmodel = td.eq(3).text();
 	      console.log($(this));
 	      $("#exampleForm1").val(office);
 	      $("#exampleForm2").val(uncomma(price));
 	      $("#exampleForm3").val(km);
 	      $("#exampleForm4").val(number);
+	      $("#exampleForm5").val(vmodel);
+	      
 	      $("#deletebtn").click(function(){
 	         self.location = "/admin/deleteCarOK/"+number;
 	      })
@@ -167,7 +186,7 @@ $(function(){
             <!--Table head-->
 
             <!--Table body-->
-            <tbody id="carTableIn">
+            <tbody id="carTableIn" style="background-color: #F6F6F6;">
                 <script>
             var str = "";
              <c:forEach items="${list }" var="vlist">
@@ -178,7 +197,7 @@ $(function(){
                  str += "<td>${vlist.vtype}</td>";
                  str += "<td>${vlist.vyear}</td>";
                  str += "<td>${vlist.voil}</td>";
-                 str += "<td style='color:${vlist.vcolor}; background-color:#ececec;'><h3>●</h3></td>"; 
+                 str += "<td style='color:${vlist.vcolor};'><h3>●</h3></td>"; 
 /*                  str += "<td>${vlist.vcolor}</td>";  */
                  str += "<td>${vlist.vdate}</td>";
                  str += "<td>${vlist.eoffice}</td>"; 
@@ -246,7 +265,7 @@ $(function(){
 	</tr>
 </table>
 
-<form:form action="/admin/updateCarOK/">
+<form:form action="/admin/updateCarOK?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -263,7 +282,9 @@ $(function(){
                <input type="text" id="exampleForm2" class="form-control" name="vprice">
                <label for="exampleForm3">주행거리</label>
                <input type="text" id="exampleForm3" class="form-control" name="vkm">
+               <input type="file" name="file" class="form-control-file"/>
                <input type="hidden" id="exampleForm4" name="vnumber">
+               <input type="hidden" id="exampleForm5" name="vmodel">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" id="deletebtn">폐차</button>

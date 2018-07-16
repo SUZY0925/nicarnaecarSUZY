@@ -181,7 +181,7 @@
 				
 				</div>
 				<div class="col-12"><span id="carListText"></span>
-				<table id="carList" class="table table-hover table-responsive-md table-fixed" style="width:100%;">
+				<table id="carList" class="table table-hover table-responsive-md table-fixed" style="width:100%; background-color: #F6F6F6;">
 				</table>
 				<button type="submit" class="btn btn-primary" id="reservationBtn">예약하기</button>
 				</div>

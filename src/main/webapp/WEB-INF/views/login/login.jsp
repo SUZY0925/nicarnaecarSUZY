@@ -11,7 +11,7 @@
       $("#afterPW").hide(); 
       
        $("#joinBtn").on("click", function(e) {
-         location.href = "/mypage/join"
+         location.href = "/member/join"
       });
 
          $("#findid").on("click",function(e) {

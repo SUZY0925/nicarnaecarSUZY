@@ -53,11 +53,12 @@ public class AdminController {
 	public void admin() {
 		
 	}
-	
+	// 인도할 차량 전부보기
 	@RequestMapping("/delivery")
 	public void deliveryCar(HttpServletRequest request) {
 		searchService.deliverySearch(request);
 	}
+	// 반납할 차량 전부보기
 	@RequestMapping("/return")
 	public void returnCar(HttpServletRequest request) {
 		searchService.returnSearch(request);
@@ -159,9 +160,11 @@ public class AdminController {
       return "redirect:/admin/carList";
    }
    
-   @RequestMapping(value="/updateCarOK/", method = RequestMethod.POST)
-   public String updateCarOK(VehicleVO vehicleVO) {
-      vehicleService.updateCar(vehicleVO);
+   @RequestMapping(value="/updateCarOK", method = RequestMethod.POST)
+   public String updateCarOK(VehicleVO vehicleVO, UploadFile uploadFile, HttpServletRequest request) {
+   	if(fileupload.upload(uploadFile, request, vehicleVO.getVmodel())) {
+   		vehicleService.updateCar(vehicleVO);
+   	}   	
       return "redirect:/admin/carList";
    }
    
