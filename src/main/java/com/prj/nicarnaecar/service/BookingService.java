@@ -20,7 +20,7 @@ public interface BookingService {
 	void bookingModify(BookingVO bookingVO);
 	
 	// 예약조회
-	List<BookingVO> bookingView(String cemail);
+/*	List<BookingVO> bookingView(String cemail);*/
 	List<BookingVO> bookingView(RecordCriteria recordCriteria, String cemail);
 	void bookingView(String cemail, HttpServletRequest request);
 	int bookingViewCount(String cemail);

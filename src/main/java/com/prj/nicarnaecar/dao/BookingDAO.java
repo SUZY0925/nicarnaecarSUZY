@@ -17,7 +17,7 @@ public interface BookingDAO {
 	void bookingModify(BookingVO bookingVO);
 	
 	// 예약조회
-	List<BookingVO> bookingView(String cemail);
+/*	List<BookingVO> bookingView(String cemail);*/
 	List<BookingVO> bookingView(RecordCriteria recordCriteria, String cemail);
 	int bookingViewCount(String cemail);
 	

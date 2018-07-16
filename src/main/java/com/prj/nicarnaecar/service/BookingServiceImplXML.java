@@ -38,10 +38,10 @@ public class BookingServiceImplXML implements BookingService {
 		bookingdao.bookingModify(bookingVO);
 	}
 
-	@Override
+/*	@Override
 	public List<BookingVO> bookingView(String cemail) {
 		return bookingdao.bookingView(cemail);
-	}
+	}*/
 
 	@Override
 	public String bookingExtend(BookingVO bookingVO) {
@@ -84,6 +84,7 @@ public class BookingServiceImplXML implements BookingService {
 					
 		request.setAttribute("list", list);
 		request.setAttribute("page", pc);
+		System.out.println(list.toString());
 	}
 
 	@Override

@@ -24,12 +24,12 @@
 	</delete>
 	
 	<!-- 예약 전체보기 (개인) -->
-	<select id="bookingView" resultType="BookingVO">
+<!-- 	<select id="bookingView" resultType="BookingVO">
 		select * from booking where cemail = #{cemail} order by bnumber desc
-	</select>
+	</select> -->
 	<select id="bookingViewRecord" resultType="BookingVO">
-		select t2.* from (select row_number() over (order by bnumber desc) as num, t1.* from booking t1) t2
-		where num between #{startRecord} and #{endRecord} and cemail=#{cemail}
+		select t2.* from (select row_number() over (order by bnumber desc) as num, t1.* from booking t1 where cemail =#{cemail}) t2
+		where num between #{startRecord} and #{endRecord}
 	</select>
 	<select id="bookingViewCount" parameterType="String" resultType="int">
 		select count(*) from booking where cemail = #{cemail}

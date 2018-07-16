@@ -33,10 +33,10 @@ public class BookingDAOImplXML implements BookingDAO {
 		sqlSession.update("bookingModify",bookingVO);
 	}
 
-	@Override
+/*	@Override
 	public List<BookingVO> bookingView(String cemail) {
 		return sqlSession.selectList("bookingView",cemail);
-	}
+	}*/
 
 	@Override
 	public String bookingExtend(BookingVO bookingVO) {
