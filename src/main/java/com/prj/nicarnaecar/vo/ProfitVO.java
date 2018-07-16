@@ -12,4 +12,9 @@ public class ProfitVO {
 	public Integer bnumber;
 	public String pmemo;
 	public String eemail;
+	public String APDATE;
+	public String APAMOUNT;
+	public String BPAMOUNT;
+	public String CPAMOUNT;
+	public String DPAMOUNT;
 }

@@ -4,10 +4,9 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,10 +15,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import com.prj.nicarnaecar.service.EmployeeService;
 import com.prj.nicarnaecar.service.FileUpLoad;
@@ -61,9 +56,10 @@ public class AdminController {
    @Qualifier("repairServiceImplXML")
    RepairService repairService;
 	
-	@RequestMapping("/admin")
-	public void admin() {
-		
+   @RequestMapping("/admin")
+	public void admin(HttpServletRequest request) {
+		List<ProfitVO> list = profitService.profitChart();
+		request.setAttribute("list", list);
 	}
 	// 인도할 차량 전부보기
 	@RequestMapping("/delivery")

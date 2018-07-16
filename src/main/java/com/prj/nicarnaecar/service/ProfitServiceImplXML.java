@@ -116,6 +116,11 @@ public class ProfitServiceImplXML implements ProfitService {
 	public int SearchProfitListCount(FindCriteria findCriteria) {
 		return profitDAO.SearchProfitListCount(findCriteria);
 	}
+	
+	@Override
+	public List<ProfitVO> profitChart() {
+		return profitDAO.profitChart();
+	}
 
 	
 }

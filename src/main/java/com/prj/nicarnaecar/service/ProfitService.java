@@ -32,4 +32,6 @@ public interface ProfitService {
 	
 	// 고객별 수익내역들 조회
 	public List<ProfitVO> customerDetailProfit(int bnumber);
+	
+	public List<ProfitVO> profitChart();
 }

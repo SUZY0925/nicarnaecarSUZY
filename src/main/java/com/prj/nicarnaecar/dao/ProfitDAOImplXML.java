@@ -56,4 +56,9 @@ public class ProfitDAOImplXML implements ProfitDAO {
 		return sqlSession.selectOne("profitFindCount", findCriteria);
 	}
 
+	@Override
+	public List<ProfitVO> profitChart() {
+		return sqlSession.selectList("profitChart");
+	}
+
 }
