@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="nowDate" />
+
 <title>Vehicle Search</title>
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
 
@@ -39,6 +44,9 @@ $(document).ready(function() {
 </head>
 <jsp:include page="/WEB-INF/views/nav.jsp"></jsp:include>
 <div class="container" style="margin-top:2%;">
+	<div class="md-form float-left">
+	    *오늘 (${nowDate }) 주유 시세
+	</div>
 	<div class="md-form float-right">
 	    <input id="myInput" class="form-control" type="text" placeholder="Search" aria-label="Search">
 	</div>
@@ -54,9 +62,17 @@ $(document).ready(function() {
 		        str += "<td>${list.vtype} </td>";
 		        str += "<td>${list.vmodel} ${list.vyear } </td>"; 
 		        str += "<td>${list.vmaker} </td>";
-		        str += "<td>${list.voil} </td>"; 
-		        /* str += "<td>${list.vcolor} </td>";  */
-		         str += "<td style='color:${list.vcolor};'><h3>●</h3></td>";  
+		        
+		        if(${list.voil eq "디젤"}) {
+                  	str += "<td>${list.voil}<br>*${diesel}원/L</td>";
+                  } else if(${list.voil eq "가솔린"}) {
+                  	str += "<td>${list.voil}<br>*${gasoline}원/L</td>";
+                  } else if(${list.voil eq "lpg"}) {
+                  	str += "<td>${list.voil}<br>*${lpg}원/L</td>";
+                  } else {
+                  	str += "<td>${list.voil}</td>";
+                  }
+		        str += "<td style='color:${list.vcolor};'><h3>●</h3></td>";  
 		        str += "<td>"+addComma("${list.vprice}")+"원</td>"; 
 		        str += "</tr>";
 		     </c:forEach>

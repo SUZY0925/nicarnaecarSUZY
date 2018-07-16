@@ -98,6 +98,11 @@ $(function() {
        $("#priceView").click(function() {
           $("#checkbtn").show();
        })
+       
+       
+       $("#cancel").click(function() {
+    	   window.history.go(-1);
+       })
    });
 </script>
 <title>Reservation Check</title>

@@ -3,9 +3,11 @@ package com.prj.nicarnaecar.controller;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.security.Principal;
-import java.util.List;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,15 +16,21 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import com.prj.nicarnaecar.service.EmployeeService;
 import com.prj.nicarnaecar.service.FileUpLoad;
 import com.prj.nicarnaecar.service.ProfitService;
+import com.prj.nicarnaecar.service.RepairService;
 import com.prj.nicarnaecar.service.SearchService;
 import com.prj.nicarnaecar.service.VehicleService;
 import com.prj.nicarnaecar.vo.BookingVO;
 import com.prj.nicarnaecar.vo.EmployeeVO;
 import com.prj.nicarnaecar.vo.ProfitVO;
+import com.prj.nicarnaecar.vo.RepairVO;
 import com.prj.nicarnaecar.vo.UploadFile;
 import com.prj.nicarnaecar.vo.VehicleVO;
 
@@ -48,6 +56,10 @@ public class AdminController {
    
    @Autowired
    FileUpLoad fileupload;
+   
+   @Autowired
+   @Qualifier("repairServiceImplXML")
+   RepairService repairService;
 	
 	@RequestMapping("/admin")
 	public void admin() {
@@ -180,5 +192,40 @@ public class AdminController {
    public String profitGraph() {
    	return "/admin/profitGraph";
    }
-
+   
+   
+   @RequestMapping(value="/repair")
+   public void gorepair(HttpServletRequest request) {
+      repairService.repairList(request);
+   }
+   
+   @RequestMapping(value="repairIn", method=RequestMethod.POST)
+   public String repairIn(RepairVO repairVO, BindingResult result) {
+      if(result.hasErrors()) {
+         return "redirect:/admin/repair";
+      }else {
+         repairService.repairIn(repairVO);
+         return "redirect:/admin/repair";
+      }
+   }
+   @RequestMapping(value="repairOut/{vnumber}/{rnumber}")
+   public String repairOut(@PathVariable String vnumber, @PathVariable int rnumber) {
+         repairService.repairOut(vnumber);
+         repairService.toComplete(rnumber);
+         return "redirect:/admin/repair";
+   }
+   @RequestMapping(value="repairUpdate", method=RequestMethod.POST)
+   public String repairUpdate(RepairVO repairVO, BindingResult result) {
+      if(result.hasErrors()) {
+         return "/admin/repair";
+      }else {
+         repairService.repairUpdate(repairVO);
+         return "redirect:/admin/repair";
+      }
+   }
+   @RequestMapping(value="repairDelete/{rnumber}")
+   public String repairDelete(@PathVariable int rnumber) {
+         repairService.repairDelete(rnumber);
+         return "redirect:/admin/repair";
+   }
 }

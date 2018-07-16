@@ -235,7 +235,7 @@ $(function(){
 					<td style="width: 10%;">${emp.eemail }</td>
 					<td style="width: 7%;">${emp.ephone }</td>
 					<td style="width: 10%;">${emp.edate }</td>
-					<td style="width: 7%;"><a href="#">수정</a></td>
+					<td style="width: 7%;"><a class="light-blue-text" href="#">수정</a></td>
 				</tr>
 				<tr class="hide" style="width: 100%;">
 					<td><select class="form-control form-control-sm" name="office">
@@ -275,7 +275,7 @@ $(function(){
 					<td><input type="text" class="form-control form-control-sm"
 						name="phone" value="${emp.ephone }" /></td>
 					<td>${emp.edate }</td>
-					<td style="width: 7%;"><a href="#"
+					<td style="width: 7%;"><a href="#" class="indigo-text"
 						onclick="upupdate('${status.index}');">저장</a></td>
 				</tr>
 			</c:forEach>

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <title>Date Search</title>
 
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
@@ -75,15 +76,23 @@
                   str += '<input type="radio" id="customRadio' + a + '" name="customRadio" class="custom-control-input" value="' + this.vnumber +'">';
                   str +=  '<label class="custom-control-label" for="customRadio' + a + '"></label>';
                   str += "</div>";
-                  
                   str += '<td style="width:5%;"><img src="/resources/IMG/car/' + this.vmodel + '.png" alt="" style="height:30px;"/></td>';
                   str += "<td>" +  this.vtype + "</td>";
                   str += "<td>" + this.vmodel+ "</td>";
                   str += "<td>" + this.vmaker+ "</td>";
-                  str += "<td>" + this.voil+ "</td>";
-                  /* str += "<td>" + this.vcolor+ "</td>"; */
-                  str += "<td style='color:" + this.vcolor + ";'><h3>●</h3></td>";  
                   
+                  
+                  if(this.voil=="디젤") {
+                  	str += "<td>" + this.voil+ "<br>${diesel}원/L</td>";
+                  } else if(this.voil=="가솔린") {
+                  	str += "<td>" + this.voil+ "<br>${gasoline}원/L</td>";
+                  } else if(this.voil=="lpg") {
+                  	str += "<td>" + this.voil+ "<br>${lpg}원/L</td>";
+                  } else {
+                  	str += "<td>" + this.voil+ "</td>";
+                  }
+                   
+                  str += "<td style='color:" + this.vcolor + ";'><h3>●</h3></td>";  
                   str += "<td>" + addComma(this.vprice)+ "원</td>";
                   str += "</tr>";
                   a = a+1;
@@ -180,9 +189,12 @@
 				</div>
 				
 				</div>
+					
 				<div class="col-12"><span id="carListText"></span>
+				
 				<table id="carList" class="table table-hover table-responsive-md table-fixed" style="width:100%; background-color: #F6F6F6;">
 				</table>
+				
 				<button type="submit" class="btn btn-primary" id="reservationBtn">예약하기</button>
 				</div>
 			</div>

@@ -24,8 +24,11 @@ import com.prj.nicarnaecar.service.BookingService;
 import com.prj.nicarnaecar.service.EmployeeService;
 import com.prj.nicarnaecar.service.MemberService;
 import com.prj.nicarnaecar.service.ProfitService;
+import com.prj.nicarnaecar.service.RepairService;
+import com.prj.nicarnaecar.vo.BookingVO;
 import com.prj.nicarnaecar.vo.MemberVO;
 import com.prj.nicarnaecar.vo.ProfitVO;
+import com.prj.nicarnaecar.vo.VehicleVO;
 
 
 @RestController
@@ -130,5 +133,28 @@ public class RestfullController {
 			
 			return responseEntity;
 		}
+		
+		
+		
+	     @Autowired
+	      @Qualifier("repairServiceImplXML")
+	      RepairService repairService;
+	      
+	      @RequestMapping(value="/vnumforbnum", method=POST)
+	      public ResponseEntity<List<BookingVO>> vnumforbnum(@ModelAttribute VehicleVO vehicleVO){
+	         ResponseEntity<List<BookingVO>> responseEntity = null;
+	         
+	         try {
+	         responseEntity = new ResponseEntity<List<BookingVO>>(repairService.bookList(vehicleVO), HttpStatus.OK);
+	         return responseEntity;
+	         
+	         }catch(Exception e) {
+	            
+	            e.printStackTrace();
+	            responseEntity = new ResponseEntity<List<BookingVO>>(HttpStatus.BAD_REQUEST);
+	            return responseEntity;
+	         }
+	         
+	      }
 			
 }
