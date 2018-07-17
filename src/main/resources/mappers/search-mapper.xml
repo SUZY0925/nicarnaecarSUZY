@@ -14,7 +14,7 @@
    		
    		select * from vehicle where vehicle.vnumber not in
 		(select booking.vnumber from booking where
-		<![CDATA[( (bin between TO_DATE(#{bin},'YYYY-MM-DD') and TO_DATE(#{bout},'YYYY-MM-DD') ) OR  (bout between TO_DATE(#{bin},'YYYY-MM-DD') and TO_DATE(#{bout},'YYYY-MM-DD') ) ) ]]>and bstatus='예약')
+		<![CDATA[( (bin between TO_DATE(#{bin},'YYYY-MM-DD') and TO_DATE(#{bout},'YYYY-MM-DD') ) OR  (bout between TO_DATE(#{bin},'YYYY-MM-DD') and TO_DATE(#{bout},'YYYY-MM-DD') ) ) ]]>and bstatus='예약' or bstatus='연체')
 		and eoffice=#{eoffice}
 	</select>
 	

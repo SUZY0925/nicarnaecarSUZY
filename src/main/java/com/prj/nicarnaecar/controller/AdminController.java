@@ -104,6 +104,7 @@ public class AdminController {
 	@RequestMapping(value="/returnOK", method=POST)
 	public String returnOK(BookingVO bookingVO, Principal principal) {
 		bookingVO.setBreturn(principal.getName());
+		System.out.println(bookingVO.toString());
 		searchService.returnCar(bookingVO);
 		return "redirect:/admin/return";
 	}

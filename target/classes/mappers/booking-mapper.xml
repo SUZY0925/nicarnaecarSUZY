@@ -82,7 +82,7 @@
 	
 	<!-- 반납하기 -->
 	<update id="returnCar">
-		update booking set bstatus='완료', bkm = #{bkm}, vnumber = #{vnumber}, breturn = #{breturn} 
+		update booking set bstatus='완료', bkm = #{bkm}, vnumber = #{vnumber}, breturn = #{breturn}
 		where bnumber = #{bnumber}
 	</update>
 	
