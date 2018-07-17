@@ -27,7 +27,7 @@ function detail(i) {
         	var str = "";
         	$.each(data, function() {
         		str += "<table><tr>";
-        		str += "<td><b>" + this.pmemo +"</b></td><td>" +addComma(this.pamount)+ "원<br></td>";
+        		str += "<td style='width:80px;'><b style='font-weight:800;'>" + this.pmemo +"</b></td><td>" +addComma(this.pamount)+ "원<br></td>";
         		str += "</tr></table>";
         	})
         	$(".modal-body").html(str);
@@ -86,7 +86,7 @@ function detail(i) {
                     </td>		                    
 		            <td>
 		               <input type="hidden" name="bnumber" value='${book.bnumber }' />
-		               <button class="btn btn-mdb-color btn-sm" data-toggle='modal' data-target='#detail' onClick="detail('${i.index}');">상세조회</button>
+		               <a class="btn btn-mdb-color btn-sm" data-toggle='modal' data-target='#detail' onClick="detail('${i.index}');">상세조회</a>
 		            </td>
                 </tr>
             </c:forEach>
