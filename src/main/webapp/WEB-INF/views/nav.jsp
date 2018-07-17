@@ -39,7 +39,7 @@ $(function() {
                 <a class="navbar-brand" href="/"><img  src="/resources/IMG/Logo2.png"></a>
             </sec:authorize>
             <sec:authorize access="hasRole('ROLE_ADMIN')">
-            	<a class="navbar-brand" href="/admin/admin"><img  src="/resources/IMG/Logo2.png"></a>
+            	<a class="navbar-brand" href="/admin/profitChart"><img  src="/resources/IMG/Logo2.png"></a>
             </sec:authorize>  
             
             
@@ -64,7 +64,7 @@ $(function() {
                         
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
                         <li >
-                        	<a class="nav-link" href="/admin/admin" style="font-family:'고딕'"><strong>관리자 페이지</strong></a>
+                        	<a class="nav-link" href="/admin/profitChart" style="font-family:'고딕'"><strong>관리자 페이지</strong></a>
                         </li>
                     </sec:authorize> 
                     

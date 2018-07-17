@@ -26,7 +26,7 @@ public class HomeController {
    public String home(Principal principal) {
       Authentication auth = SecurityContextHolder.getContext().getAuthentication();
       if(auth.getName().contains("@ncnc.com")) {
-         return "/admin/admin";
+         return "/admin/profitChart";
       }
       return "home";
    }

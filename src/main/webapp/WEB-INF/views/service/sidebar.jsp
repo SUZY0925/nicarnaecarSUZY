@@ -6,7 +6,7 @@
     padding-bottom: 0px;
     margin-top: 6px;
     margin-bottom: 6px;
-    font-weight : 500;
+/*     font-weight : 500; */
 }
 .col-md-3 ul li a:hover{
 	border-left: 1px solid gray;

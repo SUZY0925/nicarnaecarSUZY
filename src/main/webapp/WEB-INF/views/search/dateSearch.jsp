@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="nowDate" />
+
 <title>Date Search</title>
 
 <jsp:include page="/WEB-INF/views/header.jsp"></jsp:include>
@@ -66,7 +71,7 @@
             dataType : "JSON",
             success : function(data) {
                var a = 1;
-               $("#carListText").html('<br><h4 style="margin-left:40%;">차량선택</h4>');
+               $("#carListText").html('<br><h4 style="margin-left:40%;">차량선택</h4>*오늘 ('+'${nowDate }'+') 주유 시세');
                $.each(data, function() {
             	   
                   str += "<tr>";
@@ -83,11 +88,11 @@
                   
                   
                   if(this.voil=="디젤") {
-                  	str += "<td>" + this.voil+ "<br>${diesel}원/L</td>";
+                  	str += "<td>" + this.voil+ "<br>*${diesel}원/L</td>";
                   } else if(this.voil=="가솔린") {
-                  	str += "<td>" + this.voil+ "<br>${gasoline}원/L</td>";
+                  	str += "<td>" + this.voil+ "<br>*${gasoline}원/L</td>";
                   } else if(this.voil=="lpg") {
-                  	str += "<td>" + this.voil+ "<br>${lpg}원/L</td>";
+                  	str += "<td>" + this.voil+ "<br>*${lpg}원/L</td>";
                   } else {
                   	str += "<td>" + this.voil+ "</td>";
                   }
@@ -98,6 +103,7 @@
                   a = a+1;
                });
                $("#carList").html(str);
+              
             },
             error : function(e) {
             }
@@ -193,9 +199,11 @@
 				<div class="col-12"><span id="carListText"></span>
 				
 				<table id="carList" class="table table-hover table-responsive-md table-fixed" style="width:100%; background-color: #F6F6F6;">
+				
 				</table>
 				
 				<button type="submit" class="btn btn-primary" id="reservationBtn">예약하기</button>
+					
 				</div>
 			</div>
 		</div>

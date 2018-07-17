@@ -56,7 +56,7 @@ public class AdminController {
    @Qualifier("repairServiceImplXML")
    RepairService repairService;
 	
-   @RequestMapping("/admin")
+   @RequestMapping("/profitChart")
 	public void admin(HttpServletRequest request) {
 		List<ProfitVO> list = profitService.profitChart();
 		request.setAttribute("list", list);
